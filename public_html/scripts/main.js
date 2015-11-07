@@ -46,20 +46,9 @@ require([
         function ($routeProvider) {
             $routeProvider
                 .when('/', {
-                    templateUrl: 'views/groups.html',
+                    templateUrl: 'views/login.html',
                     controller: 'RootCtrl'
                 })
-                .when('/calendar', {
-                    templateUrl: 'views/calendar.html',
-                    controller: 'RootCtrl'
-                })
-                .when('/groups', {
-                    templateUrl: 'views/groups.html',
-                    controller: 'FavsCtrl'
-                })
-                .when('/my_profile', {
-                    templateUrl: 'views/my_profile.html'
-                }).otherwise({ redirectTo: '/' });;
         }
       ]);
       domReady(function () {

@@ -1,0 +1,153 @@
+<div class="row">
+				<div class="col-md-12">
+					<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                                        <div class="page-breadcrumb breadcrumb">
+					<h3 class="page-title">
+					Calendar <small> your calendar will be shown here</small>
+					</h3>
+                                        </div>
+					<!-- END PAGE TITLE & BREADCRUMB-->
+				</div>
+			</div>
+
+<div class="infoPageContainer">
+
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							 Widget settings form goes here
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-success">Save changes</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN STYLE CUSTOMIZER -->
+			<div class="theme-panel hidden-xs hidden-sm">
+				<div class="toggler">
+					<i class="fa fa-gear"></i>
+				</div>
+				<div class="theme-options">
+					<div class="theme-option theme-colors clearfix">
+						<span>
+							 Theme Color
+						</span>
+						<ul>
+							<li class="color-black current color-default tooltips" data-style="default" data-original-title="Default">
+							</li>
+							<li class="color-grey tooltips" data-style="grey" data-original-title="Grey">
+							</li>
+							<li class="color-blue tooltips" data-style="blue" data-original-title="Blue">
+							</li>
+							<li class="color-red tooltips" data-style="red" data-original-title="Red">
+							</li>
+							<li class="color-light tooltips" data-style="light" data-original-title="Light">
+							</li>
+						</ul>
+					</div>
+					<div class="theme-option">
+						<span>
+							 Layout
+						</span>
+						<select class="layout-option form-control input-small">
+							<option value="fluid" selected="selected">Fluid</option>
+							<option value="boxed">Boxed</option>
+						</select>
+					</div>
+					<div class="theme-option">
+						<span>
+							 Header
+						</span>
+						<select class="header-option form-control input-small">
+							<option value="fixed" selected="selected">Fixed</option>
+							<option value="default">Default</option>
+						</select>
+					</div>
+					<div class="theme-option">
+						<span>
+							 Sidebar
+						</span>
+						<select class="sidebar-option form-control input-small">
+							<option value="fixed">Fixed</option>
+							<option value="default" selected="selected">Default</option>
+						</select>
+					</div>
+					<div class="theme-option">
+						<span>
+							 Sidebar Position
+						</span>
+						<select class="sidebar-pos-option form-control input-small">
+							<option value="left" selected="selected">Left</option>
+							<option value="right">Right</option>
+						</select>
+					</div>
+					<div class="theme-option">
+						<span>
+							 Footer
+						</span>
+						<select class="footer-option form-control input-small">
+							<option value="fixed">Fixed</option>
+							<option value="default" selected="selected">Default</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<!-- END BEGIN STYLE CUSTOMIZER -->
+			
+			<!-- BEGIN PAGE CONTENT-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="portlet calendar">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-reorder"></i>Calendar
+							</div>
+						</div>
+						<div class="portlet-body light-grey">
+							<div class="row">
+								<div class="col-md-3 col-sm-12">
+									<!-- BEGIN DRAGGABLE EVENTS PORTLET-->
+									<h3 class="event-form-title">Draggable Events</h3>
+									<div id="external-events">
+										<form class="inline-form">
+											<input type="text" value="" class="form-control" placeholder="Event Title..." id="event_title"/><br/>
+											<a href="javascript:;" id="event_add" class="btn btn-success">Add Event</a>
+										</form>
+										<hr/>
+										<div id="event_box">
+										</div>
+										<label for="drop-remove">
+										<input type="checkbox" id="drop-remove"/>remove after drop </label>
+										<hr class="visible-xs"/>
+									</div>
+									<!-- END DRAGGABLE EVENTS PORTLET-->
+								</div>
+								<div class="col-md-9 col-sm-9">
+									<div id="calendar" class="has-toolbar">
+									</div>
+								</div>
+							</div>
+							<!-- END CALENDAR PORTLET-->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END PAGE CONTENT-->
+		
+    
+    
+    
+</div>
+
+
