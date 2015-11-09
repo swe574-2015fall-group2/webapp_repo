@@ -90,7 +90,10 @@ require([
                     templateUrl: 'views/discussion/new_discussion.html',
                     controller: 'FavsCtrl'
                 })
-                
+                .when('/meeting_detail', {
+                    templateUrl: 'views/meeting/meeting_detail.html',
+                    controller: 'FavsCtrl'
+                })
                 .when('/my_profile', {
                     templateUrl: 'views/my_profile.html'
                 }).otherwise({ redirectTo: '/groups' });;

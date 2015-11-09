@@ -15,6 +15,11 @@ define(['controllers/controllers',
         ImageService,
         UtilitiesService,
         LocalStorageService) {
+            
+        $('.date-picker').datepicker({
+                rtl: App.isRTL(),
+                autoclose: true
+            });
 
         $scope.imageItemsStorageKey = 'imageItemsKey';
         $scope.favImageItems = [];

@@ -22,7 +22,7 @@ define(['controllers/controllers',
     function (
         $window,
         $scope,
-        $location,
+        $location
         //LiveUpdatesService,
         //UtilitiesService,
         //ImageService,
