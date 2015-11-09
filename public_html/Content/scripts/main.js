@@ -49,15 +49,48 @@ require([
                     templateUrl: 'views/groups.html',
                     controller: 'RootCtrl'
                 })
-                .when('/calendar', {
-                    templateUrl: 'views/calendar.html',
-                    controller: 'RootCtrl'
-                })
                 
                 .when('/groups', {
-                    templateUrl: 'views/groups.html',
+                    templateUrl: 'views/groups/groups.html',
                     controller: 'FavsCtrl'
                 })
+                .when('/my_groups_detail', {
+                    templateUrl: 'views/groups/my_groups_detail.html',
+                    controller: 'FavsCtrl'
+                })
+                .when('/popular_groups_detail', {
+                    templateUrl: 'views/groups/popular_groups_detail.html',
+                    controller: 'FavsCtrl'
+                })
+                .when('/latest_groups_detail', {
+                    templateUrl: 'views/groups/latest_groups_detail.html',
+                    controller: 'FavsCtrl'
+                })
+                .when('/recommended_groups_detail', {
+                    templateUrl: 'views/groups/recommended_groups_detail.html',
+                    controller: 'FavsCtrl'
+                })
+                .when('/all_groups_detail', {
+                    templateUrl: 'views/groups/all_groups_detail.html',
+                    controller: 'FavsCtrl'
+                })
+                .when('/group_detail', {
+                    templateUrl: 'views/groups/group_detail.html',
+                    controller: 'FavsCtrl'
+                })
+                .when('/new_meeting', {
+                    templateUrl: 'views/meeting/new_meeting.html',
+                    controller: 'FavsCtrl'
+                })
+                .when('/discussion_detail', {
+                    templateUrl: 'views/discussion/discussion_detail.html',
+                    controller: 'FavsCtrl'
+                })
+                .when('/new_discussion', {
+                    templateUrl: 'views/discussion/new_discussion.html',
+                    controller: 'FavsCtrl'
+                })
+                
                 .when('/my_profile', {
                     templateUrl: 'views/my_profile.html'
                 }).otherwise({ redirectTo: '/' });;

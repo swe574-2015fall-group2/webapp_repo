@@ -105,6 +105,7 @@ Fix link outlines after click
 ***/
 a,a:focus, a:hover, a:active {
   outline: 0;
+  /* width: 200px; */
 }
 
 /***
@@ -1323,7 +1324,7 @@ Custom icon buttons
 }
 
 .icon-btn i {
-  font-size: 18px;
+  font-size: 35px;
 }
 
 .ie8 .icon-btn:hover {
@@ -2452,7 +2453,7 @@ Theme Panel
 ***/
 
 .theme-panel {
-  width: 320px;
+  width: 215px;
   margin-top: -20px;
   margin-right: 1px;
   z-index: 999;
@@ -2489,7 +2490,7 @@ Theme Panel
 
 .theme-panel > .theme-options {
   top:3px;
-  right:0px;
+  left: 0px;
   display:none;
   position:absolute;
   background-color: #fff;
@@ -2497,7 +2498,7 @@ Theme Panel
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
 
 .theme-panel > .theme-options > .theme-option {

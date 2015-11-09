@@ -92,7 +92,7 @@
 						</div>
 					</form>
 				</li>
-				<li class="start active " id="nav1"  onclick="document.getElementById('nav2').className = '';document.getElementById('nav3').className = '';this.className+=' active'">
+				<li class="start active " id="nav1"  onclick="document.getElementById('nav2').className = '';this.className+=' active'">
 					<a href="#/groups">
 					<i class="fa fa-home"></i>
 					<span class="title">
@@ -103,16 +103,7 @@
 					</a>
 				</li>
 				
-                                <li class="" id="nav2" onclick="document.getElementById('nav1').className = '';document.getElementById('nav3').className = '';this.className+=' active'">
-					<a href="#/calendar">
-					<i class="fa fa-table"></i>
-					<span class="title">
-						Calendar
-					</span>
-					</a>
-				</li>
-                                
-                                <li class="" id="nav3"  onclick="document.getElementById('nav1').className = '';document.getElementById('nav2').className = '';this.className+=' active'">
+                                <li class="" id="nav2"  onclick="document.getElementById('nav1').className = '';this.className+=' active'">
 					<a href="#/my_profile">
 					<i class="fa fa-user"></i>
 					<span class="title">
@@ -135,6 +126,7 @@
 <div class="page-content-wrapper">
 	<div class="page-content-wrapper">
 		<div class="page-content">
+                    
 <div id="main">
             <div ng-view></div>
         </div>
@@ -208,10 +200,13 @@
     <script>
 $(document).ready(function() {       
    // initiate layout and plugins
-  
+
    App.init();
    Calendar.init();
+   
+   
 });
+
 </script>
     
     
