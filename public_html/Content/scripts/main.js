@@ -45,7 +45,7 @@ require([
       app.config(['$routeProvider',
         function ($routeProvider) {
             $routeProvider
-                .when('/', {
+                .when('#/', {
                     templateUrl: 'views/groups.html',
                     controller: 'RootCtrl'
                 })
@@ -93,7 +93,7 @@ require([
                 
                 .when('/my_profile', {
                     templateUrl: 'views/my_profile.html'
-                }).otherwise({ redirectTo: '/' });;
+                }).otherwise({ redirectTo: '/groups' });;
         }
       ]);
       domReady(function () {
