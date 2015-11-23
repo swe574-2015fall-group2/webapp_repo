@@ -1,10 +1,5 @@
 
 
-
-
-
-
-
 define(['controllers/controllers',
         'services/liveUpdatesService',
         'services/utilitiesService',
@@ -28,6 +23,9 @@ define(['controllers/controllers',
         //ImageService,
         //LocalStorageService
                 ) {
+
+
+
 
         $scope.imageitems = [];
         $scope.imageItemsStorageKey = 'imageItemsKey';

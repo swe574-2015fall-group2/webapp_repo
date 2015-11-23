@@ -6,16 +6,35 @@ define(['controllers/controllers',
         controllers.controller('FavsCtrl',
             ['$window',
             '$scope',
+            '$http',
             'ImageService',
             'UtilitiesService',
             'LocalStorageService',
     function (
         $window,
         $scope,
+        $http,
         ImageService,
         UtilitiesService,
         LocalStorageService) {
-            
+         
+        
+        /*var data = JSON.stringify({
+                username: "string2",
+                password: "string"
+            });
+        
+        $http.post("http://162.243.215.160:9000/v1/user/login", data).success(function(data, status) {
+            alert("success");
+        });*/
+        var Cerez = document.cookie;
+	
+        var Duzenli = new RegExp("authToken=([^;=]+)[;\\b]?");
+                    var Sonuclar = Duzenli.exec(Cerez);
+                    //alert( unescape(Sonuclar[1]) );	
+        
+        
+        
         $('.date-picker').datepicker({
                 rtl: App.isRTL(),
                 autoclose: true

@@ -32,6 +32,8 @@ require([
   'services/localStorageService',
   'controllers/rootController',
   'controllers/favsController',
+  'controllers/createGroupController',
+  'controllers/GroupController',
   'directives/ngbkFocus',
   'directives/draggable',
   'directives/resizable',
@@ -52,8 +54,14 @@ require([
                 
                 .when('/groups', {
                     templateUrl: 'views/groups/groups.html',
-                    controller: 'FavsCtrl'
+                    controller: 'GroupContr'
                 })
+                
+                .when('/create_new_group', {
+                    templateUrl: 'views/groups/new_group.html',
+                    controller: 'CreateGroupContr'
+                })
+                
                 .when('/my_groups_detail', {
                     templateUrl: 'views/groups/my_groups_detail.html',
                     controller: 'FavsCtrl'

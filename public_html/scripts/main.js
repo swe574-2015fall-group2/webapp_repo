@@ -32,6 +32,7 @@ require([
   'services/localStorageService',
   'controllers/rootController',
   'controllers/favsController',
+  'controllers/registerController',
   'directives/ngbkFocus',
   'directives/draggable',
   'directives/resizable',
@@ -45,9 +46,19 @@ require([
       app.config(['$routeProvider',
         function ($routeProvider) {
             $routeProvider
-                .when('/', {
+            
+            .when('/', {
                     templateUrl: 'views/login.html',
                     controller: 'RootCtrl'
+                })
+            
+                .when('/login', {
+                    templateUrl: 'views/login.html',
+                    controller: 'RootCtrl'
+                })
+                .when('/register', {
+                    templateUrl: 'views/register.html',
+                    controller: 'RegisterCtrl'
                 })
         }
       ]);
