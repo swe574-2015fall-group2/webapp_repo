@@ -1,6 +1,6 @@
 define(['controllers/controllers'],
     function (controllers) {
-        controllers.controller('GroupContr',
+        controllers.controller('LatestGroupsContr',
             ['$window',
             '$scope',
             '$http',
@@ -9,9 +9,9 @@ define(['controllers/controllers'],
         $scope,
         $http) {
          
+        //alert("welcome to latest groups")
         
-        
-        //alert("");
+        //alert(" all groups");
         var Cerez = document.cookie;
 	
         var Duzenli = new RegExp("authToken=([^;=]+)[;\\b]?");
@@ -28,6 +28,27 @@ define(['controllers/controllers'],
                     });
         
         $scope.groupList="";
+        
+        $http.post("http://162.243.215.160:9000/v1/group/listAll", data).success(function(data, status) {
+                    
+                 //alert( "There are your groups" );	
+                   $scope.groupList=data.result.groupList;
+                   
+                }).error(function (data, status, headers, config) {
+              alert("Error: " + data.consumerMessage);
+              
+            });
+        
+        $scope.toGroupDetail = function (index,name, desc, join) {
+           document.cookie = "selectedGroup" + "=" + index;
+           document.cookie = "selectedGroupName" + "=" + name;
+           document.cookie = "selectedGroupDesc" + "=" + desc;
+           document.cookie = "selectedGroupJoined" + "=" + join;
+           //alert(join);
+           $window.location.href = '#/group_detail';
+       };
+        
+        /*
         $http.post("http://162.243.215.160:9000/v1/group/listAll", data).success(function(data, status) {
                     
                    // alert( "There are your groups" );	
@@ -53,19 +74,15 @@ define(['controllers/controllers'],
               
             });
         
-        $scope.popularGroupList="";
-        $scope.latestGroupList="";
-        $scope.recommendedGroupList="";
-        
        $scope.toGroupDetail = function (index,name, desc, join) {
            document.cookie = "selectedGroup" + "=" + index;
            document.cookie = "selectedGroupName" + "=" + name;
            document.cookie = "selectedGroupDesc" + "=" + desc;
            document.cookie = "selectedGroupJoined" + "=" + join;
-           //alert(join);
+           alert(join);
            $window.location.href = '#/group_detail';
        };
-        
+        */
         
     }]);
 });

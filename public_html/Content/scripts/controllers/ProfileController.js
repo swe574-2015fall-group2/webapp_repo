@@ -1,6 +1,6 @@
 define(['controllers/controllers'],
     function (controllers) {
-        controllers.controller('CreateGroupContr',
+        controllers.controller('ProfileContr',
             ['$window',
             '$scope',
             '$http',
@@ -28,10 +28,11 @@ define(['controllers/controllers'],
         var authToken = unescape(Sonuclar[1]);
         
         $scope.authToken=authToken;
+            //alert(authToken);
         $scope.name="";
         $scope.description="";
         $scope.sendPost = function() {
-            //alert("");
+            
                 var data = JSON.stringify({
                         authToken: $scope.authToken,
                         name: $scope.name,

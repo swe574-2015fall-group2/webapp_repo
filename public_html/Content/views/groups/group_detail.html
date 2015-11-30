@@ -6,8 +6,8 @@
         <tbody>
             <tr>
                 <td>
-                    <h3>Digital Publishing Interest Group</h3> 
-                    Hold discussions and recommend solutions regarding a future vision of Digital Publishing.
+                    <h3 ng-bind="selectedGroupName"></h3> 
+                    <p  ng-bind="selectedGroupDesc"></p>
                 </td>
                 <td>
                     <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; ">
@@ -25,7 +25,8 @@
 
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger">Leave Group</button>
+                    <button type="button" class="btn btn-danger" ng-show="isUserJoined" ng-click="leaveGroup()">Leave Group</button>
+                    <button type="button" class="btn btn-success" ng-show="!isUserJoined" ng-click="joinGroup()">Join Group</button>
                 </td>
             </tr>
 
@@ -167,9 +168,17 @@
 
 <div class="well well-sm">
     <h4 >Meetings</h4>
-
-
-    <a class="" href="#/meeting_detail">
+    <div  ng-show="!meetingList.length">
+    <p>Unfortunately, there are no meetings scheduled. Maybe you should create one...</p>
+    <a href="#/new_meeting" class="icon-btn" style="width:130px">
+                            <i class="fa fa-group" style="font-size: 35px;"></i>
+                            <div>
+                                Create New Meeting
+                            </div>
+                        </a>
+    </div>
+    <div data-ng-repeat="i in meetingList">
+        <a class="" href="" ng-click="toMeetingDetail(i.meetingId,i.description,i.location)">
         <div class="media" style="margin-bottom: 15px;">
 
             <div class="pull-left well well-sm" style="background-color: white">
@@ -187,61 +196,16 @@
             </div>
 
             <div class="media-body" style="padding-left: 10px; padding-top: 5px">
-                <h4 class="media-heading">DPUB IG Metadata Task Force</h4>
-                <p>The Metadata Task Force of the DPUB IG found, through extensive interviews with representatives of...</p>
+                <h4 class="media-heading">{{i.description}} </h4>
+                <p>{{i.location}} </p>
                 <p><i class="fa fa-group" style="margin-right: 3px;    color: brown;"></i>Face-to-Face Meeting</p>
             </div>
         </div>
     </a>
-    <a class="" href="#/meeting_detail">
-        <div class="media" style="margin-bottom: 15px;">
+        
+    </div>
 
-            <div class="pull-left well well-sm" style="background-color: white">
-                <table>
-                    <tr>
-                        <td align="center" style="font-size: 36px">28</td>
-                    </tr>
-                    <tr>
-                        <td align="center">May 2016</td>
-                    </tr>
-                    <tr>
-                        <td align="center">14:00-15:00</td>                        
-                    </tr>
-                </table>
-            </div>
-
-            <div class="media-body" style="padding-left: 10px; padding-top: 5px">
-                <h4 class="media-heading">DPUB IG Metadata Task Force</h4>
-                <p>The Metadata Task Force of the DPUB IG found, through extensive interviews with representatives of...</p>
-                <p><i class="fa fa-group" style="margin-right: 3px;    color: brown;"></i>Face-to-Face Meeting</p>
-            </div>
-        </div>
-    </a>
-
-    <a class="" href="#/meeting_detail">
-        <div class="media" style="margin-bottom: 15px;">
-
-            <div class="pull-left well well-sm" style="background-color: white">
-                <table>
-                    <tr>
-                        <td align="center" style="font-size: 36px">28</td>
-                    </tr>
-                    <tr>
-                        <td align="center">May 2016</td>
-                    </tr>
-                    <tr>
-                        <td align="center">14:00-15:00</td>                        
-                    </tr>
-                </table>
-            </div>
-
-            <div class="media-body" style="padding-left: 10px; padding-top: 5px">
-                <h4 class="media-heading">DPUB IG Metadata Task Force</h4>
-                <p>The Metadata Task Force of the DPUB IG found, through extensive interviews with representatives of...</p>
-                <p><i class="fa fa-video-camera" style="margin-right: 3px;color: #05AF15;"></i>Online Meeting</p>
-            </div>
-        </div>
-    </a>
+   
 </div>
 
 <script>

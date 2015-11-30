@@ -1,0 +1,224 @@
+<div><table class="" style="margin-bottom: 30px; width: 100%">
+
+        <tbody>
+            <tr>
+                <td></td>
+
+                <td>
+                    <button type="button" class="btn btn-navbar" onclick="window.location.href = '#/group_detail';">Back to Group Detail </button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table></div>
+
+<div><table class="" style="margin-bottom: 30px; width: 100%">
+
+        <div style="margin-bottom: 20px;">
+
+           <h3 ng-bind="selectedGroupName"></h3> 
+                    <p  ng-bind="selectedGroupDesc"></p>
+        </div>
+    </table></div>
+
+
+<div class="well well-sm"> 
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form class="horizontal-form" ng-submit="sendPost()">
+            <div class="form-body">
+                <!-- <h3 class="form-section">New Meeting</h3> -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Meeting Name</label>
+                            <input type="text" id="firstName" class="form-control" placeholder="Enter a name for your meeting" ng-model="name">
+                            <span class="help-block" style="display:none">
+                                This is inline help
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" rows="3" placeholder="Enter the description for your meeting" ng-model="description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Tags</label>
+                            <input type="text" id="firstName" class="form-control" placeholder="Enter tags">
+                            <span class="help-block" style="display:none">
+                                This is inline help
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Invite List</label>
+                            <input type="text" id="firstName" class="form-control" placeholder="Search for a member to add">
+                            <span class="help-block" style="display:none">
+                                This is inline help
+                            </span>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-link">Invite All Users</button>
+                            <table cellpadding="5">       
+                                <tr>
+                                    <td><img src="assets/img/avatar1.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
+                                    <td valign="top" >
+                                        <table>                    
+                                            <tr>
+                                                <td><h4 style="padding:0px; margin: 0px">Recep Günay</h4></td>                          
+                                            </tr>
+                                            <tr>
+                                                <td>Regular Attendee</td>
+
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>  
+                            </table>
+
+
+                            <table cellpadding="5">       
+                                <tr>
+                                    <td><img src="assets/img/avatar1.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
+                                    <td valign="top" >
+                                        <table>                    
+                                            <tr>
+                                                <td><h4 style="padding:0px; margin: 0px">Recep Günay</h4></td>                          
+                                            </tr>
+                                            <tr>
+                                                <td>Regular Attendee</td>
+
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>  
+                            </table>
+
+
+                            <table cellpadding="5">       
+                                <tr>
+                                    <td><img src="assets/img/avatar2.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
+                                    <td valign="top" >
+                                        <table>                    
+                                            <tr>
+                                                <td><h4 style="padding:0px; margin: 0px">Chanan Kvas</h4></td>                          
+                                            </tr>
+                                            <tr>
+                                                <td>Regular Attendee</td>
+
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>  
+                            </table>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label ">Meeting Date</label>
+                                    <input class="form-control" size="16" type="text" value=""/>
+                                    <img src="images/standard_month.png" alt=""/>
+                                    <span class="help-block" style="display: none">
+                                        Select date
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label ">Meeting Hours</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Start</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control">
+                                            <option>08:00</option>
+                                            <option>09:00</option>
+                                            <option>10:00</option>
+                                            <option>11:00</option>
+                                            <option>12:00</option>
+                                            <option>13:00</option>
+                                            <option>14:00</option>
+                                            <option>15:00</option>
+                                            <option>16:00</option>
+                                            <option>17:00</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top: 5px;">
+                                    <label class="col-md-3 control-label">End</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control">
+                                            <option>09:00</option>
+                                            <option>10:00</option>
+                                            <option>11:00</option>
+                                            <option>12:00</option>
+                                            <option>13:00</option>
+                                            <option>14:00</option>
+                                            <option>15:00</option>
+                                            <option>16:00</option>
+                                            <option>17:00</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group"  style="margin-top: 5px;">
+                                    <label class=" control-label">Timezone</label>
+                                    <div class="">
+                                        <select class="form-control">
+                                            <option>Australian Central Daylight Savings Time	UTC+10:30</option>
+                                            <option>Australian Central Standard Time	UTC+09:30</option>
+                                            <option>Bolivia Time	UTC−04</option>
+                                            <option>Christmas Island Time	UTC+07</option>
+                                            <option>Further-eastern European Time	UTC+03</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Location</label>
+                            <input type="text" id="firstName" class="form-control" placeholder="Search for a location to add">
+                            <input type="checkbox" id="inlineCheckbox21" value="option1" style="margin: 5px;">Online Meeting
+                            <span class="help-block" style="display:none">
+                                This is inline help
+                            </span>
+                        </div>
+                        <div class="form-group">
+
+                            <div>
+                                <label class="control-label">Discussions</label>
+                                <input type="text" id="firstName" class="form-control" placeholder="Search for a discussion to add">
+
+
+                                <ul style="list-style-type: none; margin-left:5px; padding-left: 0px;margin-top:15px; ">
+                                    <li>
+                                        <a tabindex="-1" href="#/discussion_detail">This document isn't using RFC words...            
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="#/discussion_detail">The (optional) explanation of conformance ...
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-actions right">
+                <button type="button" class="btn btn-default" onclick="window.location.href = '#/group_detail';">Cancel</button>
+                <button type="submit" class="btn btn-info"><i class="fa fa-check"></i> Save</button>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>							
+
+

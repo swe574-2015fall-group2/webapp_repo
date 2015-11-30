@@ -16,12 +16,10 @@
 <div class="row">
     <div class="col-md-9" style="margin-bottom: 20px;">
 
-        <h3>This document isn't using RFC words</h3>
-        <p>Posted on 15/07/2015 by Sinan Can</p>
+        <h3 ng-bind="selectedMeetingDesc"></h3>
+        <p>Created on 15/07/2015 by Sinan Can</p>
 
-        <p> All functionality of the authoring tool is operable through a keyboard interface without requiring specific timings for individual keystrokes, except where the underlying function requires input that depends on the path of the user's movement and not just the endpoints. (Level A)
-            Note 1: The path exception relates to the underlying function, not the input technique. For example, if using handwriting to enter text, the input technique (handwriting) requires path-dependent input, but the underlying function (text input) does not. The path exception encompasses other input variables that are continuously sampled from pointing devices, including pressure, speed, and angle.
-            Note 2: This success criterion does not forbid and should not discourage providing mouse input or other input methods in addition to keyboard operation.</p>
+       
         <p>#tag1 #eiffel #pinkelephant</p>
 
     </div>
@@ -41,7 +39,7 @@
                 </tr>
 
                 <tr>
-                    <td align="center" style="font-size: 12px">Location: Kadıköy Starbucks</td>                        
+                    <td align="center" style="font-size: 12px">Location: <p  ng-bind="selectedMeetingLoc"></p></td>                        
                 </tr>
 
                 <tr>

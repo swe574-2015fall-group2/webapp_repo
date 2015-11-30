@@ -34,6 +34,13 @@ require([
   'controllers/favsController',
   'controllers/createGroupController',
   'controllers/GroupController',
+  'controllers/GroupDetailController',
+  'controllers/NewMeetingController',
+  'controllers/MeetingDetailController',
+  'controllers/AllGroupsController',
+  'controllers/LatestGroupsController',
+  'controllers/MyGroupsController',
+  'controllers/ProfileController',
   'directives/ngbkFocus',
   'directives/draggable',
   'directives/resizable',
@@ -64,7 +71,7 @@ require([
                 
                 .when('/my_groups_detail', {
                     templateUrl: 'views/groups/my_groups_detail.html',
-                    controller: 'FavsCtrl'
+                    controller: 'MyGroupsContr'
                 })
                 .when('/popular_groups_detail', {
                     templateUrl: 'views/groups/popular_groups_detail.html',
@@ -72,7 +79,7 @@ require([
                 })
                 .when('/latest_groups_detail', {
                     templateUrl: 'views/groups/latest_groups_detail.html',
-                    controller: 'FavsCtrl'
+                    controller: 'LatestGroupsContr'
                 })
                 .when('/recommended_groups_detail', {
                     templateUrl: 'views/groups/recommended_groups_detail.html',
@@ -80,15 +87,15 @@ require([
                 })
                 .when('/all_groups_detail', {
                     templateUrl: 'views/groups/all_groups_detail.html',
-                    controller: 'FavsCtrl'
+                    controller: 'AllGroupsContr'
                 })
                 .when('/group_detail', {
                     templateUrl: 'views/groups/group_detail.html',
-                    controller: 'FavsCtrl'
+                    controller: 'GroupDetailContr'
                 })
                 .when('/new_meeting', {
                     templateUrl: 'views/meeting/new_meeting.html',
-                    controller: 'FavsCtrl'
+                    controller: 'NewMeetingCont'
                 })
                 .when('/discussion_detail', {
                     templateUrl: 'views/discussion/discussion_detail.html',
@@ -100,10 +107,11 @@ require([
                 })
                 .when('/meeting_detail', {
                     templateUrl: 'views/meeting/meeting_detail.html',
-                    controller: 'FavsCtrl'
+                    controller: 'MeetingDetailContr'
                 })
                 .when('/my_profile', {
-                    templateUrl: 'views/my_profile.html'
+                    templateUrl: 'views/my_profile.html',
+                    controller: 'ProfileContr'
                 }).otherwise({ redirectTo: '/groups' });;
         }
       ]);

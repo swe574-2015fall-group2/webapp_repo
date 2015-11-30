@@ -26,9 +26,10 @@ define(['controllers/controllers',
         //ImageService,
         //LocalStorageService
                 ) {
+  
 
-               $scope.username="string2";
-               $scope.password="string";
+               $scope.username="";
+               $scope.password="";
                $scope.sendPost = function() {
                 var data = JSON.stringify({
                         username: $scope.username,
