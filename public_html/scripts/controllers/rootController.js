@@ -39,6 +39,7 @@ define(['controllers/controllers',
                 $http.post("http://162.243.215.160:9000/v1/user/login", data).success(function(data, status) {
                     //alert(data.result.token);
                     document.cookie = "authToken" + "=" + data.result.token;
+                    document.cookie = "userId" + "=" + data.result.id;
                     //$location.path( "~/Content/" );
                     
                     /*

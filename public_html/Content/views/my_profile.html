@@ -94,7 +94,7 @@
 																Mail
 															</td>
 															<td>
-																 <a href="#">sinan.can@boun.edu.tr</a>
+																 <a href="" ng-href="mailto:{{username}}" ng-bind="username"></a>
 															</td>
 															
 														</tr>
@@ -102,8 +102,8 @@
 															<td>
 																University
 															</td>
-															<td >
-																 Boğaziçi University
+															<td  ng-bind="university">
+																 
 															</td>
 															
 														</tr>
@@ -111,8 +111,8 @@
 															<td>
 																Profession
 															</td>
-															<td>
-																 Senior Software Consultant
+															<td ng-bind="profession">
+																 
 															</td>
 															
 														</tr>
@@ -120,17 +120,8 @@
 															<td>
 																Programme
 															</td>
-															<td>
-																Software Engineering
-															</td>
-															
-														</tr>
-                                                                                                                <tr>
-															<td>
-																Join Date
-															</td>
-															<td>
-																 18/03/2015
+															<td  ng-bind="programme">
+																 
 															</td>
 															
 														</tr>
@@ -138,8 +129,8 @@
 															<td>
 																Interested Areas
 															</td>
-															<td>
-																 Biology, Web Development
+															<td  ng-bind="interestedAreas">
+																 
 															</td>
 															
 														</tr>
@@ -148,7 +139,7 @@
 																Linkedin Profile
 															</td>
 															<td>
-																 <a href="#">Linkedin</a>
+																 <a href="" ng-href="{{linkedinProfile}}">Linkedin</a>
 															</td>
 															
 														</tr>
@@ -157,7 +148,7 @@
 																Academia Link
 															</td>
 															<td>
-																 <a href="#">Academia</a>
+																 <a href="" ng-href="{{academiaProfile}}">Academia</a>
 															</td>
 															
 														</tr>
@@ -579,7 +570,16 @@
                                                                                             <div class="form-group">
 													<label class="col-md-3 control-label">Last Name</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" placeholder="Enter Last Name" ng-model="firstname">
+														<input type="text" class="form-control" placeholder="Enter Last Name" ng-model="lastname">
+														<span class="help-block" style="display:none">
+															 A block of help text.
+														</span>
+													</div>
+												</div>
+                                                                                            <div class="form-group">
+													<label class="col-md-3 control-label">birthDate</label>
+													<div class="col-md-4">
+														<input type="text" class="form-control" placeholder="Enter Birthdate" ng-model="birthDate">
 														<span class="help-block" style="display:none">
 															 A block of help text.
 														</span>
@@ -588,7 +588,7 @@
                                                                                             <div class="form-group">
 													<label class="col-md-3 control-label">Profession</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" placeholder="Enter Profession" ng-model="firstname">
+														<input type="text" class="form-control" placeholder="Enter Profession" ng-model="profession">
 														<span class="help-block" style="display:none">
 															 A block of help text.
 														</span>
@@ -597,7 +597,7 @@
                                                                                             <div class="form-group">
 													<label class="col-md-3 control-label">University</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" placeholder="Enter University" ng-model="firstname">
+														<input type="text" class="form-control" placeholder="Enter University" ng-model="university">
 														<span class="help-block" style="display:none">
 															 A block of help text.
 														</span>
@@ -606,7 +606,7 @@
                                                                                             <div class="form-group">
 													<label class="col-md-3 control-label">Programme</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" placeholder="Enter Programme" ng-model="firstname">
+														<input type="text" class="form-control" placeholder="Enter Programme" ng-model="programme">
 														<span class="help-block" style="display:none">
 															 A block of help text.
 														</span>
@@ -615,7 +615,7 @@
                                                                                             <div class="form-group">
 													<label class="col-md-3 control-label">Interested Areas</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" placeholder="Enter Interested Areas" ng-model="firstname">
+														<input type="text" class="form-control" placeholder="Enter Interested Areas" ng-model="interestedAreas">
 														<span class="help-block" style="display:none">
 															 A block of help text.
 														</span>
@@ -624,7 +624,7 @@
                                                                                             <div class="form-group">
 													<label class="col-md-3 control-label">Linkedin Profile</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" placeholder="Enter Linkedin Profile" ng-model="firstname">
+														<input type="text" class="form-control" placeholder="Enter Linkedin Profile" ng-model="linkedinProfile">
 														<span class="help-block" style="display:none">
 															 A block of help text.
 														</span>
@@ -633,7 +633,7 @@
                                                                                             <div class="form-group">
 													<label class="col-md-3 control-label">Academia Profile</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" placeholder="Enter Academia Profile" ng-model="firstname">
+														<input type="text" class="form-control" placeholder="Enter Academia Profile" ng-model="academiaProfile">
 														<span class="help-block" style="display:none">
 															 A block of help text.
 														</span>
@@ -644,7 +644,6 @@
 											<div class="form-actions fluid">
 												<div class="col-md-offset-3 col-md-9">
 													<button type="submit" class="btn btn-info">Save</button>
-													<button type="button" class="btn btn-default">Cancel</button>
 												</div>
 											</div>
 										</form>
