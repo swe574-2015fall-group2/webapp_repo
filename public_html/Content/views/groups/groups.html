@@ -31,9 +31,9 @@
                             
                             
                             <p ng-show="!myGroupList.length">You are not contributed to any groups</p>
-				<div class="col-md-2" ng-show="myGroupList.length">
+				<div class="col-md-2" ng-show="showMyGroupsMoreButton">
 					<div class="">
-						<h3> 2 More Groups </h3>
+						<h3 ng-bind="myGroupListCount"></h3><h3> Groups </h3>
 						<!--<img src="assets/img/pages/3.jpg" alt="" class="img-responsive"/>-->
 						<div class="team-info">
 							<p>
@@ -56,19 +56,19 @@
 			</div>
 			<div class="row thumbnails">
                         <div class="col-md-2"  data-ng-repeat="i in popularGroupList">
-					<a href="" ng-click="toGroupDetail(i.id,i.name,i.description,i.joined)"><div class="meet-our-team">
-                                            <h3 style="height: 100px;">{{i.name}} </h3>
+					<a href="" ng-click="toGroupDetail(i.group.id,i.group.name,i.group.description,i.group.joined)"><div class="meet-our-team">
+                                            <h3 style="height: 100px;">{{i.group.name}} </h3>
 						
 					</div></a>
 				</div>
                             
                             <p ng-show="!popularGroupList.length"> There is no popular group right now </p>
-				<div class="col-md-2" ng-show="popularGroupList.length">
+				<div class="col-md-2" ng-show="showPopularGroupsMoreButton">
                         
 					<div class="">
                         
                         
-						<h3> 12 More Groups </h3>
+						<h3 ng-bind="popularGroupListCount"></h3><h3> Groups </h3>
 						<!--<img src="assets/img/pages/3.jpg" alt="" class="img-responsive"/>-->
 						<div class="team-info">
 							<p>
@@ -90,17 +90,17 @@
 				<h3>Latest Groups</h3>
 			</div>
 			<div class="row thumbnails">
-                        <div class="col-md-2"  data-ng-repeat="i in groupList">
+                        <div class="col-md-2"  data-ng-repeat="i in latestGroupList">
 					<a href="" ng-click="toGroupDetail(i.id,i.name,i.description,i.joined)"><div class="meet-our-team">
                                             <h3 style="height: 100px;">{{i.name}} </h3>
 						
 					</div></a>
 				</div>
                             
-                            <p ng-show="!groupList.length">Sorry, we do not have any recommended groups, that meet your high personal skills and amazing interests</p>
-				<div class="col-md-2" ng-show="groupList.length">
+                            <p ng-show="!latestGroupList.length">Sorry, we do not have any recommended groups, that meet your high personal skills and amazing interests</p>
+				<div class="col-md-2" ng-show="showLatestGroupsMoreButton">
                                     <div>
-					<h3 ng-bind="groupListCount"></h3><h3> Groups </h3>
+					<h3 ng-bind="latestGroupListCount"></h3><h3> Groups </h3>
 						<!--<img src="assets/img/pages/3.jpg" alt="" class="img-responsive"/>-->
 						<div class="team-info">
 							<p>
@@ -125,14 +125,14 @@
 			</div>
 			<div class="row thumbnails">
                         <div class="col-md-2"  data-ng-repeat="i in recommendedGroupList">
-					<a href="" ng-click="toGroupDetail(i.id,i.name,i.description,i.joined)"><div class="meet-our-team">
-                                            <h3 style="height: 100px;">{{i.name}} </h3>
+					<a href="" ng-click="toGroupDetail(i.group.id,i.group.name,i.group.description,i.group.joined)"><div class="meet-our-team">
+                                            <h3 style="height: 100px;">{{i.group.name}} </h3>
 						
 					</div></a>
 				</div>
                             
                             <p ng-show="!recommendedGroupList.length">Sorry, we do not have any recommended groups, that meet your high personal skills and amazing interests</p>
-				<div class="col-md-2" ng-show="recommendedGroupList.length">
+				<div class="col-md-2" ng-show="showRecommendedGroupsMoreButton">
                         
 					<div class="">
 						<h3> 21 More Groups </h3>
@@ -164,8 +164,8 @@
 					</div></a>
 				</div>
                             
-                            <p ng-show="!myGroupList.length">Oh no!There aren't any groups currently!</p>
-				<div class="col-md-2" ng-show="groupList.length">
+                            <p ng-show="!groupList.length">Oh no!There aren't any groups currently!</p>
+				<div class="col-md-2" ng-show="showAllGroupsMoreButton">
 					<div class="">
                                             <h3 ng-bind="groupListCount"></h3><h3> Groups </h3>
 						<!--<img src="assets/img/pages/3.jpg" alt="" class="img-responsive"/>-->

@@ -40,6 +40,7 @@ require([
   'controllers/AllGroupsController',
   'controllers/LatestGroupsController',
   'controllers/MyGroupsController',
+  'controllers/PopularGroupsController',
   'controllers/ProfileController',
   'directives/ngbkFocus',
   'directives/draggable',
@@ -75,7 +76,7 @@ require([
                 })
                 .when('/popular_groups_detail', {
                     templateUrl: 'views/groups/popular_groups_detail.html',
-                    controller: 'FavsCtrl'
+                    controller: 'PopularGroupsContr'
                 })
                 .when('/latest_groups_detail', {
                     templateUrl: 'views/groups/latest_groups_detail.html',

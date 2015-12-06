@@ -33,7 +33,9 @@ define(['controllers/controllers'],
                    // alert( "There are your groups" );	
                    $scope.groupList=data.result.groupList.slice(0,3);
                    $scope.groupListCount = data.result.groupList.length-3;
-                   var b = "a";
+                   if(data.result.groupList.length>3){
+                       $scope.showAllGroupsMoreButton = true;
+                   }
                    
                 }).error(function (data, status, headers, config) {
               alert("Error: " + data.consumerMessage);
@@ -46,16 +48,66 @@ define(['controllers/controllers'],
                     
                    // alert( "There are your groups" );	
                    $scope.myGroupList=data.result.groupList.slice(0,3);
-                   var b = "a";
+                   $scope.myGroupListCount = data.result.groupList.length-3;
+                   if(data.result.groupList.length>3){
+                       $scope.showMyGroupsMoreButton = true;
+                   }
+                   
                    
                 }).error(function (data, status, headers, config) {
               alert("Error: " + data.consumerMessage);
               
             });
         
+        
+        
+        
         $scope.popularGroupList="";
+        $http.post("http://162.243.215.160:9000/v1/group/listPopularGroups", data).success(function(data, status) {
+                    
+                   // alert( "There are your groups" );	
+                   $scope.popularGroupList=data.result.slice(0,3);
+                   $scope.popularGroupListCount = data.result.length-3;
+                   if(data.result.length>3){
+                       $scope.showPopularGroupsMoreButton = true;
+                   }
+                   
+                }).error(function (data, status, headers, config) {
+              alert("Error: " + data.consumerMessage);
+              
+            });
+            
+            
         $scope.latestGroupList="";
+        $http.post("http://162.243.215.160:9000/v1/group/listLatest", data).success(function(data, status) {
+                    
+                   // alert( "There are your groups" );	
+                   $scope.latestGroupList=data.result.slice(0,3);
+                   $scope.latestGroupListCount = data.result.length-3;
+                   if(data.result.length>3){
+                       $scope.showLatestGroupsMoreButton = true;
+                   }
+                   
+                }).error(function (data, status, headers, config) {
+              alert("Error: " + data.consumerMessage);
+              
+            });
+        
         $scope.recommendedGroupList="";
+        $http.post("http://162.243.215.160:9000/v1/group/listRecommended", data).success(function(data, status) {
+                    
+                   // alert( "There are your groups" );	
+                   $scope.recommendedGroupList=data.result.slice(0,3);
+                   $scope.recommendedGroupListCount = data.result.length-3;
+                   if(data.result.length>3){
+                       $scope.showRecommendedGroupsMoreButton = true;
+                   }
+                   
+                }).error(function (data, status, headers, config) {
+              alert("Error: " + data.consumerMessage);
+              
+            });
+        
         
        $scope.toGroupDetail = function (index,name, desc, join) {
            document.cookie = "selectedGroup" + "=" + index;
