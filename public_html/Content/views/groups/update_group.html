@@ -1,0 +1,57 @@
+<div><table class="" style="margin-bottom: 30px; width: 100%">
+
+        <tbody>
+            <tr>
+                <td></td>
+               
+                <td>
+                    <button type="button" class="btn btn-navbar" onclick="window.location.href = '#/groups';">Back to Groups </button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table></div>
+
+<div style="margin-bottom: 20px;">
+
+    <h3>Create New Group</h3>
+</div>
+
+<div class="well well-sm"> 
+    <form role="form" ng-submit="sendPost()" >       
+
+        <div class="form-body">            
+            <table cellpadding="5">               
+                <tr>
+                    <td>
+                        Group Name
+                    </td>
+                    <td>      
+                <input class="form-control" id="exampleInputEmail1" placeholder="Enter text" style="width:450px" ng-model="name">
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td> <textarea class="form-control" placeholder="Enter text" style="width:450px; height: 150px" ng-model="description"></textarea></td>
+                    </tr>
+                    
+                      <tr>
+                    <td>
+                        Tags
+                    </td>
+                    <td>      
+                <input  class="form-control" id="exampleInputEmail1" placeholder="Enter text" style="width:450px">
+                    </td>
+                    </tr>
+
+            </table>     
+
+        </div>
+        
+        <button type="submit" class="btn btn-success">Create Group</button>
+    </form>
+</div>
+
+
+
+

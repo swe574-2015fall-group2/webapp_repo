@@ -28,11 +28,8 @@ define(['controllers/controllers'],
         $http.post("http://162.243.215.160:9000/v1/group/listPopularGroups", data).success(function(data, status) {
                     
                    // alert( "There are your groups" );	
-                   $scope.popularGroupList=data.result;
-                   $scope.popularGroupListCount = data.result.length-3;
-                   if(data.result.length>3){
-                       $scope.showPopularGroupsMoreButton = true;
-                   }
+                   $scope.popularGroupList=data.result.groupList;
+                   
                    
                 }).error(function (data, status, headers, config) {
               alert("Error: " + data.consumerMessage);

@@ -24,7 +24,7 @@
                     </ul>
 
                 </td>
-                <td>
+                <td  style="float: right;">
                     <button type="button" class="btn btn-danger" ng-show="isUserJoined" ng-click="leaveGroup()">Leave Group</button>
                     <button type="button" class="btn btn-success" ng-show="!isUserJoined" ng-click="joinGroup()">Join Group</button>
                 </td>
@@ -99,7 +99,7 @@
 <div class="well well-sm">
     <h4 >Discussions</h4>
     <div  ng-show="!discussionList.length">
-    <p>Unfortunately, there are no meetings scheduled. Maybe you should create one...</p>
+    <p>Unfortunately, there are no discussions. Maybe you should create one...</p>
     <a href="#/new_discussion" class="icon-btn" style="width:130px">
                             <i class="fa fa-comments-o" style="font-size: 35px;"></i>
                             <div>
@@ -124,7 +124,14 @@
 
 <div class="well well-sm">
     <h4 >Notes</h4>
-    <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; ">
+    <p>Unfortunately, there are no notes. Maybe you should create one...</p>
+    <a href="#/new_note" class="icon-btn" style="width:130px">
+                            <i class="fa fa-pencil-square-o" style="font-size: 35px;"></i>
+                            <div>
+                                Create New Note
+                            </div>
+                        </a>
+    <ul style="display:none;list-style-type: none; margin-left:0px; padding-left: 0px; ">
         <li >
             <a tabindex="-1" href="#">Provide keyboard access to authoring features.            
             </a>

@@ -28,6 +28,28 @@ define(['controllers/controllers'],
                             $scope.selectedGroup = selectedGroup;
                             $scope.selectedGroupName = selectedGroupName;
 
+                            $scope.isOnlineMeeting=false;
+                             $scope.change = function() {
+                                $scope.isOnlineMeeting = !$scope.isOnlineMeeting;
+                              };
+                            
+                       
+                            $scope.agendaSet = [];
+                            $scope.todoSet = [];
+                            
+                            
+                            $scope.addAgentaItem = function () {
+                                if($scope.agendaText.trim() != ""){
+                            $scope.agendaSet.push($scope.agendaText);
+                            $scope.agendaText = "";
+                        }
+                            };
+                                 
+                            $scope.addToDoItem = function () {
+                                if($scope.todoText.trim() != ""){
+                            $scope.todoSet.push($scope.todoText);
+                            $scope.todoText = "";
+                                 }};
 
 
                             var DuzenliM2 = new RegExp("selectedMeetingLoc=([^;=]+)[;\\b]?");
@@ -65,12 +87,23 @@ define(['controllers/controllers'],
                                 $scope.name = data.result.meeting.name;
                                 $scope.description = data.result.meeting.description;
                                 $scope.tags = data.result.meeting.tagList;
+                                $scope.agendaSet = data.result.meeting.agendaSet;
+                                $scope.todoSet = data.result.meeting.todoSet;
+                                
                                 /*$scope.invitelis = "";*/
-                                $scope.date = data.result.meeting.datetime;
+                                var tempDate = new Date(data.result.meeting.datetime);
                                 $scope.starthour = data.result.meeting.startHour;
                                 $scope.finishhour = data.result.meeting.endHour;
                                 $scope.timezone = data.result.meeting.timezone;
                                 $scope.location = data.result.meeting.location;
+
+                                 var day = tempDate.getDate();
+                                 if(day<10){day = "0" + day;}
+                                 var month = tempDate.getMonth()+1;
+                                 if(month<10){month = "0" + month;}
+                                 var year = tempDate.getFullYear();
+                                $scope.date = year + "-" + month + "-" + day;  
+                                
 
 
 
@@ -108,7 +141,7 @@ define(['controllers/controllers'],
 
                             $scope.sendPost = function () {
 
-                                if ($scope.meetingtype == true)
+                                if ($scope.isOnlineMeeting == true)
                                     $scope.tip = "ONLINE";
                                 else
                                     $scope.tip = "FACE_TO_FACE";
@@ -120,7 +153,7 @@ define(['controllers/controllers'],
                                     timezone: $scope.timezone,
                                     startHour: $scope.starthour,
                                     endHour: $scope.finishhour,
-//                                    agendaSet: [""],
+                                     agendaSet: $scope.agendaSet,
                                     location: $scope.location,
                                     description: $scope.description,
                                     type: $scope.tip,
@@ -129,18 +162,25 @@ define(['controllers/controllers'],
                                     //tagList: [$scope.tags],
 //                                    actualDuration: 0,
                                     meetingId: $scope.selectedMeeting,
-//                                    todoSet: [""],
+                                    todoSet: $scope.todoSet
 //                                    status: "NOT_STARTED"
                                 });
 
                                 $http.post("http://162.243.215.160:9000/v1/meeting/update", data).success(function (data, status) {
 
-                                    alert("Meeting is created successfully!");
-                                    $window.location.href = "#/my_groups";
+                                    alert("Meeting is updated successfully!");
+                                    $window.location.href = "#/meeting_detail";
                                 }).error(function (data, status, headers, config) {
                                     alert("Error: " + data.consumerMessage);
 
                                 });
                             };
+                            
+                            
+                            
+                             
+
+                            
+                            
                         }]);
         });

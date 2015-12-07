@@ -48,6 +48,7 @@ require([
   'controllers/NewDiscussionController',
   'controllers/DiscussionDetailController',
   'controllers/UpdateDiscussionController',
+  'controllers/UpdateGroupController',
   'directives/ngbkFocus',
   'directives/draggable',
   'directives/resizable',
@@ -79,6 +80,10 @@ require([
                 .when('/my_groups_detail', {
                     templateUrl: 'views/groups/my_groups_detail.html',
                     controller: 'MyGroupsContr'
+                })
+                .when('/update_group', {
+                    templateUrl: 'views/groups/update_group.html',
+                    controller: 'UpdateGroupContr'
                 })
                 .when('/popular_groups_detail', {
                     templateUrl: 'views/groups/popular_groups_detail.html',

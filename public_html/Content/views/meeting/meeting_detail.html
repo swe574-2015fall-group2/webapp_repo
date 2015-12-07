@@ -9,17 +9,25 @@
                 <td>
                     <button type="button" class="btn btn-navbar" onclick="window.location.href = '#/group_detail';">Back to Group Detail </button>
                 </td>
+                <td style="float:right"> 
+                    <button type="button" class="btn btn-success" onclick="window.location.href = '#/update_meeting';">Update Meeting</button>
+
+                </td>
             </tr>
 
         </tbody>
     </table></div>
+
+
+
+
 <div class="row">
     <div class="col-md-9" style="margin-bottom: 20px;">
 
-        <h3 ng-bind="selectedMeetingDesc"></h3>
+        <h3 ng-bind="meetingName"></h3>
         <p>Created on 15/07/2015 by Sinan Can</p>
 
-       
+
         <p>#tag1 #eiffel #pinkelephant</p>
 
     </div>
@@ -29,13 +37,13 @@
         <div class="pull-left well well-sm" style="background-color: white; width: 200px;">
             <table style="    margin-left: auto;        margin-right: auto;">
                 <tr>
-                    <td align="center" style="font-size: 80px">28</td>
+                    <td align="center" style="font-size: 80px" >{{day}}</td>
                 </tr>
                 <tr>
-                    <td align="center" style="font-size: 20px;">May 2016</td>
+                    <td align="center" style="font-size: 20px;" >{{monthYear}}</td>
                 </tr>
                 <tr>
-                    <td align="center" style="font-size: 15px; font-weight: 700">14:00-15:00</td>                        
+                    <td align="center" style="font-size: 15px; font-weight: 700">{{starthour}}:00 - {{endHour}}:00</td>                        
                 </tr>
 
                 <tr>
@@ -53,68 +61,27 @@
 
 <div class="row " style="margin-bottom: 20px">
     <div class="col-md-6">
-        
+
         <h3>Agenda Items</h3>
-        <ul>
-								
-								<li>
-									 Integer molestie lorem at massa
-								</li>
-								<li>
-									 Facilisis in pretium nisl aliquet
-								</li>
-								<li>
-									 Nulla volutpat aliquam velit
-									<ul>
-										<li>
-											 Phasellus iaculis neque
-										</li>
-										<li>
-											 Purus sodales ultricies
-										</li>
-										<li>
-											 Vestibulum laoreet porttitor sem
-										</li>
-										<li>
-											 Ac tristique libero volutpat at
-										</li>
-									</ul>
-								</li>
-								<li>
-									 Faucibus porta lacus fringilla vel
-								</li>
-								<li>
-									 Aenean sit amet erat nunc
-								</li>
-								<li>
-									 Eget porttitor lorem
-								</li>
-							</ul>
+        <div  ng-show="!agendaItems.length">
+            <p>Unfortunately, there are no agenda items, yet.</p></div>
+        <ul data-ng-repeat="i in agendaItems">
+
+            <li>
+                {{i}}
+            </li>
+        </ul>
     </div>
 
     <div class="col-md-6">
         <h3>To-do</h3>
-        <ul class="list-unstyled">
-								<li>
-                                                                    <input style="margin: 5px;" type="checkbox">Investigate on Pink crocodiles
-								</li>
-                                                                <li>
-                                                                    <input style="margin: 5px;" type="checkbox">Prepare the investigation documents
-								</li>
-                                                                <li>
-                                                                    <input style="margin: 5px;" type="checkbox">Plan for the next meeting
-								</li>
-                                                                <li>
-                                                                    <input style="margin: 5px;" type="checkbox">Deliver the notes to the attendees
-								</li>
-                                                                <li>
-                                                                    <input style="margin: 5px;" type="checkbox" checked="true">Prepare the to-do list
-								</li>
-								<li>
-                                                                    <input style="margin: 5px;" type="checkbox" checked="true">Check the "Prepare the to-do list item"
-								</li>
-								
-							</ul>
+        <div  ng-show="!todoItems.length">
+            <p>Unfortunately, there are no to-do items, yet.</p></div>
+        <ul class="list-unstyled" data-ng-repeat="i in todoItems">
+            <li>
+                <input style="margin: 5px;" type="checkbox">{{i}}
+            </li>
+        </ul>
     </div>
 </div>
 
@@ -123,15 +90,17 @@
     <div class="col-md-6">
         <div>
             <div class="col-md-7"><h4>Invited People</h4>
+                <div  ng-show="!invitedUsers.length">
+                    <p>Unfortunately, you have not invited anybody to this meeting.</p>
+                </div>
 
-
-                <table cellpadding="5">       
+                <table cellpadding="5"  data-ng-repeat="i in invitedUsers">       
                     <tr>
                         <td><img src="assets/img/avatar3.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
                         <td valign="top" >
                             <table>                    
                                 <tr>
-                                    <td><h4 style="padding:0px; margin: 0px">Sinan Can</h4></td>                          
+                                    <td><h4 style="padding:0px; margin: 0px">{{i.tempName}}</h4></td>                          
                                 </tr>
                                 <tr>
                                     <td>Moderator</td>
@@ -143,40 +112,7 @@
                 </table>
 
 
-                <table cellpadding="5">       
-                    <tr>
-                        <td><img src="assets/img/avatar1.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
-                        <td valign="top" >
-                            <table>                    
-                                <tr>
-                                    <td><h4 style="padding:0px; margin: 0px">Recep Günay</h4></td>                          
-                                </tr>
-                                <tr>
-                                    <td>Regular Attendee</td>
 
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>  
-                </table>
-
-
-                <table cellpadding="5">       
-                    <tr>
-                        <td><img src="assets/img/avatar2.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
-                        <td valign="top" >
-                            <table>                    
-                                <tr>
-                                    <td><h4 style="padding:0px; margin: 0px">Chanan Kvas</h4></td>                          
-                                </tr>
-                                <tr>
-                                    <td>Regular Attendee</td>
-
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>  
-                </table>
             </div>
             <div class="col-md-5"><button type="button" class="btn btn-link">5 More People...</button></div>
 
@@ -188,14 +124,16 @@
         <div>
             <div class="col-md-7"><h4>Attendants</h4>
 
-
-                <table cellpadding="5">       
+                <div  ng-show="!attandedUsers.length">
+                    <p>No one has yet accepted your meeting invitation, sorry.</p>
+                </div>
+                <table cellpadding="5" data-ng-repeat="i in attandedUsers">       
                     <tr>
                         <td><img src="assets/img/blog/12.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
                         <td valign="top" >
                             <table>                    
                                 <tr>
-                                    <td><h4 style="padding:0px; margin: 0px">Orkun Koçyigit</h4></td>                          
+                                    <td><h4 style="padding:0px; margin: 0px">{{i.tempName}}</h4></td>                          
                                 </tr>
                                 <tr>
                                     <td>Regular Attendaee</td>
@@ -207,40 +145,7 @@
                 </table>
 
 
-                <table cellpadding="5">       
-                    <tr>
-                        <td><img src="assets/img/blog/13.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
-                        <td valign="top" >
-                            <table>                    
-                                <tr>
-                                    <td><h4 style="padding:0px; margin: 0px">Barıs Özcanlı</h4></td>                          
-                                </tr>
-                                <tr>
-                                    <td>Regular Attendee</td>
-
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>  
-                </table>
-
-
-                <table cellpadding="5">       
-                    <tr>
-                        <td><img src="assets/img/avatar2.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
-                        <td valign="top" >
-                            <table>                    
-                                <tr>
-                                    <td><h4 style="padding:0px; margin: 0px">Chanan Kvas</h4></td>                          
-                                </tr>
-                                <tr>
-                                    <td>Regular Attendee</td>
-
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>  
-                </table>
+                
             </div>
             <div class="col-md-5"><button type="button" class="btn btn-link">5 More People...</button></div>
 
@@ -390,14 +295,14 @@
 
 
 <script>
-    $(document).ready(function () {
-        // initiate layout and plugins
-        $('#aa').click(function () {
-            $(this).toggleClass("open");
-            $('#aab').toggle();
-        });
+            $(document).ready(function () {
+                // initiate layout and plugins
+                $('#aa').click(function () {
+                    $(this).toggleClass("open");
+                    $('#aab').toggle();
+                });
 
 
-    });
+            });
 
 </script>

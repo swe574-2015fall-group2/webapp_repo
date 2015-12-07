@@ -8,6 +8,38 @@ define(['controllers/controllers'],
                                 $window,
                                 $scope,
                                 $http) {
+                                    
+                                  $(document).ready(function() {
+    
+                            $scope.userList = ["Sinan Can","Hayrican", "Barış", "Mehmet", "Orkun", "Recep", "Ahmet", "Kerem","Veli", "George", "Kyle"];
+
+                            $( "#tags" ).autocomplete({
+                                source: $scope.userList,
+                                messages: {
+                                noResults: '',
+                                results: function() {}
+                            }
+                            });
+                           
+                        });
+                        
+                            $scope.invitelist = [];
+
+
+                            $scope.addToInviteList = function () {
+                            //alert(")");
+                            var asss = $('#tags')[0]; 
+                 
+                                $scope.invitelist.push({"name":$scope.inviteText});
+                                //$scope.inviteText ="";
+                                
+                            };
+                            
+                            $scope.isOnlineMeeting=false;
+                             $scope.change = function() {
+                                $scope.isOnlineMeeting = !$scope.isOnlineMeeting;
+                              };
+                            
 
                             var Cerez = document.cookie;
                             var Duzenli = new RegExp("authToken=([^;=]+)[;\\b]?");
@@ -42,7 +74,7 @@ define(['controllers/controllers'],
 
                             $scope.sendPost = function () {
 
-                                if ($scope.meetingtype == true)
+                                if ($scope.isOnlineMeeting == true)
                                     $scope.tip = "ONLINE";
                                 else
                                     $scope.tip = "FACE_TO_FACE";
