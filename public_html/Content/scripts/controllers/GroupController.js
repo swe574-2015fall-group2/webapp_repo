@@ -22,6 +22,40 @@ define(['controllers/controllers'],
         $scope.authToken=authToken;
         //alert(authToken);
         
+        var Duzenli2 = new RegExp("userId=([^;=]+)[;\\b]?");
+                    var Sonuclar2 = Duzenli2.exec(Cerez);
+                    //alert( unescape(Sonuclar[1]) );	
+        var userId = unescape(Sonuclar2[1]);
+        
+        $scope.userId=userId;
+        
+        
+        
+        //GET USER INFO
+        var data = JSON.stringify({
+                        authToken: $scope.authToken,
+                        id: $scope.userId
+                    });
+                    
+                    
+        $http.post("http://162.243.215.160:9000/v1/user/get", data).success(function(data, status) {
+      
+                 
+                 document.getElementById('firstName').innerHTML = data.result.firstname + " "+ data.result.lastname;
+                 
+                 
+                }).error(function (data, status, headers, config) {
+           //alert("Error: " + data.consumerMessage);
+              
+            });
+        
+        
+        
+        
+        
+        
+        
+        
         //Get ALL GROUPS
         var data = JSON.stringify({
                         authToken: $scope.authToken
@@ -38,7 +72,7 @@ define(['controllers/controllers'],
                    }
                    
                 }).error(function (data, status, headers, config) {
-              alert("Error: " + data.consumerMessage);
+             // alert("Error: " + data.consumerMessage);
               
             });
             
@@ -55,7 +89,7 @@ define(['controllers/controllers'],
                    
                    
                 }).error(function (data, status, headers, config) {
-              alert("Error: " + data.consumerMessage);
+             // alert("Error: " + data.consumerMessage);
               
             });
         
@@ -66,14 +100,14 @@ define(['controllers/controllers'],
         $http.post("http://162.243.215.160:9000/v1/group/listPopularGroups", data).success(function(data, status) {
                     
                    // alert( "There are your groups" );	
-                   $scope.popularGroupList=data.result.slice(0,3);
-                   $scope.popularGroupListCount = data.result.length-3;
-                   if(data.result.length>3){
+                   $scope.popularGroupList=data.result.groupList.slice(0,3);
+                   $scope.popularGroupListCount = data.result.groupList.length-3;
+                   if(data.result.groupList.length>3){
                        $scope.showPopularGroupsMoreButton = true;
                    }
                    
                 }).error(function (data, status, headers, config) {
-              alert("Error: " + data.consumerMessage);
+              //alert("Error: " + data.consumerMessage);
               
             });
             
@@ -82,14 +116,14 @@ define(['controllers/controllers'],
         $http.post("http://162.243.215.160:9000/v1/group/listLatest", data).success(function(data, status) {
                     
                    // alert( "There are your groups" );	
-                   $scope.latestGroupList=data.result.slice(0,3);
-                   $scope.latestGroupListCount = data.result.length-3;
-                   if(data.result.length>3){
+                   $scope.latestGroupList=data.result.groupList.slice(0,3);
+                   $scope.latestGroupListCount = data.result.groupList.length-3;
+                   if(data.result.groupList.length>3){
                        $scope.showLatestGroupsMoreButton = true;
                    }
                    
                 }).error(function (data, status, headers, config) {
-              alert("Error: " + data.consumerMessage);
+              //alert("Error: " + data.consumerMessage);
               
             });
         
@@ -97,14 +131,14 @@ define(['controllers/controllers'],
         $http.post("http://162.243.215.160:9000/v1/group/listRecommended", data).success(function(data, status) {
                     
                    // alert( "There are your groups" );	
-                   $scope.recommendedGroupList=data.result.slice(0,3);
-                   $scope.recommendedGroupListCount = data.result.length-3;
-                   if(data.result.length>3){
+                   $scope.recommendedGroupList=data.result.groupList.slice(0,3);
+                   $scope.recommendedGroupListCount = data.groupList.result.length-3;
+                   if(data.result.groupList.length>3){
                        $scope.showRecommendedGroupsMoreButton = true;
                    }
                    
                 }).error(function (data, status, headers, config) {
-              alert("Error: " + data.consumerMessage);
+              //alert("Error: " + data.consumerMessage);
               
             });
         

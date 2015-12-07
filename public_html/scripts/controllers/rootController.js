@@ -27,6 +27,10 @@ define(['controllers/controllers',
         //LocalStorageService
                 ) {
   
+                document.cookie = "authToken" + "= ";
+                document.cookie = "userId" + "= ";
+  
+  
 
                $scope.username="";
                $scope.password="";
