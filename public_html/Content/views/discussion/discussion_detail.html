@@ -14,17 +14,27 @@
         </tbody>
     </table></div>
 
-<div style="margin-bottom: 20px;">
+<div><table class="" style="margin-bottom: 30px; width: 100%">
 
-                   <h3>This document isn't using RFC words</h3>
-    <p>Posted on 15/07/2015 by Sinan Can</p>
-    
-    <p> All functionality of the authoring tool is operable through a keyboard interface without requiring specific timings for individual keystrokes, except where the underlying function requires input that depends on the path of the user's movement and not just the endpoints. (Level A)
-        Note 1: The path exception relates to the underlying function, not the input technique. For example, if using handwriting to enter text, the input technique (handwriting) requires path-dependent input, but the underlying function (text input) does not. The path exception encompasses other input variables that are continuously sampled from pointing devices, including pressure, speed, and angle.
-        Note 2: This success criterion does not forbid and should not discourage providing mouse input or other input methods in addition to keyboard operation.</p>
-    <p>#tag1 #eiffel #pinkelephant</p>
+        <tbody>
+            <tr>
+                <td>
+                    <h3 ng-bind="selectedDiscussionName"></h3> 
+                    <p  ng-bind="selectedDiscussionDesc"></p>
+                </td>
+                
+                <td style="float:right"> 
+                    <button type="button" class="btn btn-success" onclick="window.location.href = '#/update_discussion';">Update Discussion</button>
+                   
+                </td>
+                <td style="float:right"> 
+                    <button type="button" class="btn btn-danger" ng-click="archiveDiscussion()">Archive Discussion</button>
+                   
+                </td>
+            </tr>
 
-</div>
+        </tbody>
+    </table></div>
 
 <div class="well well-sm media">
     <div> 
@@ -66,84 +76,42 @@
 </div>
 
 
-<div class="well well-sm">  
+<div class="well well-sm" >  
     <h4>Comments</h4>
+    <p ng-show="!commentList.length">There is no comment yet</p>
+    <div data-ng-repeat="i in commentList">
     <table cellpadding="5">       
         <tr>
             <td><img src="assets/img/avatar1.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
             <td valign="top" >
                 <table>                    
                     <tr>
-                        <td><h4 style="padding:0px; margin: 0px">Recep Günay</h4><p>Created on 15/07/2015</p></td>                          
+                        <td><h4 style="padding:0px; margin: 0px">{{i.name}}</h4><p>Created on {{i.createdTime | date:'medium'}}</p></td>                          
                     </tr>
                     <tr>
-                        <td>All functionality of the authoring tool is operable through a keyboard interface without requiring specific timings for individual keystrokes, except where the under</td>
+                        <td>{{i.comment}}</td>
                       
                     </tr>
                 </table>
             </td>
             </tr>  
     </table>
+    </div>
 
-
-    <table cellpadding="5">       
-        <tr>
-            <td><img src="assets/img/avatar1.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
-            <td valign="top" >
-                <table>                    
-                    <tr>
-                        <td><h4 style="padding:0px; margin: 0px">Recep Günay</h4><p>Created on 15/07/2015</p></td>                          
-                    </tr>
-                    <tr>
-                        <td>All functionality of the authoring tool is operable through a keyboard interface without requiring specific timings for individual keystrokes, except where the under</td>
-                      
-                    </tr>
-                </table>
-            </td>
-            </tr>  
-    </table>
-
-
-    <table cellpadding="5">       
-        <tr>
-            <td><img src="assets/img/avatar2.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
-            <td valign="top" >
-                <table>                    
-                    <tr>
-                        <td><h4 style="padding:0px; margin: 0px">Chanan Kvas</h4><p>Created on 15/07/2015</p></td>                          
-                    </tr>
-                    <tr>
-                        <td>All functionality of the authoring tool is operable through a kll functionality of the authoring tool is operable through ll functionality of the authoring tool is operable through ll functionality of the authoring tool is operable through ll functionality of the authoring tool is operable through ll functionality of the authoring tool is operable through eyboard interface without requiring specific timings for individual keystrokes, except where the under</td>
-                      
-                    </tr>
-                </table>
-            </td>
-            </tr>  
-    </table>
-    
-    
-    
-
-    <table cellpadding="5">       
-        <tr>
-            <td valign="top"><img src="assets/img/avatar1.jpg"  style="width: 64px;  display: block;" data-src="holder.js/100%x200"></td>
-            <td valign="top" style="width: 850px">
-                <table>                    
-                    <tr>
-                        <td> <textarea class="form-control" placeholder="Enter text" style="width:600px; height: 86px"></textarea></td>
-
-                    </tr>
-                    <tr>
-                        <td align="right"  >
-                            <button style=" margin-top:  5px" type="submit" class="btn btn-success">Comment</button>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            </tr>  
-    </table>
-
-
+<div class="post-comment">
+								<h3>Leave a Comment</h3>
+								<form role="form" ng-submit="addComment()">
+									<div class="form-group">
+										<label class="control-label">Message
+										<span class="required">
+											 *
+										</span>
+										</label>
+										<textarea class="col-md-10 form-control" rows="8" ng-model="commentText"></textarea>
+									</div>
+									<button class="margin-top-20 btn btn-info" type="submit">Post a Comment</button>
+								</form>
+							</div>
 
 
 

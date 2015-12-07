@@ -71,6 +71,21 @@ define(['controllers/controllers'],
             });
        
        
+       //get the discussions
+       var data = JSON.stringify({
+                        authToken: authToken,
+                        id: selectedGroup
+                    });
+        $http.post("http://162.243.215.160:9000/v1/discussion/list", data).success(function(data, status) {
+                    
+                    
+                    $scope.discussionList=data.result.discussionList;
+                  //alert( "meeting list got" );
+                }).error(function (data, status, headers, config) {
+              //alert("Error: " + data.consumerMessage);
+              
+            });
+       
        
        $scope.joinGroup = function () {
            
@@ -121,6 +136,13 @@ define(['controllers/controllers'],
            document.cookie = "selectedMeetingDesc" + "=" + desc;
            document.cookie = "selectedMeetingLoc" + "=" + loc;
            $window.location.href = '#/meeting_detail';
+       };
+       
+       $scope.toDiscussionDetail = function (id,name, desc) {
+           document.cookie = "selectedDiscussion" + "=" + id;
+           document.cookie = "selectedDiscussionDesc" + "=" + desc;
+           document.cookie = "selectedDiscussionName" + "=" + name;
+           $window.location.href = '#/discussion_detail';
        };
         
     }]);

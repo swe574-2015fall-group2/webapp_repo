@@ -47,20 +47,18 @@ define(['controllers/controllers'],
                                 else
                                     $scope.tip = "FACE_TO_FACE";
 
-                                 var data = JSON.stringify({
+                                var data = JSON.stringify({
                                     authToken: $scope.authToken,
-                                    name: $scope.name,
                                     datetime: $scope.date,
-                                    timezone: $scope.timezone,
-                                    startHour: $scope.starthour,
-                                    endHour: $scope.finishhour,
-                                    agendaSet: [""],
+                                    agendaSet: [
+                                        ""
+                                    ],
+                                    estimatedDuration: 0,
                                     location: $scope.location,
                                     description: $scope.description,
                                     type: $scope.tip,
-                                    groupId: $scope.selectedGroup,
-                                    /*invitedUserIdList:[""],*/
-                                    tagList: [$scope.tags]
+                                    groupId: $scope.selectedGroup
+
                                 });
 
                                 $http.post("http://162.243.215.160:9000/v1/meeting/create", data).success(function (data, status) {

@@ -1,7 +1,8 @@
 
 <div style="margin-bottom: 20px;">
 
-    <h3>Digital Publishing Interest Group</h3>
+    <h3  ng-bind="selectedGroupName"></h3>
+    <h3  ng-bind="selectedMeetingDesc"></h3>
     <p>Create New Note</p>
 </div>
 
@@ -15,12 +16,12 @@
                         Note Name
                     </td>
                     <td>      
-                <input class="form-control" id="exampleInputEmail1" placeholder="Enter text" style="width:450px">
+                <input class="form-control" id="exampleInputEmail1" placeholder="Enter text" ng-model="name" style="width:450px">
                     </td>
                     </tr>
                     <tr>
                         <td>Description</td>
-                        <td> <textarea class="form-control" placeholder="Enter text" style="width:450px; height: 150px"></textarea></td>
+                        <td> <textarea class="form-control" placeholder="Enter text" ng-model="description" style="width:450px; height: 150px"></textarea></td>
                     </tr>
                     
                       <tr>
@@ -28,7 +29,7 @@
                         Tags
                     </td>
                     <td>      
-                <input  class="form-control" id="exampleInputEmail1" placeholder="Enter text" style="width:450px">
+                <input  class="form-control" id="exampleInputEmail1" placeholder="Enter text" ng-model="tags" style="width:450px">
                     </td>
                     </tr>
 
@@ -39,99 +40,47 @@
 </div>
 
 <div class="well well-sm">
-    <div> 
-        <table>
-            <tr>
-                <td><h4 >Related Meetings</h4> </td>
-                <td><button type="button" class="btn btn-link">Create New Meeting</button></td>
-            </tr>
-        </table> 
+    <h4 >Related Meetings</h4>
+    <div  ng-show="!meetingList.length">
+    <p>Unfortunately, there are no meetings related to this Note. Maybe you should create one or add an existing Note.</p>
+    <a href="#/new_meeting" class="icon-btn" style="width:130px">
+                            <i class="fa fa-group" style="font-size: 35px;"></i>
+                            <div>
+                                Create New Meeting
+                            </div>
+                        </a>
     </div>
-    <div> <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Search for meeting to add" style="width:450px"></div>
+    <div style="margin-bottom: 15px"> <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Search for meeting to add" style="width:450px"></div>
 
-    <div>
+    <div data-ng-repeat="i in meetingList">
+        <a class="" href="" ng-click="toMeetingDetail(i.id,i.description,i.location)">
+        <div class="media" style="margin-bottom: 15px;">
 
-        <div class="media" style="margin-bottom: 10px; margin-top: 10px">
-            <a class="" href="#">
-                <div class="pull-left well well-sm" style="background-color: white">
-                    <table>
-                        <tr>
-                            <td align="center" style="font-size: 19px">28</td>
-                        </tr>
-                        <tr>
-                            <td align="center">May 2016</td>
-                        </tr>
-                        <tr>
-                            <td align="center">14:00-15:00</td>                        
-                        </tr>
-                    </table>
-                </div>
-            </a>
-            <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
-                <h4 class="media-heading">DPUB IG Metadata Task Force</h4>
-                <p>The Metadata Task Force of the DPUB IG found, through extensive interviews with representatives of...</p>
-                <p><i class="fa fa-group" style="margin-right: 3px"></i>Face-to-Face Meeting</p>
+            <div class="pull-left well well-sm" style="background-color: white">
+                <table>
+                    <tr>
+                        <td align="center" style="font-size: 36px">28</td>
+                    </tr>
+                    <tr>
+                        <td align="center">May 2016</td>
+                    </tr>
+                    <tr>
+                        <td align="center">14:00-15:00</td>                        
+                    </tr>
+                </table>
             </div>
-            <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
-              <a href="#" class="btn btn-default btn-xs">Delete</a>
+
+            <div class="media-body" style="padding-left: 10px; padding-top: 5px">
+                <h4 class="media-heading">{{i.description}} </h4>
+                <p>{{i.location}} </p>
+                <p><i class="fa fa-group" style="margin-right: 3px;    color: brown;"></i>Face-to-Face Meeting</p>
             </div>
         </div>
-
-        <div class="media" style="margin-bottom: 10px; margin-top: 10px">
-            <a class="" href="#">
-                <div class="pull-left well well-sm" style="background-color: white">
-                    <table>
-                        <tr>
-                            <td align="center" style="font-size: 19px">28</td>
-                        </tr>
-                        <tr>
-                            <td align="center">May 2016</td>
-                        </tr>
-                        <tr>
-                            <td align="center">14:00-15:00</td>                        
-                        </tr>
-                    </table>
-                </div>
-            </a>
-            <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
-                <h4 class="media-heading">DPUB IG Metadata Task Force</h4>
-                <p>The Metadata Task Force of the DPUB IG found, through extensive interviews with representatives of...</p>
-                <p><i class="fa fa-group" style="margin-right: 3px"></i>Face-to-Face Meeting</p>
-            </div>
-            <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
-               <a href="#" class="btn btn-default btn-xs">Delete</a>
-            </div>
-        </div>
-
-        <div class="media" style="margin-bottom: 10px; margin-top: 10px">
-            <a class="" href="#">
-                <div class="pull-left well well-sm" style="background-color: white">
-                    <table>
-                        <tr>
-                            <td align="center" style="font-size: 19px">28</td>
-                        </tr>
-                        <tr>
-                            <td align="center">May 2016</td>
-                        </tr>
-                        <tr>
-                            <td align="center">14:00-15:00</td>                        
-                        </tr>
-                    </table>
-                </div>
-            </a>
-            <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
-                <h4 class="media-heading">DPUB IG Metadata Task Force</h4>
-                <p>The Metadata Task Force of the DPUB IG found, through extensive interviews with representatives of...</p>
-                <p><i class="fa fa-group" style="margin-right: 3px"></i>Face-to-Face Meeting</p>
-            </div>
-            <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
-                <a href="#" class="btn btn-default btn-xs">Delete</a>
-            </div>
-        </div>
-
+    </a>
+        
     </div>
 
-
+   
 </div>
 
 <div> <div class="well well-sm media">
@@ -187,6 +136,6 @@
 
 
 <div class="well well-sm">
-    <button type="submit" class="btn btn-success">Create Note</button>
+    <button type="submit" class="btn btn-success" ng-click="createNote()">Create Note</button>
     <button type="button" class="btn btn-default">Cancel</button>
 </div>

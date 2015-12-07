@@ -64,7 +64,7 @@
                         </a>
                     </div>
                     <div class="theme-option">
-                        <a href="#" class="icon-btn" style="width:130px">
+                        <a href="#/new_note" class="icon-btn" style="width:130px">
                             <i class="fa fa-pencil-square-o" style="font-size: 35px;"></i>
                             <div>
                                 Create New Note
@@ -98,14 +98,23 @@
 
 <div class="well well-sm">
     <h4 >Discussions</h4>
+    <div  ng-show="!discussionList.length">
+    <p>Unfortunately, there are no meetings scheduled. Maybe you should create one...</p>
+    <a href="#/new_discussion" class="icon-btn" style="width:130px">
+                            <i class="fa fa-comments-o" style="font-size: 35px;"></i>
+                            <div>
+                                Create New Discussion
+                            </div>
+                        </a>
+    </div>
+    
+    
 
-    <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; ">
-        <li >
-            <a tabindex="-1"  href="#/discussion_detail">This document isn't using RFC words...            
-            </a>
-        </li>
+    
+    <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; " data-ng-repeat="i in discussionList">
+       
         <li role="presentation">
-            <a role="menuitem" tabindex="-1"  href="#/discussion_detail">The (optional) explanation of conformance ...
+            <a role="menuitem" tabindex="-1"  href="" ng-click="toDiscussionDetail(i.id,i.name,i.description)">{{i.name}} 
             </a>
         </li>
     </ul>
@@ -178,7 +187,7 @@
                         </a>
     </div>
     <div data-ng-repeat="i in meetingList">
-        <a class="" href="" ng-click="toMeetingDetail(i.meetingId,i.description,i.location)">
+        <a class="" href="" ng-click="toMeetingDetail(i.id,i.description,i.location)">
         <div class="media" style="margin-bottom: 15px;">
 
             <div class="pull-left well well-sm" style="background-color: white">

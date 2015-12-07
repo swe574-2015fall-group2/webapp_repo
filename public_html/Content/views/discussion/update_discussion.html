@@ -1,0 +1,60 @@
+<div><table class="" style="margin-bottom: 30px; width: 100%">
+
+        <tbody>
+            <tr>
+                <td></td>
+               
+                <td>
+                    <button type="button" class="btn btn-navbar" onclick="window.location.href = '#/discussion_detail';">Back to Discussion Detail </button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table></div>
+
+<div style="margin-bottom: 20px;">
+
+  
+    <h3  ng-bind="selectedGroupName"></h3>
+    <p>Update Discussion</p>
+</div>
+ <form role="form" ng-submit="sendPost()">   
+<div class="well well-sm"> 
+       
+
+        <div class="form-body">            
+            <table cellpadding="5">               
+                <tr>
+                    <td>Discussion Name</td>
+                    <td>      <input ng-model="name" class="form-control"  placeholder="Enter text" style="width:450px">
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td> <textarea class="form-control" ng-model="description" placeholder="Enter text" style="width:450px; height: 150px"></textarea></td>
+                    </tr>
+                    <tr>
+                    <td>
+                        Tags
+                    </td>
+                    <td>      
+                <input  class="form-control" id="exampleInputEmail1" ng-model="tags" placeholder="Enter text" ng-model="tags" style="width:450px">
+                    </td>
+                    </tr>
+
+            </table>     
+
+        </div>
+    
+</div>
+
+
+
+
+
+
+<div class="well well-sm">
+    <button type="submit" class="btn btn-success">Update Discussion</button>
+</div>
+     
+ </form>

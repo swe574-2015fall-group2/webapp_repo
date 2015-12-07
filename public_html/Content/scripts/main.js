@@ -36,12 +36,18 @@ require([
   'controllers/GroupController',
   'controllers/GroupDetailController',
   'controllers/NewMeetingController',
+  'controllers/UpdateMeetingController',
   'controllers/MeetingDetailController',
   'controllers/AllGroupsController',
   'controllers/LatestGroupsController',
   'controllers/MyGroupsController',
   'controllers/PopularGroupsController',
   'controllers/ProfileController',
+  'controllers/NewNoteController',
+  'controllers/UpdateNoteController',
+  'controllers/NewDiscussionController',
+  'controllers/DiscussionDetailController',
+  'controllers/UpdateDiscussionController',
   'directives/ngbkFocus',
   'directives/draggable',
   'directives/resizable',
@@ -100,15 +106,31 @@ require([
                 })
                 .when('/discussion_detail', {
                     templateUrl: 'views/discussion/discussion_detail.html',
-                    controller: 'FavsCtrl'
+                    controller: 'DiscussionDetailContr'
                 })
                 .when('/new_discussion', {
                     templateUrl: 'views/discussion/new_discussion.html',
-                    controller: 'FavsCtrl'
+                    controller: 'NewDiscussionCont'
+                })
+                .when('/update_discussion', {
+                    templateUrl: 'views/discussion/update_discussion.html',
+                    controller: 'UpdateDiscussionCont'
                 })
                 .when('/meeting_detail', {
                     templateUrl: 'views/meeting/meeting_detail.html',
                     controller: 'MeetingDetailContr'
+                })
+                .when('/update_meeting', {
+                    templateUrl: 'views/meeting/update_meeting.html',
+                     controller: 'UpdateMeetingCont'
+                })
+                .when('/new_note', {
+                    templateUrl: 'views/notes/new_note.html',
+                    controller: 'NewNoteContr'
+                })
+                .when('/update_note', {
+                    templateUrl: 'views/notes/update_note.html',
+                    controller: 'UpdateNoteContr'
                 })
                 .when('/my_profile', {
                     templateUrl: 'views/my_profile.html',
