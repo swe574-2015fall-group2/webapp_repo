@@ -50,6 +50,7 @@ define(['controllers/controllers'],
                    $scope.interestedAreas= data.result.userDetail.interestedAreas;
                    $scope.linkedinProfile= data.result.userDetail.linkedinProfile;
                    $scope.academiaProfile= data.result.userDetail.academiaProfile;
+                   $scope.nameSurname= data.result.firstname + " " +data.result.lastname;
                    
                 }).error(function (data, status, headers, config) {
               alert("Error: " + data.consumerMessage);
