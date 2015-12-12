@@ -51,6 +51,7 @@ define(['controllers/controllers'],
                    $scope.linkedinProfile= data.result.userDetail.linkedinProfile;
                    $scope.academiaProfile= data.result.userDetail.academiaProfile;
                    $scope.nameSurname= data.result.firstname + " " +data.result.lastname;
+                   $scope.birthDateInfo=data.result.userDetail.birthDate;
                    
                 }).error(function (data, status, headers, config) {
               alert("Error: " + data.consumerMessage);
