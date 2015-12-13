@@ -78,6 +78,8 @@ define(['controllers/controllers'],
                                     $scope.tip = "ONLINE";
                                 else
                                     $scope.tip = "FACE_TO_FACE";
+                                
+                                 var diziTag = $scope.tags.split(",");
 
                                  var data = JSON.stringify({
                                     authToken: $scope.authToken,
@@ -92,7 +94,7 @@ define(['controllers/controllers'],
                                     type: $scope.tip,
                                     groupId: $scope.selectedGroup,
                                     /*invitedUserIdList:[""],*/
-                                    tagList: [$scope.tags]
+                                    tagList: diziTag
                                 });
 
                                 $http.post("http://162.243.215.160:9000/v1/meeting/create", data).success(function (data, status) {
