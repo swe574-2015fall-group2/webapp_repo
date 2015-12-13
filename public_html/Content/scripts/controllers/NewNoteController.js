@@ -77,7 +77,11 @@ define(['controllers/controllers'],
                             };
 
 
+
                             $scope.createNote = function () {
+
+
+                                var diziTag = $scope.tags.split(",");
 
                                 var data = JSON.stringify({
                                     authToken: $scope.authToken,
@@ -85,7 +89,7 @@ define(['controllers/controllers'],
                                     text: $scope.description,
                                     groupId: $scope.selectedGroup,
                                     meetingId: $scope.selectedMeeting,
-                                    tagList: [$scope.tags],
+                                    tagList: diziTag,
                                     resourceIds: [""]
                                 });
 
