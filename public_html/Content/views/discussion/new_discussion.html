@@ -3,7 +3,7 @@
         <tbody>
             <tr>
                 <td></td>
-               
+
                 <td>
                     <button type="button" class="btn btn-navbar" onclick="window.location.href = '#/group_detail';">Back to Group Detail </button>
                 </td>
@@ -14,13 +14,13 @@
 
 <div style="margin-bottom: 20px;">
 
-  
+
     <h3  ng-bind="selectedGroupName"></h3>
     <p>Create New Discussion</p>
 </div>
- <form role="form" ng-submit="sendPost()">   
-<div class="well well-sm"> 
-       
+<form role="form" ng-submit="sendPost()">   
+    <div class="well well-sm"> 
+
 
         <div class="form-body">            
             <table cellpadding="5">               
@@ -34,117 +34,119 @@
                         <td> <textarea class="form-control" ng-model="description" placeholder="Enter text" style="width:450px; height: 150px"></textarea></td>
                     </tr>
                     <tr>
-                    <td>
-                        Tags
-                    </td>
-                    <td>      
-                <input  class="form-control" id="exampleInputEmail1" ng-model="tags" placeholder="Enter text" ng-model="tags" style="width:450px">
-                    </td>
-                    </tr>
-
-            </table>     
-
-        </div>
-    
-</div>
-
-<div class="well well-sm">
-    <div> 
-        <table>
-            <tr>
-                <td><h4 >Related Meetings</h4> </td>
-                <td><button type="button" class="btn btn-link">Create New Meeting</button></td>
-            </tr>
-        </table> 
-    </div>
-    <div> <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Search for meeting to add" style="width:450px"></div>
-
-    <div>
-
-        <div class="media" style="margin-bottom: 10px; margin-top: 10px">
-            <a class="" href="#">
-                <div class="pull-left well well-sm" style="background-color: white">
-                    <table>
-                        <tr>
-                            <td align="center" style="font-size: 19px">28</td>
+                        <td>
+                            Tags
+                        </td>
+                        <td>      
+                    <input  class="form-control" id="exampleInputEmail1" ng-model="tags" placeholder="Enter text" ng-model="tags" style="width:450px">
+                        </td>
                         </tr>
-                        <tr>
-                            <td align="center">May 2016</td>
-                        </tr>
-                        <tr>
-                            <td align="center">14:00-15:00</td>                        
-                        </tr>
-                    </table>
-                </div>
-            </a>
-            <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
-                <h4 class="media-heading">DPUB IG Metadata Task Force</h4>
-                <p>The Metadata Task Force of the DPUB IG found, through extensive interviews with representatives of...</p>
-                <p><i class="fa fa-group" style="margin-right: 3px"></i>Face-to-Face Meeting</p>
-            </div>           
-        </div>
 
-        
+                        </table>     
 
-    </div>
+                        </div>
 
+                        </div>
 
-</div>
+                        <div class="well well-sm">
+                            <div> 
+                                <table>
+                                    <tr>
+                                        <td><h4 >Related Meetings</h4> </td>               
+                                    </tr>
+                                </table> 
+                            </div>
+                            <div> <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Search for meeting to add" style="width:450px"></div>
 
-<div> <div class="well well-sm media">
-        <div> 
-            <table>
-            <tr>
-                <td><h4 >Resources</h4> </td>
-                <td><button type="button" class="btn btn-link">Create New Resource</button></td>
-            </tr>
-        </table> 
-        </div>
-        <div> <input  class="form-control" id="tagText" placeholder="Search for resource to add" style="width:450px"></div>
+                            <div>
 
-        <div  style="margin-bottom: 10px; margin-top: 10px">
-        <div class="pull-left ">
-            <table>
-                <tr>
-                    <th><img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;" ></th>           
-                
-                    </tr>
-                    <tr>
-                        <td>#Elephants</td>
-                    </tr>
-            </table>
-        </div>
-
-        <div class="pull-left">
-            <table>
-                <tr>
-                   <th><img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;" ></th>        
-                    </tr>
-                    <tr>
-                        <td>#Elephants</td>
-                    </tr>
-            </table>
-        </div>
-
-        <div class="pull-left">
-            <table>
-                <tr>
-                    <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>          
-                    </tr>
-                    <tr>
-                        <td>#Elephants</td>
-                    </tr>
-            </table>
-        </div>
-        </div>
-    </div>
-</div>
+                                <div class="media" style="margin-bottom: 10px; margin-top: 10px">
+                                    <a class="" href="#">
+                                        <div class="pull-left well well-sm" style="background-color: white">
+                                            <table>
+                                                <tr>
+                                                    <td align="center" style="font-size: 19px">28</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center">May 2016</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center">14:00-15:00</td>                        
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </a>
+                                    <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
+                                        <h4 class="media-heading">DPUB IG Metadata Task Force</h4>
+                                        <p>The Metadata Task Force of the DPUB IG found, through extensive interviews with representatives of...</p>
+                                        <p><i class="fa fa-group" style="margin-right: 3px"></i>Face-to-Face Meeting</p>
+                                    </div>
+                                    <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </div>
+                                </div>
 
 
 
+                            </div>
 
-<div class="well well-sm">
-    <button type="submit" class="btn btn-success">Create Discussion</button>
-</div>
-     
- </form>
+
+                        </div>
+
+                        <div> <div class="well well-sm media">
+                                <div> 
+                                    <table>
+                                        <tr>
+                                            <td><h4 >Resources</h4> </td>
+                                            <td><button type="button" class="btn btn-link">Create New Resource</button></td>
+                                        </tr>
+                                    </table> 
+                                </div>
+                                <div> <input  class="form-control" id="tagText" placeholder="Search for resource to add" style="width:450px"></div>
+
+                                <div  style="margin-bottom: 10px; margin-top: 10px">
+                                    <div class="pull-left ">
+                                        <table>
+                                            <tr>
+                                                <th><img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;" ></th>           
+
+                                                </tr>
+                                                <tr>
+                                                    <td>#Elephants</td>
+                                                </tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="pull-left">
+                                        <table>
+                                            <tr>
+                                                <th><img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;" ></th>        
+                                                </tr>
+                                                <tr>
+                                                    <td>#Elephants</td>
+                                                </tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="pull-left">
+                                        <table>
+                                            <tr>
+                                                <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>          
+                                                </tr>
+                                                <tr>
+                                                    <td>#Elephants</td>
+                                                </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="well well-sm">
+                            <button type="submit" class="btn btn-success">Create Discussion</button>
+                        </div>
+
+                        </form>
