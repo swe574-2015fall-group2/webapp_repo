@@ -75,6 +75,8 @@ define(['controllers/controllers'],
                                 }
 
                                 $scope.tags = tagsString;
+                                $scope.userList = data.result.users;
+                                $scope.userListCount = $scope.userList.length;
 
                                 //alert( "meeting list got" );
                             }).error(function (data, status, headers, config) {
@@ -108,6 +110,23 @@ define(['controllers/controllers'],
 
 
                                 $scope.discussionList = data.result.discussionList;
+                                //alert( "meeting list got" );
+                            }).error(function (data, status, headers, config) {
+                                //alert("Error: " + data.consumerMessage);
+
+                            });
+
+
+                            //get the notes
+                            var data = JSON.stringify({
+                                authToken: authToken,
+                                id: selectedGroup
+                            });
+                            $http.post("http://162.243.215.160:9000/v1/note/queryByGroup", data).success(function (data, status) {
+
+
+                                $scope.noteList = data.result.noteList;
+                                
                                 //alert( "meeting list got" );
                             }).error(function (data, status, headers, config) {
                                 //alert("Error: " + data.consumerMessage);
@@ -171,6 +190,12 @@ define(['controllers/controllers'],
                                 document.cookie = "selectedDiscussionDesc" + "=" + desc;
                                 document.cookie = "selectedDiscussionName" + "=" + name;
                                 $window.location.href = '#/discussion_detail';
+                            };
+                            
+                            $scope.toNoteDetail = function (id, title) {
+                                document.cookie = "selectedNote" + "=" + id;
+                                document.cookie = "selectedDiscussionDesc" + "=" + title;
+                                $window.location.href = '#/group_detail';
                             };
 
                         }]);

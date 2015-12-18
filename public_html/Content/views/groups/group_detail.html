@@ -16,8 +16,8 @@
                             <a tabindex="-1" href="#">Members            
                             </a>
                         </li>
-                        <li role="presentation">
-                            6 users in the group
+                        <li>
+                          <div ng-bind="userListCount" style="float: left;"></div>&nbsp; user(s) in the group
                         </li>
                         <li role="presentation">
                             Add more
@@ -125,6 +125,7 @@
 
 <div class="well well-sm">
     <h4 >Notes</h4>
+    <div  ng-show="!noteList.length">
     <p>Unfortunately, there are no notes. Maybe you should create one...</p>
     <a href="#/new_note" class="icon-btn" style="width:130px">
                             <i class="fa fa-pencil-square-o" style="font-size: 35px;"></i>
@@ -132,12 +133,14 @@
                                 Create New Note
                             </div>
                         </a>
-    <ul style="display:none;list-style-type: none; margin-left:0px; padding-left: 0px; ">
-        <li >
-            <a tabindex="-1" href="#">Provide keyboard access to authoring features.            
+    </div>
+    
+    <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; " data-ng-repeat="i in noteList">
+       
+        <li role="presentation">
+            <a role="menuitem" tabindex="-1"  href="" ng-click="toNoteDetail(i.id,i.title)">{{i.title}} 
             </a>
         </li>
-
     </ul>
 </div>
 
@@ -213,7 +216,7 @@
             </div>
 
             <div class="media-body" style="padding-left: 10px; padding-top: 5px">
-                <h4 class="media-heading">{{i.description}} </h4>
+                <h4 class="media-heading">{{i.name}} </h4>
                 <p>{{i.location}} </p>
                 <p><i class="fa fa-group" style="margin-right: 3px;    color: brown;"></i>Face-to-Face Meeting</p>
             </div>

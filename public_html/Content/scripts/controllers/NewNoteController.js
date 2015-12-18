@@ -96,7 +96,7 @@ define(['controllers/controllers'],
                                 $http.post("http://162.243.215.160:9000/v1/note/create", data).success(function (data, status) {
 
                                     alert("Note is created successfully!");
-//                                    $window.location.href = "#/my_groups";
+                                   $window.location.href = "#/my_groups";
                                 }).error(function (data, status, headers, config) {
                                     alert("Error: " + data.consumerMessage);
 

@@ -59,6 +59,15 @@ define(['controllers/controllers'],
             });
         
         
+        if(!($scope.linkedinProfile.indexOf("http")>-1)){
+            
+            $scope.linkedinProfile = "http://" + $scope.linkedinProfile;
+        }
+        
+        if(!($scope.academiaProfile.indexOf("http")>-1)){
+            
+            $scope.academiaProfile = "http://" + $scope.academiaProfile;
+        }
         
         
         $scope.authToken=authToken;
