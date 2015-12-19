@@ -18,135 +18,70 @@
     <h3  ng-bind="selectedGroupName"></h3>
     <p>Create New Discussion</p>
 </div>
-<form role="form" ng-submit="sendPost()">   
-    <div class="well well-sm"> 
 
+<div class="well well-sm"> 
+    <div class="form-body">  
 
-        <div class="form-body">            
-            <table cellpadding="5">               
+        <table cellpadding="5">               
+            <tr>
+                <td>Discussion Name</td>
+                <td>      <input ng-model="name" class="form-control"  placeholder="Enter text" style="width:450px">
+                </td>
+                </tr>
                 <tr>
-                    <td>Discussion Name</td>
-                    <td>      <input ng-model="name" class="form-control"  placeholder="Enter text" style="width:450px">
+                    <td>Description</td>
+                    <td> <textarea class="form-control" ng-model="description" placeholder="Enter text" style="width:450px; height: 150px"></textarea></td>
+                </tr>
+                <tr>
+                    <td>
+                        Tags
                     </td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td> <textarea class="form-control" ng-model="description" placeholder="Enter text" style="width:450px; height: 150px"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Tags
-                        </td>
-                        <td>      
-                    <input  class="form-control" id="exampleInputEmail1" ng-model="tags" placeholder="Enter text" ng-model="tags" style="width:450px">
-                        </td>
-                        </tr>
-
-                        </table>     
-
-                        </div>
-
-                        </div>
-
-                        <div class="well well-sm">
-                            <div> 
-                                <table>
-                                    <tr>
-                                        <td><h4 >Related Meetings</h4> </td>               
-                                    </tr>
-                                </table> 
-                            </div>
-                            <div> <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Search for meeting to add" style="width:450px"></div>
-
-                            <div>
-
-                                <div class="media" style="margin-bottom: 10px; margin-top: 10px">
-                                    <a class="" href="#">
-                                        <div class="pull-left well well-sm" style="background-color: white">
-                                            <table>
-                                                <tr>
-                                                    <td align="center" style="font-size: 19px">28</td>
-                                                </tr>
-                                                <tr>
-                                                    <td align="center">May 2016</td>
-                                                </tr>
-                                                <tr>
-                                                    <td align="center">14:00-15:00</td>                        
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </a>
-                                    <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
-                                        <h4 class="media-heading">DPUB IG Metadata Task Force</h4>
-                                        <p>The Metadata Task Force of the DPUB IG found, through extensive interviews with representatives of...</p>
-                                        <p><i class="fa fa-group" style="margin-right: 3px"></i>Face-to-Face Meeting</p>
-                                    </div>
-                                    <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </div>
-                                </div>
+                    <td>      
 
 
+                        <table border="1" style="width:400px; border_color:#35363a" cellpadding="3"  >
 
-                            </div>
+                            <tr>
+                                <td>
+                            <input id="inputTag" class="form-control" type="text" name="product" style="width:300px" list="inputTagList" ng-model="ngTag"  ng-change="getTag()"/>
+                            <datalist id="inputTagList">
+                                <option  ng-repeat="option in yeniTagList" value="{{option.label}}" >{{option.clazz}} </option>
+                            </datalist>
+                    </td>
+                    <td> 
+                        <button type="submit" class="btn btn-success" ng-click="setTag()" >Add Tag</button>
+                    </td> 
+                </tr>
+        </table>
 
+        <table border="1" style="width:400px; border_color:#35363a" cellpadding="3"  >
 
-                        </div>
+            <tr>
+                <th>Selected Tag</th>
+                <th>Selected context</th>
+            </tr>
 
-                        <div> <div class="well well-sm media">
-                                <div> 
-                                    <table>
-                                        <tr>
-                                            <td><h4 >Resources</h4> </td>
-                                            <td><button type="button" class="btn btn-link">Create New Resource</button></td>
-                                        </tr>
-                                    </table> 
-                                </div>
-                                <div> <input  class="form-control" id="tagText" placeholder="Search for resource to add" style="width:450px"></div>
+            <tr data-ng-repeat="selectedTag in selectedTagList">
+                <td>{{selectedTag.tag}}</td>
+                <td>{{selectedTag.clazz}}</td> 
+            </tr>
+        </table>
+    </div> 
 
-                                <div  style="margin-bottom: 10px; margin-top: 10px">
-                                    <div class="pull-left ">
-                                        <table>
-                                            <tr>
-                                                <th><img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;" ></th>           
+</td>
+</tr>
 
-                                                </tr>
-                                                <tr>
-                                                    <td>#Elephants</td>
-                                                </tr>
-                                        </table>
-                                    </div>
+</table>     
 
-                                    <div class="pull-left">
-                                        <table>
-                                            <tr>
-                                                <th><img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;" ></th>        
-                                                </tr>
-                                                <tr>
-                                                    <td>#Elephants</td>
-                                                </tr>
-                                        </table>
-                                    </div>
+</div>
 
-                                    <div class="pull-left">
-                                        <table>
-                                            <tr>
-                                                <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>          
-                                                </tr>
-                                                <tr>
-                                                    <td>#Elephants</td>
-                                                </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+</div>
 
 
 
 
-                        <div class="well well-sm">
-                            <button type="submit" class="btn btn-success">Create Discussion</button>
-                        </div>
 
-                        </form>
+<div class="well well-sm">
+    <button ng-click="sendPost()" class="btn btn-success">Create Discussion</button>
+</div>
+
