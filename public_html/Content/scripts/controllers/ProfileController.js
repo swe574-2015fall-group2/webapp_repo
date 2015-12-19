@@ -39,6 +39,7 @@ define(['controllers/controllers'],
                         id:userId
                     });
                     
+                    
         $http.post("http://162.243.215.160:9000/v1/user/get", data).success(function(data, status) {
                    $scope.firstname= data.result.firstname;
                    $scope.lastname= data.result.lastname;
@@ -59,7 +60,7 @@ define(['controllers/controllers'],
             });
         
         
-        if(!($scope.linkedinProfile.indexOf("http")>-1)){
+        /*if(!($scope.linkedinProfile.indexOf("http")>-1)){
             
             $scope.linkedinProfile = "http://" + $scope.linkedinProfile;
         }
@@ -68,7 +69,7 @@ define(['controllers/controllers'],
             
             $scope.academiaProfile = "http://" + $scope.academiaProfile;
         }
-        
+        */
         
         $scope.authToken=authToken;
         $scope.userId=userId;
@@ -76,6 +77,17 @@ define(['controllers/controllers'],
         $scope.firstname="";
         $scope.description="";
         $scope.sendPost = function() {
+            
+             if(!($scope.linkedinProfile.indexOf("http")>-1)){
+            
+            $scope.linkedinProfile = "http://" + $scope.linkedinProfile;
+        }
+        
+        if(!($scope.academiaProfile.indexOf("http")>-1)){
+            
+            $scope.academiaProfile = "http://" + $scope.academiaProfile;
+        }
+            
             
                 var data = JSON.stringify({
                         authToken: authToken,
@@ -96,6 +108,9 @@ define(['controllers/controllers'],
                     //alert("success");
                     //document.cookie = "authToken" + "=" + data.result.token;
                     //$location.path( "~/Content/" );
+                    
+                   
+                    
                     
                     /*
                     var Cerez = document.cookie;

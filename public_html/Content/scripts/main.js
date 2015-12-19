@@ -32,23 +32,26 @@ require([
   'services/localStorageService',
   'controllers/rootController',
   'controllers/favsController',
-  'controllers/createGroupController',
-  'controllers/GroupController',
-  'controllers/GroupDetailController',
-  'controllers/NewMeetingController',
-  'controllers/UpdateMeetingController',
-  'controllers/MeetingDetailController',
-  'controllers/AllGroupsController',
-  'controllers/LatestGroupsController',
-  'controllers/MyGroupsController',
-  'controllers/PopularGroupsController',
+  'controllers/groups/createGroupController',
+  'controllers/groups/GroupController',
+  'controllers/groups/GroupDetailController',
+  'controllers/groups/AllGroupsController',
+  'controllers/groups/LatestGroupsController',
+  'controllers/groups/MyGroupsController',
+  'controllers/groups/PopularGroupsController',
+  'controllers/groups/UpdateGroupController',
+  'controllers/discussion/NewDiscussionController',
+  'controllers/discussion/DiscussionDetailController',
+  'controllers/discussion/UpdateDiscussionController',
+  'controllers/meeting/NewMeetingController',
+  'controllers/meeting/UpdateMeetingController',
+  'controllers/meeting/MeetingDetailController',
+  'controllers/message/InboxController',
+  'controllers/message/InboxDetailController',
+  'controllers/message/InboxNewMessageController',
+  'controllers/notes/NewNoteController',
+  'controllers/notes/UpdateNoteController',
   'controllers/ProfileController',
-  'controllers/NewNoteController',
-  'controllers/UpdateNoteController',
-  'controllers/NewDiscussionController',
-  'controllers/DiscussionDetailController',
-  'controllers/UpdateDiscussionController',
-  'controllers/UpdateGroupController',
   'directives/ngbkFocus',
   'directives/draggable',
   'directives/resizable',
@@ -139,16 +142,16 @@ require([
                 })
                 .when('/new_message', {
                     templateUrl: 'views/message/new_message.html',
-                    controller: 'UpdateNoteContr'
+                    controller: 'InboxNewMessageContr'
                 })
                 .when('/inbox', {
                     templateUrl: 'views/message/inbox.html',
-                    controller: 'UpdateNoteContr'
+                    controller: 'InboxContr'
                 })
                 
                 .when('/inbox_detail', {
                     templateUrl: 'views/message/inbox_detail.html',
-                    controller: 'UpdateNoteContr'
+                    controller: 'InboxDetailContr'
                 })
                 
                 .when('/my_profile', {
