@@ -88,13 +88,13 @@ define(['controllers/controllers'],
                                     timezone: $scope.timezone,
                                     startHour: $scope.starthour,
                                     endHour: $scope.finishhour,
-                                    agendaSet: [""],
+                                    agendaSet:  $scope.agendaList,
                                     location: $scope.location,
                                     description: $scope.description,
                                     type: $scope.tip,
                                     groupId: $scope.selectedGroup,
                                     /*invitedUserIdList:[""],*/
-                                    tagList:  $scope.selectedTagList
+                                    tagList: $scope.selectedTagList
                                 });
 
                                 $http.post("http://162.243.215.160:9000/v1/meeting/create", data).success(function (data, status) {
@@ -157,6 +157,14 @@ define(['controllers/controllers'],
                                 }
 
 
+                            };
+
+
+                            $scope.agendaList = [];
+
+                            $scope.addAgenda = function () {
+
+                                $scope.agendaList.push($scope.ngAgenda);
                             };
 
 
