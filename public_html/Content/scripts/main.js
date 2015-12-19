@@ -137,6 +137,20 @@ require([
                     templateUrl: 'views/notes/update_note.html',
                     controller: 'UpdateNoteContr'
                 })
+                .when('/new_message', {
+                    templateUrl: 'views/message/new_message.html',
+                    controller: 'UpdateNoteContr'
+                })
+                .when('/inbox', {
+                    templateUrl: 'views/message/inbox.html',
+                    controller: 'UpdateNoteContr'
+                })
+                
+                .when('/inbox_detail', {
+                    templateUrl: 'views/message/inbox_detail.html',
+                    controller: 'UpdateNoteContr'
+                })
+                
                 .when('/my_profile', {
                     templateUrl: 'views/my_profile.html',
                     controller: 'ProfileContr'
