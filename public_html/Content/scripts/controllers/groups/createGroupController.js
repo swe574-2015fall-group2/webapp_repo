@@ -32,13 +32,11 @@ define(['controllers/controllers'],
                             $scope.description = "";
                             $scope.sendPost = function () {
 
-                                var diziTag = $scope.tags.split(",");
-
                                 var data = JSON.stringify({
                                     authToken: $scope.authToken,
                                     name: $scope.name,
                                     description: $scope.description,
-                                    tagList: diziTag
+                                    tagList: $scope.selectedTagList
                                 });
 
                                 $http.post("http://162.243.215.160:9000/v1/group/create", data).success(function (data, status) {
@@ -60,5 +58,65 @@ define(['controllers/controllers'],
 
                                 });
                             };
+
+
+
+
+                            $scope.yeniTagList = [];
+                            $scope.selectedTagList = [];
+
+
+                            $scope.getTag = function () {
+
+                                var data = JSON.stringify({
+                                    authToken: $scope.authToken,
+                                    queryString: $scope.ngTag
+                                });
+
+
+                                $http.post("http://162.243.215.160:9000/v1/semantic/queryLabel", data).success(function (data, status) {
+
+                                    $scope.myGroupListCount = data.result.dataList.length;
+
+                                    $scope.yeniTagList = data.result.dataList;
+
+                                    for (var i = 0; i <= $scope.myGroupListCount - 1; i++) {
+                                        if ($scope.yeniTagList[i].label == $scope.inputTag)
+                                        {
+                                            $scope.selectedTagList.push($scope.yeniTagList[i].label, $scope.yeniTagList[i].clazz);
+                                        }
+                                    }
+
+                                }).error(function (data, status, headers, config) {
+                                    // alert("Error: " + data.consumerMessage);
+
+                                });
+                            };
+
+
+                            $scope.setTag = function () {
+
+                                var index = 0;
+                                for (var i = 0; i <= $scope.myGroupListCount - 1; i++) {
+                                    if ($scope.yeniTagList[i].label == $scope.ngTag)
+                                    {
+                                        index = 1;
+                                        $scope.selectedTagList.push({tag: $scope.yeniTagList[i].label, clazz: $scope.yeniTagList[i].clazz});
+                                        break;
+                                    }
+                                }
+
+                                if (index == 0)
+                                {
+                                    $scope.selectedTagList.push({tag: $scope.ngTag.toString(), clazz: ""});
+                                }
+
+
+                            };
+
+
+
+
+
                         }]);
         });

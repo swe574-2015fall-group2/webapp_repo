@@ -3,7 +3,7 @@
         <tbody>
             <tr>
                 <td></td>
-               
+
                 <td>
                     <button type="button" class="btn btn-navbar" onclick="window.location.href = '#/groups';">Back to Groups </button>
                 </td>
@@ -18,7 +18,7 @@
 </div>
 
 <div class="well well-sm"> 
-    <form role="form" ng-submit="sendPost()" >       
+    <form role="form" >       
 
         <div class="form-body">            
             <table cellpadding="5">               
@@ -34,22 +34,52 @@
                         <td>Description</td>
                         <td> <textarea class="form-control" placeholder="Enter text" style="width:450px; height: 150px" ng-model="description"></textarea></td>
                     </tr>
-                    
-                      <tr>
-                    <td>
-                        Tags
-                    </td>
-                    <td>      
-                <input  class="form-control" id="exampleInputEmail1" placeholder="Enter text" style="width:450px" ng-model="tags">
-                    </td>
+
+                    <tr>
+                        <td>
+                            Tags
+                        </td>
+                        <td>      
+
+
+                            <table border="1" style="width:400px;"cellpadding="3"  >
+
+                                <tr>
+                                    <td>
+                                <input id="inputTag" class="form-control" type="text" name="product" style="width:300px" list="inputTagList" ng-model="ngTag"  ng-change="getTag()"/>
+                                <datalist id="inputTagList">
+                                    <option  ng-repeat="option in yeniTagList" value="{{option.label}}" >{{option.clazz}} </option>
+                                </datalist>
+                        </td>
+                        <td> 
+                            <button class="btn btn-success" ng-click="setTag()" >Add Tag</button>
+                        </td> 
                     </tr>
+            </table>
 
-            </table>     
+            <table border="1" style="width:400px;" cellpadding="3"  >
 
+                <tr>
+                    <th>Selected Tag</th>
+                    <th>Selected context</th>
+                </tr>
+
+                <tr data-ng-repeat="selectedTag in selectedTagList">
+                    <td>{{selectedTag.tag}}</td>
+                    <td>{{selectedTag.clazz}}</td> 
+                </tr>
+            </table>
         </div>
-        
-        <button type="submit" class="btn btn-success">Create Group</button>
-    </form>
+
+        </td>
+        </tr>
+
+        </table>     
+
+</div>
+
+<button class="btn btn-success" ng-click="sendPost()">Create Group</button>
+</form>
 </div>
 
 
