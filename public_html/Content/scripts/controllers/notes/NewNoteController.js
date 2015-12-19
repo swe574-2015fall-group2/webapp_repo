@@ -80,23 +80,20 @@ define(['controllers/controllers'],
 
                             $scope.createNote = function () {
 
-
-                                var diziTag = $scope.tags.split(",");
-
                                 var data = JSON.stringify({
                                     authToken: $scope.authToken,
                                     title: $scope.name,
                                     text: $scope.description,
                                     groupId: $scope.selectedGroup,
                                     meetingId: $scope.selectedMeeting,
-                                    tagList: diziTag,
+                                    tagList: $scope.selectedTagList,
                                     resourceIds: [""]
                                 });
 
                                 $http.post("http://162.243.215.160:9000/v1/note/create", data).success(function (data, status) {
 
                                     alert("Note is created successfully!");
-                                   $window.location.href = "#/my_groups";
+                                    $window.location.href = "#/my_groups";
                                 }).error(function (data, status, headers, config) {
                                     alert("Error: " + data.consumerMessage);
 
@@ -111,6 +108,60 @@ define(['controllers/controllers'],
                                 $scope.selectedMeeting = "";
                                 $scope.tags = "";
                             };
+
+
+                            $scope.yeniTagList = [];
+                            $scope.selectedTagList = [];
+
+
+                            $scope.getTag = function () {
+
+                                var data = JSON.stringify({
+                                    authToken: $scope.authToken,
+                                    queryString: $scope.ngTag
+                                });
+
+
+                                $http.post("http://162.243.215.160:9000/v1/semantic/queryLabel", data).success(function (data, status) {
+
+                                    $scope.myGroupListCount = data.result.dataList.length;
+
+                                    $scope.yeniTagList = data.result.dataList;
+
+                                    for (var i = 0; i <= $scope.myGroupListCount - 1; i++) {
+                                        if ($scope.yeniTagList[i].label == $scope.inputTag)
+                                        {
+                                            $scope.selectedTagList.push($scope.yeniTagList[i].label, $scope.yeniTagList[i].clazz);
+                                        }
+                                    }
+
+                                }).error(function (data, status, headers, config) {
+                                    // alert("Error: " + data.consumerMessage);
+
+                                });
+                            };
+
+
+                            $scope.setTag = function () {
+
+                                var index = 0;
+                                for (var i = 0; i <= $scope.myGroupListCount - 1; i++) {
+                                    if ($scope.yeniTagList[i].label == $scope.ngTag)
+                                    {
+                                        index = 1;
+                                        $scope.selectedTagList.push({tag: $scope.yeniTagList[i].label, clazz: $scope.yeniTagList[i].clazz});
+                                        break;
+                                    }
+                                }
+
+                                if (index == 0)
+                                {
+                                    $scope.selectedTagList.push({tag: $scope.ngTag.toString(), clazz: ""});
+                                }
+
+
+                            };
+
 
 
 
