@@ -63,14 +63,14 @@ define(['controllers/controllers'],
 
 
                                 var tags = data.result.tagList;
-                                var tagsString = "";
+                                var tagsString = "Tags ";
 
                                 for (i = 0; i < tags.length; i++) {
-                                    tagsString += tags[i];
+                                    tagsString += tags[i].tag;
 
                                     if (i < (tags.length - 1))
                                     {
-                                        tagsString += ",";
+                                        tagsString += ", ";
                                     }
                                 }
 
