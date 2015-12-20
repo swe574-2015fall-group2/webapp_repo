@@ -1,6 +1,6 @@
 
 
-<div><table class="" style="margin-bottom: 30px; width: 100%">
+<div><table class="" style="margin-bottom: 15px; width: 100%">
 
         <tbody>
             <tr>
@@ -20,154 +20,7 @@
 
 
 
-
-<div class="row">
-    <div class="col-md-9" style="margin-bottom: 20px;">
-
-        <h3 ng-bind="meetingName"></h3>
-        <p ng-bind="tags"></p>
-
-    </div>
-
-    <div class="col-md-3" style="margin-bottom: 20px;">
-
-        <div class="pull-left well well-sm" style="background-color: white; width: 200px;">
-            <table style="    margin-left: auto;        margin-right: auto;">
-                <tr>
-                    <td align="center" style="font-size: 80px" >{{day}}</td>
-                </tr>
-                <tr>
-                    <td align="center" style="font-size: 20px;" >{{monthYear}}</td>
-                </tr>
-                <tr>
-                    <td align="center" style="font-size: 15px; font-weight: 700">{{starthour}}:00 - {{endHour}}:00</td>                        
-                </tr>
-
-                <tr>
-                    <td align="center" style="font-size: 12px">Location: <p  ng-bind="selectedMeetingLoc"></p></td>                        
-                </tr>
-
-                <tr>
-                    <td align="center" style="font-size: 12px">Expected Duration: 60 mins</td>                        
-                </tr>
-            </table>
-        </div>
-
-    </div>
-</div>
-
-<div class="row " style="margin-bottom: 20px">
-    <div class="col-md-6">
-
-        <h3>Agenda Items</h3>
-        <div  ng-show="!agendaItems.length">
-            <p>Unfortunately, there are no agenda items, yet.</p></div>
-        <ul data-ng-repeat="i in agendaItems">
-
-            <li>
-                {{i}}
-            </li>
-        </ul>
-    </div>
-
-    <div class="col-md-6">
-        <h3>To-do</h3>
-        <div  ng-show="!todoItems.length">
-            <p>Unfortunately, there are no to-do items, yet.</p></div>
-        <ul class="list-unstyled" data-ng-repeat="i in todoItems">
-            <li>
-                <input style="margin: 5px;" type="checkbox">{{i}}
-            </li>
-        </ul>
-    </div>
-</div>
-
-
-<div class="row " style="margin-bottom: 20px">
-    <div class="col-md-6">
-        <div>
-            <div class="col-md-7"><h4>Invited People</h4>
-                <div  ng-show="!invitedUsers.length">
-                    <p>Unfortunately, you have not invited anybody to this meeting.</p>
-                </div>
-
-                <table cellpadding="5"  data-ng-repeat="i in invitedUsers">       
-                    <tr>
-                        <td><img src="assets/img/avatar3.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
-                        <td valign="top" >
-                            <table>                    
-                                <tr>
-                                    <td><h4 style="padding:0px; margin: 0px">{{i.tempName}}</h4></td>                          
-                                </tr>
-                                <tr>
-                                    <td>Moderator</td>
-
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>  
-                </table>
-
-
-
-            </div>
-            <div class="col-md-5"><button type="button" class="btn btn-link">5 More People...</button></div>
-
-        </div>
-
-    </div>
-    <div class="col-md-6">
-
-        <div>
-            <div class="col-md-7"><h4>Attendants</h4>
-
-                <div  ng-show="!attandedUsers.length">
-                    <p>No one has yet accepted your meeting invitation, sorry.</p>
-                </div>
-                <table cellpadding="5" data-ng-repeat="i in attandedUsers">       
-                    <tr>
-                        <td><img src="assets/img/blog/12.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
-                        <td valign="top" >
-                            <table>                    
-                                <tr>
-                                    <td><h4 style="padding:0px; margin: 0px">{{i.tempName}}</h4></td>                          
-                                </tr>
-                                <tr>
-                                    <td>Regular Attendaee</td>
-
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>  
-                </table>
-
-
-                
-            </div>
-            <div class="col-md-5"><button type="button" class="btn btn-link">5 More People...</button></div>
-
-        </div>
-
-    </div>
-
-
-</div>
-
-
-
-
-
-
 <div><ul class="nav nav-pills">
-        <li>
-            <a href="#">2 Discussions</a>
-        </li>
-        <li>
-            <a href="#">1 Note  </a>
-        </li>
-        <li>
-            <a href="#">19 Resources</a>
-        </li>
         <li style="float: right;">
             <div class="theme-panel" style="width: 215px;">
                 <div id="aa" class="toggler">
@@ -217,17 +70,106 @@
 </div>
 
 
+<div  style="margin-bottom: 20px;">
+
+    <h3 ng-bind="meetingName"></h3>
+    <p ng-bind="tags"></p>
+
+</div>
+
+<div>
+
+    <div style="background-color: #e3e3e3; width: 200px; margin-bottom:20px">
+        <table style="    margin-left: auto;        margin-right: auto;">
+            <tr>
+                <td align="center" style="font-size: 80px" >{{day}}</td>
+            </tr>
+            <tr>
+                <td align="center" style="font-size: 20px;" >{{monthYear}}</td>
+            </tr>
+            <tr>
+                <td align="center" style="font-size: 15px; font-weight: 700">{{startHour}}:00 - {{endHour}}:00</td>                        
+            </tr>
+
+            <tr>
+                <td align="center" style="font-size: 12px">Location: <p  ng-bind="selectedMeetingLoc"></p></td>                        
+            </tr>              
+        </table>
+    </div>
+</div>
+
+<div class="well well-sm">
+    <h4>Agenda Items</h4>
+    <div  ng-show="!agendaItems.length">
+        <p>Unfortunately, there are no agenda items, yet.</p></div>
+    <ul data-ng-repeat="i in agendaItems">
+
+        <li>
+            {{i}}
+        </li>
+    </ul>
+</div>
+
+<div class="well well-sm"><h4>Invited People</h4>
+    <div  ng-show="!invitedUsers.length">
+        <p>Unfortunately, you have not invited anybody to this meeting.</p>
+    </div>
+
+    <table cellpadding="5"  data-ng-repeat="i in invitedUsers">       
+        <tr>
+            <td><img src="assets/img/avatar3.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
+            <td valign="top" >
+                <table>                    
+                    <tr>
+                        <td><h4 style="padding:0px; margin: 0px">{{i.tempName}}</h4></td>                          
+                    </tr>
+                    <tr>
+                        <td>Moderator</td>
+
+                    </tr>
+                </table>
+            </td>
+            </tr>  
+    </table>
+</div>
+
+
+<div class="well well-sm" ><h4>Attendants</h4>
+
+    <div  ng-show="!attandedUsers.length">
+        <p>No one has yet accepted your meeting invitation, sorry.</p>
+    </div>
+    <table cellpadding="5" data-ng-repeat="i in attandedUsers">       
+        <tr>
+            <td><img src="assets/img/blog/12.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
+            <td valign="top" >
+                <table>                    
+                    <tr>
+                        <td><h4 style="padding:0px; margin: 0px">{{i.tempName}}</h4></td>                          
+                    </tr>
+                    <tr>
+                        <td>Regular Attendaee</td>
+
+                    </tr>
+                </table>
+            </td>
+            </tr>  
+    </table>
+</div>
+
+
+
 
 <div class="well well-sm">
     <h4 >Discussions</h4>
 
     <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; ">
         <li >
-            <a tabindex="-1"  href="#/discussion_detail">This document isn't using RFC words...            
+            <a tabindex="-1"  href="#/discussion_detail">            
             </a>
         </li>
         <li role="presentation">
-            <a role="menuitem" tabindex="-1"  href="#/discussion_detail">The (optional) explanation of conformance ...
+            <a role="menuitem" tabindex="-1"  href="#/discussion_detail">
             </a>
         </li>
     </ul>
@@ -239,7 +181,7 @@
     <h4 >Notes</h4>
     <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; ">
         <li >
-            <a tabindex="-1" href="#">Provide keyboard access to authoring features.            
+            <a tabindex="-1" href="#">          
             </a>
         </li>
 
@@ -252,14 +194,14 @@
     <div> 
         <h4 >Resources</h4>
     </div>
-    <div class="pull-left " >
+    <!--<div class="pull-left " >
         <table>
             <tr>
                 <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>          
-            </tr>
-            <tr>
-                <td>#Elephants</td>
-            </tr>
+                </tr>
+                <tr>
+                    <td>#Elephants</td>
+                </tr>
         </table>
     </div>
 
@@ -267,10 +209,10 @@
         <table>
             <tr>
                 <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>          
-            </tr>
-            <tr>
-                <td>#Elephants</td>
-            </tr>
+                </tr>
+                <tr>
+                    <td>#Elephants</td>
+                </tr>
         </table>
     </div>
 
@@ -278,13 +220,13 @@
         <table>
             <tr>
                 <th><img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;" ></th>          
-            </tr>
-            <tr>
-                <td>#Elephants</td>
-            </tr>
+                </tr>
+                <tr>
+                    <td>#Elephants</td>
+                </tr>
         </table>
     </div>
-
+    -->
 </div>
 
 
