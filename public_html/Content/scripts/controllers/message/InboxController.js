@@ -19,50 +19,37 @@ define(['controllers/controllers'],
                             //alert( unescape(Sonuclar[1]) );	
                             var authToken = unescape(Sonuclar[1]);
 
-                            var Duzenli2 = new RegExp("selectedGroupName=([^;=]+)[;\\b]?");
-                            var Sonuclar2 = Duzenli2.exec(Cerez);
-                            //alert( unescape(Sonuclar[1]) );	
-                            var selectedGroupName = unescape(Sonuclar2[1]);
-
-                            var Duzenli3 = new RegExp("selectedGroupDesc=([^;=]+)[;\\b]?");
-                            var Sonuclar3 = Duzenli3.exec(Cerez);
-                            //alert( unescape(Sonuclar[1]) );	
-                            var selectedGroupDesc = unescape(Sonuclar3[1]);
-
-                            var Duzenli4 = new RegExp("selectedGroupJoined=([^;=]+)[;\\b]?");
-                            var Sonuclar4 = Duzenli4.exec(Cerez);
-                            //alert( unescape(Sonuclar[1]) );	
-                            var selectedGroupJoined = unescape(Sonuclar4[1]);
-
-                            var Duzenli5 = new RegExp("selectedGroup=([^;=]+)[;\\b]?");
-                            var Sonuclar5 = Duzenli5.exec(Cerez);
-                            //alert( unescape(Sonuclar5[1]) );	
-                            var selectedGroup = unescape(Sonuclar5[1]);
-
-                            //alert(selectedGroup);
-
-                            $scope.selectedGroupName = selectedGroupName;
-                            $scope.selectedGroupDesc = selectedGroupDesc;
-                            $scope.selectedGroupJoined = selectedGroupJoined;
-                            $scope.selectedGroup = selectedGroup;
-                            $scope.isUserJoined = false;
-
-                            //alert("group detail:" + selectedGroupName);
-                            //alert(selectedGroupJoined);
-                            if (selectedGroupJoined == "true") {
-                                $scope.isUserJoined = true;
-                                //alert("leave");
-                            }
+                            $scope.allReceivedMessages = [];
 
                             //get the group detail
                             var data = JSON.stringify({
-                                authToken: authToken,
-                                id: selectedGroup
+                                authToken: authToken
                             });
-                            $http.post("http://162.243.215.160:9000/v1/group/query", data).success(function (data, status) {
+                            $http.post("http://162.243.215.160:9000/v1/messagebox/getByReceiver", data).success(function (data, status) {
 
-
-                                var tags = data.result.tagList;
+                                var messages = data.result.messages;
+                                var allReceivedMessages = [];
+                                
+                                for(var i = 0; i < messages.length; i++){
+                                     for(var j = 0; j < messages[i].messageList.length; j++){
+                                     var temp = messages[i].messageList[j];
+                                     temp.senderId = messages[i].senderId;
+                                        allReceivedMessages.push(messages[i].messageList[j]);
+                                    }
+                                }
+                                
+                                var a = allReceivedMessages.sort(function(x, y){
+                                    return x.datetime - y.datetime;
+                                })
+                                
+                                /*for (var i = 0; i < a.length; i++){
+                                    var temp = a[i];
+                                     temp.senderName = getUserDetails(a[i].senderId);
+                                }*/
+                                var abb = getUserDetails(a);
+                                
+                                
+                                /*var tags = data.result.tagList;
                                 var tagsString = "";
 
                                 for (i = 0; i < tags.length; i++) {
@@ -76,7 +63,7 @@ define(['controllers/controllers'],
 
                                 $scope.tags = tagsString;
                                 $scope.userList = data.result.users;
-                                $scope.userListCount = $scope.userList.length;
+                                $scope.userListCount = $scope.userList.length;*/
 
                                 //alert( "meeting list got" );
                             }).error(function (data, status, headers, config) {
@@ -85,54 +72,7 @@ define(['controllers/controllers'],
                             });
 
 
-                            //get the meetings
-                            var data = JSON.stringify({
-                                authToken: authToken,
-                                id: selectedGroup
-                            });
-                            $http.post("http://162.243.215.160:9000/v1/meeting/queryByGroup", data).success(function (data, status) {
-
-
-                                $scope.meetingList = data.result.meetingList;
-                                //alert( "meeting list got" );
-                            }).error(function (data, status, headers, config) {
-                                //alert("Error: " + data.consumerMessage);
-
-                            });
-
-
-                            //get the discussions
-                            var data = JSON.stringify({
-                                authToken: authToken,
-                                id: selectedGroup
-                            });
-                            $http.post("http://162.243.215.160:9000/v1/discussion/list", data).success(function (data, status) {
-
-
-                                $scope.discussionList = data.result.discussionList;
-                                //alert( "meeting list got" );
-                            }).error(function (data, status, headers, config) {
-                                //alert("Error: " + data.consumerMessage);
-
-                            });
-
-
-                            //get the notes
-                            var data = JSON.stringify({
-                                authToken: authToken,
-                                id: selectedGroup
-                            });
-                            $http.post("http://162.243.215.160:9000/v1/note/queryByGroup", data).success(function (data, status) {
-
-
-                                $scope.noteList = data.result.noteList;
-                                
-                                //alert( "meeting list got" );
-                            }).error(function (data, status, headers, config) {
-                                //alert("Error: " + data.consumerMessage);
-
-                            });
-
+                            
 
                             $scope.joinGroup = function () {
 
@@ -177,26 +117,50 @@ define(['controllers/controllers'],
 
 
                             };
-
-                            $scope.toMeetingDetail = function (id, desc, loc) {
-                                document.cookie = "selectedMeeting" + "=" + id;
-                                document.cookie = "selectedMeetingDesc" + "=" + desc;
-                                document.cookie = "selectedMeetingLoc" + "=" + loc;
-                                $window.location.href = '#/meeting_detail';
-                            };
-
-                            $scope.toDiscussionDetail = function (id, name, desc) {
-                                document.cookie = "selectedDiscussion" + "=" + id;
-                                document.cookie = "selectedDiscussionDesc" + "=" + desc;
-                                document.cookie = "selectedDiscussionName" + "=" + name;
-                                $window.location.href = '#/discussion_detail';
-                            };
                             
-                            $scope.toNoteDetail = function (id, title) {
-                                document.cookie = "selectedNote" + "=" + id;
-                                document.cookie = "selectedDiscussionDesc" + "=" + title;
-                                $window.location.href = '#/group_detail';
+                            function getUserDetails(idList) {
+                                var resultList = [];
+                                var com;
+                                var sayac = 0;
+                                for (com in idList) {
+
+                                    //GET USER INFO
+                                    var data = JSON.stringify({
+                                        authToken: authToken,
+                                        id: idList[sayac].senderId
+                                    });
+
+
+                                    $http.post("http://162.243.215.160:9000/v1/user/get", data).success(function (data, status) {
+
+                                        var tempName = (data.result.firstname + " " + data.result.lastname);
+                                        var tempObj = idList[sayac];
+                                        tempObj.senderName = tempName;
+                                        resultList.push(tempObj);
+
+                                        sayac++;
+
+                                    }).error(function (data, status, headers, config) {
+                                        alert("Error: " + data.consumerMessage);
+
+                                    });
+
+                                }
+                                $scope.allReceivedMessages = resultList;
+                                return resultList;
+                            }
+                                
+                            
+                            
+
+                            $scope.toInboxDetail = function (name, id,  date, mes) {
+                                document.cookie = "InboxDetailSenderName" + "=" + name;
+                                document.cookie = "InboxDetailSenderId" + "=" + id;
+                                document.cookie = "InboxDetailDatetime" + "=" + date;
+                                document.cookie = "InboxDetailMessage" + "=" + mes;
+                                $window.location.href = '#/inbox_detail';
                             };
+
 
                         }]);
         });

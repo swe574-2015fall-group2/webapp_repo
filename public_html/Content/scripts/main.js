@@ -51,6 +51,7 @@ require([
   'controllers/message/InboxNewMessageController',
   'controllers/notes/NewNoteController',
   'controllers/notes/UpdateNoteController',
+  'controllers/notes/NoteDetailController',
   'controllers/ProfileController',
   'directives/ngbkFocus',
   'directives/draggable',
@@ -135,6 +136,10 @@ require([
                 .when('/new_note', {
                     templateUrl: 'views/notes/new_note.html',
                     controller: 'NewNoteContr'
+                })
+                .when('/note_detail', {
+                    templateUrl: 'views/notes/note_detail.html',
+                    controller: 'NoteDetailContr'
                 })
                 .when('/update_note', {
                     templateUrl: 'views/notes/update_note.html',

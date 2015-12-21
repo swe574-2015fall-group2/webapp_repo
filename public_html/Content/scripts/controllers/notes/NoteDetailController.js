@@ -1,6 +1,6 @@
 define(['controllers/controllers'],
         function (controllers) {
-            controllers.controller('GroupDetailContr',
+            controllers.controller('NoteDetailContr',
                     ['$window',
                         '$scope',
                         '$http',
@@ -19,64 +19,38 @@ define(['controllers/controllers'],
                             //alert( unescape(Sonuclar[1]) );	
                             var authToken = unescape(Sonuclar[1]);
 
-                            var Duzenli2 = new RegExp("selectedGroupName=([^;=]+)[;\\b]?");
+                            /*var Duzenli2 = new RegExp("selectedNoteName=([^;=]+)[;\\b]?");
                             var Sonuclar2 = Duzenli2.exec(Cerez);
                             //alert( unescape(Sonuclar[1]) );	
-                            var selectedGroupName = unescape(Sonuclar2[1]);
+                            var selectedNoteName = unescape(Sonuclar2[1]);*/
 
-                            var Duzenli3 = new RegExp("selectedGroupDesc=([^;=]+)[;\\b]?");
+                           var Duzenli3 = new RegExp("selectedNoteTitle=([^;=]+)[;\\b]?");
                             var Sonuclar3 = Duzenli3.exec(Cerez);
                             //alert( unescape(Sonuclar[1]) );	
-                            var selectedGroupDesc = unescape(Sonuclar3[1]);
+                            var selectedNoteTitle = unescape(Sonuclar3[1]);
 
-                            var Duzenli4 = new RegExp("selectedGroupJoined=([^;=]+)[;\\b]?");
-                            var Sonuclar4 = Duzenli4.exec(Cerez);
-                            //alert( unescape(Sonuclar[1]) );	
-                            var selectedGroupJoined = unescape(Sonuclar4[1]);
 
-                            var Duzenli5 = new RegExp("selectedGroup=([^;=]+)[;\\b]?");
+                            var Duzenli5 = new RegExp("selectedNote=([^;=]+)[;\\b]?");
                             var Sonuclar5 = Duzenli5.exec(Cerez);
                             //alert( unescape(Sonuclar5[1]) );	
-                            var selectedGroup = unescape(Sonuclar5[1]);
+                            var selectedNote = unescape(Sonuclar5[1]);
 
                             //alert(selectedGroup);
 
-                            $scope.selectedGroupName = selectedGroupName;
-                            $scope.selectedGroupDesc = selectedGroupDesc;
-                            $scope.selectedGroupJoined = selectedGroupJoined;
-                            $scope.selectedGroup = selectedGroup;
-                            $scope.isUserJoined = false;
+                            /*$scope.selectedNoteName = selectedNoteName;*/
+                            $scope.selectedNoteTitle = selectedNoteTitle;
+                            $scope.selectedNote = selectedNote;
 
-                            //alert("group detail:" + selectedGroupName);
-                            //alert(selectedGroupJoined);
-                            if (selectedGroupJoined == "true") {
-                                $scope.isUserJoined = true;
-                                //alert("leave");
-                            }
 
-                            //get the group detail
+                            //get the note detail
                             var data = JSON.stringify({
                                 authToken: authToken,
-                                id: selectedGroup
+                                id: selectedNote
                             });
-                            $http.post("http://162.243.215.160:9000/v1/group/query", data).success(function (data, status) {
+                            $http.post("http://162.243.215.160:9000/v1/note/query", data).success(function (data, status) {
 
-
-                                var tags = data.result.tagList;
-                                var tagsString = "";
-
-                                for (i = 0; i < tags.length; i++) {
-                                    tagsString += tags[i];
-
-                                    if (i < (tags.length - 1))
-                                    {
-                                        tagsString += ",";
-                                    }
-                                }
-
-                                $scope.tags = tagsString;
-                                $scope.userList = data.result.users;
-                                $scope.userListCount = $scope.userList.length;
+                                $scope.title = data.result.title;
+                                $scope.text = data.result.text;
 
                                 //alert( "meeting list got" );
                             }).error(function (data, status, headers, config) {
@@ -84,7 +58,7 @@ define(['controllers/controllers'],
 
                             });
 
-
+/*
                             //get the meetings
                             var data = JSON.stringify({
                                 authToken: authToken,
@@ -176,7 +150,7 @@ define(['controllers/controllers'],
                                 });
 
 
-                            };
+                            };*/
 
                             $scope.toMeetingDetail = function (id, desc, loc) {
                                 document.cookie = "selectedMeeting" + "=" + id;
@@ -194,7 +168,7 @@ define(['controllers/controllers'],
                             
                             $scope.toNoteDetail = function (id, title) {
                                 document.cookie = "selectedNote" + "=" + id;
-                                document.cookie = "selectedNoteTitle" + "=" + title;
+                                document.cookie = "selectedDiscussionDesc" + "=" + title;
                                 $window.location.href = '#/note_detail';
                             };
 
