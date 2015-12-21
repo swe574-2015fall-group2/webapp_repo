@@ -65,8 +65,8 @@
             </a>
             <form class="search-form search-form-header" role="form" action="index.html">
                 <div class="input-icon right">
-                    <i class="fa fa-search"></i>
-                    <input type="text" class="form-control input-medium input-sm" name="query" placeholder="Search...">
+                    <i class="fa fa-search" id="searchIcon"></i>
+                    <input type="text" class="form-control input-medium input-sm" name="query" placeholder="Search..." id="searchText">
                 </div>
             </form>
             <!-- END LOGO -->
@@ -292,8 +292,21 @@
                                 // initiate layout and plugins
 
                                 App.init();
+                                
+                                
+                                $( "#searchIcon" ).click(function() {
+                                    myFunction($("#searchText").val());
+                                    $("#searchText").val("");
+                                  });
 
                             });
+
+
+
+function myFunction(p1) {
+    document.cookie="searchQuery="+p1;
+    window.location.href='#/search';
+}
 
     </script>
 

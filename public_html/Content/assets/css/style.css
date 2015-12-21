@@ -1065,8 +1065,8 @@ Portlets
   margin-bottom: 25px;
   padding: 0px;
   -webkit-box-shadow1: 0 1px 4px rgba(0, 0, 0, 0.07);
-          box-shadow1: 0 1px 4px rgba(0, 0, 0, 0.07);
-  border: 1px solid #ddd;
+  box-shadow1: 0 1px 4px rgba(0, 0, 0, 0.07);
+  /* border: 1px solid #ddd; */
   border-radius: 4px;
 }
 
@@ -1212,9 +1212,9 @@ Portlets
 }
 
 .portlet > .portlet-body {
-  clear: both;  
-  padding: 10px;    
-  background-color: #fff;  
+  clear: both;
+  padding: 10px;
+  background-color: #fff;
   border-radius: 0px 0px 4px 4px;
 }
 

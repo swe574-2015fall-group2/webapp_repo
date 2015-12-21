@@ -53,6 +53,7 @@ require([
   'controllers/notes/UpdateNoteController',
   'controllers/notes/NoteDetailController',
   'controllers/ProfileController',
+  'controllers/SearchController',
   'directives/ngbkFocus',
   'directives/draggable',
   'directives/resizable',
@@ -159,6 +160,10 @@ require([
                     controller: 'InboxDetailContr'
                 })
                 
+                .when('/search', {
+                    templateUrl: 'views/search/search.html',
+                    controller: 'SearchContr'
+                })
                 .when('/my_profile', {
                     templateUrl: 'views/my_profile.html',
                     controller: 'ProfileContr'
