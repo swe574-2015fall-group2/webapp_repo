@@ -55,11 +55,15 @@ define(['controllers/controllers'],
                             var DuzenliM2 = new RegExp("selectedMeetingLoc=([^;=]+)[;\\b]?");
                             var Sonuclar2 = DuzenliM2.exec(Cerez);
                             //alert( unescape(Sonuclar[1]) );	
+                            if(Sonuclar2 == null)
+                                Sonuclar2 = [" " , " "];
                             var selectedMeetingLoc = unescape(Sonuclar2[1]);
 
                             var DuzenliM3 = new RegExp("selectedMeetingDesc=([^;=]+)[;\\b]?");
                             var Sonuclar3 = DuzenliM3.exec(Cerez);
                             //alert( unescape(Sonuclar[1]) );	
+                            if(Sonuclar3 == null)
+                                Sonuclar3 = [" " , " "];
                             var selectedMeetingDesc = unescape(Sonuclar3[1]);
 
                             var DuzenliM4 = new RegExp("selectedMeeting=([^;=]+)[;\\b]?");
@@ -92,8 +96,10 @@ define(['controllers/controllers'],
                                 
                                 /*$scope.invitelis = "";*/
                                 var tempDate = new Date(data.result.meeting.datetime);
-                                $scope.starthour = data.result.meeting.startHour;
-                                $scope.finishhour = data.result.meeting.endHour;
+                                $scope.starthour = data.result.meeting.startHour.split(":")[0];
+                                $scope.starthourmin = data.result.meeting.startHour.split(":")[1];
+                                $scope.finishhour = data.result.meeting.endHour.split(":")[0];
+                                $scope.finishhourmin = data.result.meeting.endHour.split(":")[1];
                                 $scope.timezone = data.result.meeting.timezone;
                                 $scope.location = data.result.meeting.location;
 

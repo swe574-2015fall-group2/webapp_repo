@@ -66,7 +66,9 @@ define(['controllers/controllers'],
                             $scope.invitelis = "";
                             $scope.date = "";
                             $scope.starthour = "";
+                            $scope.starthourmin = "";
                             $scope.finishhour = "";
+                            $scope.finishhourmin = "";
                             $scope.timezone = "";
                             $scope.location = "";
 
@@ -86,8 +88,8 @@ define(['controllers/controllers'],
                                     name: $scope.name,
                                     datetime: $scope.date,
                                     timezone: $scope.timezone,
-                                    startHour: $scope.starthour,
-                                    endHour: $scope.finishhour,
+                                    startHour: $scope.starthour +":" +  $scope.starthourmin,
+                                    endHour: $scope.finishhour +":" +  $scope.finishhourmin,
                                     agendaSet:  $scope.agendaList,
                                     location: $scope.location,
                                     description: $scope.description,
