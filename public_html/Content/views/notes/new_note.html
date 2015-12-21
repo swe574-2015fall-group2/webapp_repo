@@ -23,67 +23,98 @@
                         <td>Description</td>
                         <td> <textarea class="form-control" placeholder="Enter text" ng-model="description" style="width:450px; height: 150px"></textarea></td>
                     </tr>
-                    
-                      <tr>
-                    <td>
-                        Tags
-                    </td>
-                    <td>      
-                <input  class="form-control" id="exampleInputEmail1" placeholder="Enter text" ng-model="tags" style="width:450px">
-                    </td>
+
+                    <tr>
+                        <td>
+                            Tags
+                        </td>
+                        <td>      
+
+
+                            <table border="1" style="width:400px; border_color:#35363a" cellpadding="3"  >
+
+                                <tr>
+                                    <td>
+                                <input id="inputTag" class="form-control" type="text" name="product" style="width:300px" list="inputTagList" ng-model="ngTag"  ng-change="getTag()"/>
+                                <datalist id="inputTagList">
+                                    <option  ng-repeat="option in yeniTagList" value="{{option.label}}" >{{option.clazz}} </option>
+                                </datalist>
+                        </td>
+                        <td> 
+                            <button type="submit" class="btn btn-success" ng-click="setTag()" >Add Tag</button>
+                        </td> 
                     </tr>
+            </table>
 
-            </table>     
+            <table border="1" style="width:400px; border_color:#35363a" cellpadding="3"  >
 
+                <tr>
+                    <th>Selected Tag</th>
+                    <th>Selected context</th>
+                </tr>
+
+                <tr data-ng-repeat="selectedTag in selectedTagList">
+                    <td>{{selectedTag.tag}}</td>
+                    <td>{{selectedTag.clazz}}</td> 
+                </tr>
+            </table>
         </div>
-    </form>
+
+
+        </td>
+        </tr>
+
+        </table>     
+
+</div>
+</form>
 </div>
 
 <div class="well well-sm">
     <h4 >Related Meetings</h4>
     <div  ng-show="!meetingList.length">
-    <p>Unfortunately, there are no meetings related to this Note. Maybe you should create one or add an existing Note.</p>
-    <a href="#/new_meeting" class="icon-btn" style="width:130px">
-                            <i class="fa fa-group" style="font-size: 35px;"></i>
-                            <div>
-                                Create New Meeting
-                            </div>
-                        </a>
+        <p>Unfortunately, there are no meetings related to this Note. Maybe you should create one or add an existing Note.</p>
+        <a href="#/new_meeting" class="icon-btn" style="width:130px">
+            <i class="fa fa-group" style="font-size: 35px;"></i>
+            <div>
+                Create New Meeting
+            </div>
+        </a>
     </div>
     <div style="margin-bottom: 15px"> <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Search for meeting to add" style="width:450px"></div>
 
     <div data-ng-repeat="i in meetingList">
         <a class="" href="" ng-click="toMeetingDetail(i.id,i.description,i.location)">
-        <div class="media" style="margin-bottom: 15px;">
+            <div class="media" style="margin-bottom: 15px;">
 
-            <div class="pull-left well well-sm" style="background-color: white">
-                <table>
-                    <tr>
-                        <td align="center" style="font-size: 36px">28</td>
-                    </tr>
-                    <tr>
-                        <td align="center">May 2016</td>
-                    </tr>
-                    <tr>
-                        <td align="center">14:00-15:00</td>                        
-                    </tr>
-                </table>
-            </div>
+                <div class="pull-left well well-sm" style="background-color: white">
+                    <table>
+                        <tr>
+                            <td align="center" style="font-size: 36px">28</td>
+                        </tr>
+                        <tr>
+                            <td align="center">May 2016</td>
+                        </tr>
+                        <tr>
+                            <td align="center">14:00-15:00</td>                        
+                        </tr>
+                    </table>
+                </div>
 
-            <div class="media-body" style="padding-left: 10px; padding-top: 5px">
-                <h4 class="media-heading">{{i.description}} </h4>
-                <p>{{i.location}} </p>
-                <p><i class="fa fa-group" style="margin-right: 3px;    color: brown;"></i>Face-to-Face Meeting</p>
+                <div class="media-body" style="padding-left: 10px; padding-top: 5px">
+                    <h4 class="media-heading">{{i.description}} </h4>
+                    <p>{{i.location}} </p>
+                    <p><i class="fa fa-group" style="margin-right: 3px;    color: brown;"></i>Face-to-Face Meeting</p>
+                </div>
             </div>
-        </div>
-    </a>
-        
+        </a>
+
     </div>
 
-   
+
 </div>
 
-<div> <div class="well well-sm media">
+<!--<div> <div class="well well-sm media">
         <div> 
             <table>
                 <tr>
@@ -130,12 +161,12 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
 
 
 
 <div class="well well-sm">
-    <button type="submit" class="btn btn-success" ng-click="createNote()">Create Note</button>
+    <button type="button" class="btn btn-success" ng-click="createNote()">Create Note</button>
     <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
 </div>

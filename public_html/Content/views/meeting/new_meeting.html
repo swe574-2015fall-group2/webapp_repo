@@ -15,329 +15,227 @@
 
 
 
-<form id="NewMeeting" class="NewMeeting-form" method="post" style="display:block" ng-submit="sendPost()">
-    <div><table class="" style="margin-bottom: 30px; width: 100%">
+<div><table class="" style="margin-bottom: 30px; width: 100%">
 
-            <div style="margin-bottom: 20px;">
+        <div style="margin-bottom: 20px;">
 
-                <h3  >Create New Meeting</h3>
-                <p ng-bind="selectedGroupName"></p>
-            </div>
-        </table></div>
+            <h3  >Create New Meeting</h3>
+            <p ng-bind="selectedGroupName"></p>
+        </div>
+    </table>
 
-
-    <div class="well well-sm"> 
-        <div class="portlet-body form">
-            <!-- BEGIN FORM-->
-            <form action="#" class="horizontal-form">
-                <div class="form-body">
-                    <!-- <h3 class="form-section">New Meeting</h3> -->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Meeting Name</label>
-                                <input type="text" class="form-control" ng-model="name" placeholder="Enter a name for your meeting">
-                                    <span class="help-block" style="display:none">
-                                        This is inline help
-                                    </span>
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" rows="3"  ng-model="description" placeholder="Enter the description for your meeting"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Tags</label>
-                                <input type="text" class="form-control"  ng-model="tags" placeholder="Enter tags">
-                                    <span class="help-block" style="display:none">
-                                        This is inline help
-                                    </span>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Invite List</label>
-                                <div>
-                                    <input id="tags" style="width:70%" type="text" class="form-control"  ng-model="inviteText" placeholder="Search for a member to add">
-                                        <button style="width:28%" type="button" class="btn btn-navbar" ng-click="addToInviteList()">Invite </button>
-
-                                        <span class="help-block" style="display:none">
-                                            This is inline help
-                                        </span>
-                                </div>
-                            </div>
-                            <div>
-                                <button type="button" class="btn btn-link">Invite All Users</button>
-                                <table cellpadding="5">       
-                                    <tr>
-                                        <td><img src="assets/img/avatar1.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
-                                        <td valign="top" >
-                                            <table>                    
-                                                <tr>
-                                                    <td><h4 style="padding:0px; margin: 0px">Recep Günay</h4></td>                          
-                                                </tr>
-                                                <tr>
-                                                    <td>Regular Attendee</td>
-
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        </tr>  
-                                </table>
+</div>
 
 
-                                <table cellpadding="5">       
-                                    <tr>
-                                        <td><img src="assets/img/avatar1.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
-                                        <td valign="top" >
-                                            <table>                    
-                                                <tr>
-                                                    <td><h4 style="padding:0px; margin: 0px">Recep Günay</h4></td>                          
-                                                </tr>
-                                                <tr>
-                                                    <td>Regular Attendee</td>
+<table border="0" style="width:600px" cellpadding="5">
+    <tr>
+        <td>Meeting Name</td>
+        <td> 
+    <input type="text" class="form-control" ng-model="name" placeholder="Enter a name for your meeting">
+        </td> 
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td> <textarea class="form-control" rows="3"  ng-model="description" placeholder="Enter the description for your meeting"></textarea>
+            </td> 
+        </tr>
+        <tr>
+            <td>Tags</td>
+            <td>
+                <table border="1" style="width:400px; border_color:#35363a" cellpadding="3"  >
 
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        </tr>  
-                                </table>
+                    <tr>
+                        <td>
+                    <input id="inputTag" class="form-control" type="text" name="product" style="width:300px" list="inputTagList" ng-model="ngTag"  ng-change="getTag()"/>
+                    <datalist id="inputTagList">
+                        <option  ng-repeat="option in yeniTagList" value="{{option.label}}" >{{option.clazz}} </option>
+                    </datalist>
+            </td>
+            <td> 
+                <button type="submit" class="btn btn-success" ng-click="setTag()" >Add Tag</button>
+            </td> 
+        </tr>
+</table>
+
+<table border="1" style="width:400px; border_color:#35363a" cellpadding="3"  >
+
+    <tr>
+        <th>Selected Tag</th>
+        <th>Selected context</th>
+    </tr>
+
+    <tr data-ng-repeat="selectedTag in selectedTagList">
+        <td>{{selectedTag.tag}}</td>
+        <td>{{selectedTag.clazz}}</td> 
+    </tr>
+</table>
+
+</td> 
+</tr>
+<tr>
+    <td>Meeting Date</td>
+    <td>   <input class="form-control form-control-inline input-medium date-picker2" size="16" type="text" value="" ng-model="date">
+
+</td> 
+</tr>
+<tr>
+    <td>Start Hour</td>
+    <td> <select class="form-control"  ng-model="starthour">
+            <option value="08" selected>08:00</option>
+            <option value="09" s>09:00</option>
+            <option value="10" s>10:00</option>
+            <option value="11" s>11:00</option>
+            <option value="12" s>12:00</option>
+            <option value="13" s>13:00</option>
+            <option value="14" s>14:00</option>
+            <option value="15" s>15:00</option>
+            <option value="16" s>16:00</option>
+            <option value="17" s>17:00</option>
+        </select></td> 
+</tr>
+<tr>
+    <td>End Hour</td>
+    <td>  <select class="form-control" ng-model="finishhour">
+            <option value="09" sselected>09:00</option>
+            <option value="10" s>10:00</option>
+            <option value="11" s>11:00</option>
+            <option value="12" s>12:00</option>
+            <option value="13" s>13:00</option>
+            <option value="14" s>14:00</option>
+            <option value="15" s>15:00</option>
+            <option value="16" s>16:00</option>
+            <option value="17" s>17:00</option>
+        </select></td> 
+</tr>
+
+<tr>
+    <td>Timezone</td>
+    <td> <select class="form-control" ng-model="timezone">
+            <option>(GMT-12:00) International Date Line West</option>
+            <option>(GMT-11:00) Midway Island, Samoa</option>
+            <option>(GMT-10:00) Hawaii</option>
+            <option>(GMT-09:00) Alaska</option>
+            <option>(GMT-08:00) Pacific Time (US and Canada); Tijuana</option>
+            <option>(GMT-07:00) Mountain Time (US and Canada)</option>
+            <option>(GMT-07:00) Chihuahua, La Paz, Mazatlan</option>
+            <option>(GMT-07:00) Arizona</option>
+            <option>(GMT-06:00) Central Time (US and Canada</option>
+            <option>(GMT-06:00) Saskatchewan</option>
+            <option>(GMT-06:00) Guadalajara, Mexico City, Monterrey</option>
+            <option>(GMT-06:00) Central America</option>
+            <option>(GMT-05:00) Eastern Time (US and Canada)</option>
+            <option>(GMT-05:00) Indiana (East)</option>
+            <option>(GMT-05:00) Bogota, Lima, Quito</option>
+            <option>(GMT-04:00) Atlantic Time (Canada)</option>
+            <option>(GMT-04:00) Caracas, La Paz</option>
+            <option>(GMT-04:00) Santiago</option>
+            <option>(GMT-03:30) Newfoundland and Labrador</option>
+            <option>(GMT-03:00) Brasilia</option>
+            <option>(GMT-03:00) Buenos Aires, Georgetown</option>
+            <option>(GMT-03:00) Greenland</option>
+            <option>(GMT-02:00) Mid-Atlantic</option>
+            <option>(GMT-01:00) Azores</option>
+            <option>(GMT-01:00) Cape Verde Islands</option>
+            <option>(GMT) Greenwich Mean Time: Dublin, Edinburgh, Lisbon, London</option>
+            <option>(GMT) Casablanca, Monrovia</option>
+            <option>(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
+            <option>(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb</option>
+            <option>(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</option>
+            <option>(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
+            <option>(GMT+01:00) West Central Africa</option>
+            <option>(GMT+02:00) Bucharest</option>
+            <option>(GMT+02:00) Cairo</option>
+            <option>(GMT+02:00) Helsinki, Kiev, Riga, Sofia, Tallinn, Vilnius</option>
+            <option>(GMT+02:00) Athens, Istanbul, Minsk</option>
+            <option>(GMT+02:00) Jerusalem</option>
+            <option>(GMT+02:00) Harare, Pretoria</option>
+            <option>(GMT+03:00) Moscow, St. Petersburg, Volgograd</option>
+            <option>(GMT+03:00) Kuwait, Riyadh</option>
+            <option>(GMT+03:00) Nairobi</option>
+            <option>(GMT+03:00) Baghdad</option>
+            <option>(GMT+03:30) Tehran</option>
+            <option>(GMT+04:00) Abu Dhabi, Muscat</option>
+            <option>(GMT+04:00) Baku, Tbilisi, Yerevan</option>
+            <option>(GMT+04:30) Kabul</option>
+            <option>(GMT+05:00) Ekaterinburg</option>
+            <option>(GMT+05:00) Islamabad, Karachi, Tashkent</option>
+            <option>(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
+            <option>(GMT+05:45) Kathmandu</option>
+            <option>(GMT+06:00) Astana, Dhaka</option>
+            <option>(GMT+06:00) Sri Jayawardenepura</option>
+            <option>(GMT+06:00) Almaty, Novosibirsk</option>
+            <option>(GMT+06:30) Yangon Rangoon</option>
+            <option>(GMT+07:00) Bangkok, Hanoi, Jakarta</option>
+            <option>(GMT+07:00) Krasnoyarsk</option>
+            <option>(GMT+08:00) Beijing, Chongqing, Hong Kong SAR, Urumqi</option>
+            <option>(GMT+08:00) Kuala Lumpur, Singapore</option>
+            <option>(GMT+08:00) Taipei</option>
+            <option>(GMT+08:00) Perth</option>
+            <option>(GMT+08:00) Irkutsk, Ulaanbaatar</option>
+            <option>(GMT+09:00) Seoul</option>
+            <option>(GMT+09:00) Osaka, Sapporo, Tokyo</option>
+            <option>(GMT+09:00) Yakutsk</option>
+            <option>(GMT+09:30) Darwin</option>
+            <option>(GMT+09:30) Adelaide</option>
+            <option>(GMT+10:00) Canberra, Melbourne, Sydney</option>
+            <option>(GMT+10:00) Brisbane</option>
+            <option>(GMT+10:00) Hobart</option>
+            <option>(GMT+10:00) Vladivostok</option>
+            <option>(GMT+10:00) Guam, Port Moresby</option>
+            <option>(GMT+11:00) Magadan, Solomon Islands, New Caledonia</option>
+            <option>(GMT+12:00) Fiji Islands, Kamchatka, Marshall Islands</option>
+            <option>(GMT+12:00) Auckland, Wellington</option>
+            <option>(GMT+13:00) Nuku'alofa</option>
+        </select></td> 
+</tr>
 
 
-                                <table cellpadding="5">       
-                                    <tr>
-                                        <td><img src="assets/img/avatar2.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
-                                        <td valign="top" >
-                                            <table>                    
-                                                <tr>
-                                                    <td><h4 style="padding:0px; margin: 0px">Chanan Kvas</h4></td>                          
-                                                </tr>
-                                                <tr>
-                                                    <td>Regular Attendee</td>
-
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        </tr>  
-                                </table>
+<td>Agenda Items</td>
+<td> 
 
 
-                            </div>
+    <table style="width:100%">
+        <tr>
+            <td><input type="text" class="form-control" ng-model="ngAgenda" placeholder="Enter agenda item"></td>
+            <td> <button type="submit" class="btn btn-success" ng-click="addAgenda()" >Add Agenda</button></td> 
+            </tr>
 
-                        </div>
+    </table>
 
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label ">Meeting Date</label>
+<ul>
+  <li ng-repeat="agenda in agendaList">{{agenda}}</li>
+  
+</ul>
 
+</td> 
+</tr>
 
+<tr>
+    <td>Location</td>
+    <td>
+<input type="text" id="firstName" class="form-control" ng-model="location" placeholder="Search for a location to add">
+    <input type="checkbox" ng-change="change()" value="option1" style="margin: 5px;" ng-model="meetingtype">Online Meeting
+        <span class="help-block" style="display:none">
+            This is inline help
+        </span>
+        <div ng-show="isOnlineMeeting">
+            <label class="control-label">Details</label>
 
-                                        <input class="form-control form-control-inline input-medium date-picker2" size="16" type="text" value="" ng-model="date">
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label ">Meeting Hours</label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Start</label>
-                                        <div class="col-md-9">
-                                            <select class="form-control"  ng-model="starthour">
-                                                <option value="08" selected>08:00</option>
-                                                <option value="09" s>09:00</option>
-                                                <option value="10" s>10:00</option>
-                                                <option value="11" s>11:00</option>
-                                                <option value="12" s>12:00</option>
-                                                <option value="13" s>13:00</option>
-                                                <option value="14" s>14:00</option>
-                                                <option value="15" s>15:00</option>
-                                                <option value="16" s>16:00</option>
-                                                <option value="17" s>17:00</option>
-                                            </select>
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group" style="margin-top: 5px;">
-                                        <label class="col-md-3 control-label">End</label>
-                                        <div class="col-md-9">
-                                            <select class="form-control" ng-model="finishhour">
-                                                <option value="09" sselected>09:00</option>
-                                                <option value="10" s>10:00</option>
-                                                <option value="11" s>11:00</option>
-                                                <option value="12" s>12:00</option>
-                                                <option value="13" s>13:00</option>
-                                                <option value="14" s>14:00</option>
-                                                <option value="15" s>15:00</option>
-                                                <option value="16" s>16:00</option>
-                                                <option value="17" s>17:00</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group"  style="margin-top: 5px;">
-                                        <label class=" control-label">Timezone</label>
-                                        <div class="">
-                                            <select class="form-control" ng-model="timezone">
-                                                <option>(GMT-12:00) International Date Line West</option>
-                                                <option>(GMT-11:00) Midway Island, Samoa</option>
-                                                <option>(GMT-10:00) Hawaii</option>
-                                                <option>(GMT-09:00) Alaska</option>
-                                                <option>(GMT-08:00) Pacific Time (US and Canada); Tijuana</option>
-                                                <option>(GMT-07:00) Mountain Time (US and Canada)</option>
-                                                <option>(GMT-07:00) Chihuahua, La Paz, Mazatlan</option>
-                                                <option>(GMT-07:00) Arizona</option>
-                                                <option>(GMT-06:00) Central Time (US and Canada</option>
-                                                <option>(GMT-06:00) Saskatchewan</option>
-                                                <option>(GMT-06:00) Guadalajara, Mexico City, Monterrey</option>
-                                                <option>(GMT-06:00) Central America</option>
-                                                <option>(GMT-05:00) Eastern Time (US and Canada)</option>
-                                                <option>(GMT-05:00) Indiana (East)</option>
-                                                <option>(GMT-05:00) Bogota, Lima, Quito</option>
-                                                <option>(GMT-04:00) Atlantic Time (Canada)</option>
-                                                <option>(GMT-04:00) Caracas, La Paz</option>
-                                                <option>(GMT-04:00) Santiago</option>
-                                                <option>(GMT-03:30) Newfoundland and Labrador</option>
-                                                <option>(GMT-03:00) Brasilia</option>
-                                                <option>(GMT-03:00) Buenos Aires, Georgetown</option>
-                                                <option>(GMT-03:00) Greenland</option>
-                                                <option>(GMT-02:00) Mid-Atlantic</option>
-                                                <option>(GMT-01:00) Azores</option>
-                                                <option>(GMT-01:00) Cape Verde Islands</option>
-                                                <option>(GMT) Greenwich Mean Time: Dublin, Edinburgh, Lisbon, London</option>
-                                                <option>(GMT) Casablanca, Monrovia</option>
-                                                <option>(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
-                                                <option>(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb</option>
-                                                <option>(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</option>
-                                                <option>(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
-                                                <option>(GMT+01:00) West Central Africa</option>
-                                                <option>(GMT+02:00) Bucharest</option>
-                                                <option>(GMT+02:00) Cairo</option>
-                                                <option>(GMT+02:00) Helsinki, Kiev, Riga, Sofia, Tallinn, Vilnius</option>
-                                                <option>(GMT+02:00) Athens, Istanbul, Minsk</option>
-                                                <option>(GMT+02:00) Jerusalem</option>
-                                                <option>(GMT+02:00) Harare, Pretoria</option>
-                                                <option>(GMT+03:00) Moscow, St. Petersburg, Volgograd</option>
-                                                <option>(GMT+03:00) Kuwait, Riyadh</option>
-                                                <option>(GMT+03:00) Nairobi</option>
-                                                <option>(GMT+03:00) Baghdad</option>
-                                                <option>(GMT+03:30) Tehran</option>
-                                                <option>(GMT+04:00) Abu Dhabi, Muscat</option>
-                                                <option>(GMT+04:00) Baku, Tbilisi, Yerevan</option>
-                                                <option>(GMT+04:30) Kabul</option>
-                                                <option>(GMT+05:00) Ekaterinburg</option>
-                                                <option>(GMT+05:00) Islamabad, Karachi, Tashkent</option>
-                                                <option>(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
-                                                <option>(GMT+05:45) Kathmandu</option>
-                                                <option>(GMT+06:00) Astana, Dhaka</option>
-                                                <option>(GMT+06:00) Sri Jayawardenepura</option>
-                                                <option>(GMT+06:00) Almaty, Novosibirsk</option>
-                                                <option>(GMT+06:30) Yangon Rangoon</option>
-                                                <option>(GMT+07:00) Bangkok, Hanoi, Jakarta</option>
-                                                <option>(GMT+07:00) Krasnoyarsk</option>
-                                                <option>(GMT+08:00) Beijing, Chongqing, Hong Kong SAR, Urumqi</option>
-                                                <option>(GMT+08:00) Kuala Lumpur, Singapore</option>
-                                                <option>(GMT+08:00) Taipei</option>
-                                                <option>(GMT+08:00) Perth</option>
-                                                <option>(GMT+08:00) Irkutsk, Ulaanbaatar</option>
-                                                <option>(GMT+09:00) Seoul</option>
-                                                <option>(GMT+09:00) Osaka, Sapporo, Tokyo</option>
-                                                <option>(GMT+09:00) Yakutsk</option>
-                                                <option>(GMT+09:30) Darwin</option>
-                                                <option>(GMT+09:30) Adelaide</option>
-                                                <option>(GMT+10:00) Canberra, Melbourne, Sydney</option>
-                                                <option>(GMT+10:00) Brisbane</option>
-                                                <option>(GMT+10:00) Hobart</option>
-                                                <option>(GMT+10:00) Vladivostok</option>
-                                                <option>(GMT+10:00) Guam, Port Moresby</option>
-                                                <option>(GMT+11:00) Magadan, Solomon Islands, New Caledonia</option>
-                                                <option>(GMT+12:00) Fiji Islands, Kamchatka, Marshall Islands</option>
-                                                <option>(GMT+12:00) Auckland, Wellington</option>
-                                                <option>(GMT+13:00) Nuku'alofa</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Location</label>
-                                <input type="text" id="firstName" class="form-control" ng-model="location" placeholder="Search for a location to add">
-                                    <input type="checkbox" ng-change="change()" value="option1" style="margin: 5px;" ng-model="meetingtype">Online Meeting
-                                        <span class="help-block" style="display:none">
-                                            This is inline help
-                                        </span>
-                                        <div ng-show="isOnlineMeeting">
-                                            <label class="control-label">Details</label>
-
-                                            <textarea class="form-control" rows="2"  placeholder="Enter Location details" ng-model="locationDetails"></textarea>
+            <textarea class="form-control" rows="2"  placeholder="Enter Location details" ng-model="locationDetails"></textarea>
 
 
 
-                                        </div>
-
-                                        </div>
-                                        <div class="form-group">
-
-                                            <div>
-                                                <label class="control-label">Discussions</label>
-                                                <input type="text" id="firstName" class="form-control" placeholder="Search for a discussion to add" ng-model="discussion">
+        </div>
+        </td> 
+        </tr>
 
 
-                                                    <ul style="list-style-type: none; margin-left:5px; padding-left: 0px;margin-top:15px; ">
-                                                        <li>
-                                                            <a tabindex="-1" href="#/discussion_detail">This document isn't using RFC words...            
-                                                            </a>
-                                                        </li>
-                                                        <li role="presentation">
-                                                            <a role="menuitem" tabindex="-1" href="#/discussion_detail">The (optional) explanation of conformance ...
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-
-                                            </div>
-
-                                        </div>
-
-                                        </div>
-
-                                        </div>
-                                        </div>
-                                        <div class="form-actions right">
-                                            <button type="submit" class="btn btn-info"><i class="fa fa-check"></i> Save</button>
-                                        </div>
-                                        </form>
-                                        <!-- END FORM-->
-                                        </div>
-                                        </div>							
-                                        </form>
+        <tr>
+            <td></td>
+            <td>  <button type="submit" class="btn btn-info" ng-click="sendPost()"><i class="fa fa-check"></i> Save</button></td> 
+        </tr>
 
 
-                                        <style>
 
-                                            /* min Jquery CSS elements for autocomplete */
-                                            .ui-autocomplete { position: absolute; cursor: default; }    
-                                            .ui-menu { list-style:none; padding: 2px; margin: 0; display:block; float: left; background-color:#f9f9f9; border: 1px solid #efefef; border-radius: 3px 3px 3px 3px; }
+        </table>
 
-                                            .ui-menu .ui-menu {
-                                                margin-top: -3px;
-                                            }
-                                            .ui-menu .ui-menu-item {
-                                                margin:0;
-                                                padding: 0;
-                                                zoom: 1;
-                                                float: left;
-                                                clear: left;
-                                                width: 100%;
-                                                font-family:arial;
-                                            }
-                                            .ui-menu .ui-menu-item a {
-                                                text-decoration:none;
-                                                display:block;
-                                                padding:.1em .3em;
-                                                line-height:1.5;
-                                                zoom:1;
-                                            }
-                                            .ui-menu .ui-menu-item a.ui-state-hover, .ui-menu .ui-menu-item a.ui-state-active {
-                                                font-weight: bold;
-                                            }    
-
-
-                                        </style>

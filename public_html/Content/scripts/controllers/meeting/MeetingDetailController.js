@@ -73,14 +73,14 @@ define(['controllers/controllers'],
                                 $scope.day = date.getDate();
                                 $scope.month = date.getMonth() + 1;
 
-                                var tagsString = "";
+                                var tagsString = "Tags: ";
                                 var tags = data.result.meeting.tagList;
                                 for (i = 0; i < tags.length; i++) {
-                                    tagsString += tags[i];
+                                    tagsString += tags[i].tag;
 
                                     if (i < (tags.length - 1))
                                     {
-                                        tagsString += ",";
+                                        tagsString += " ,";
                                     }
                                 }
                                 $scope.tags = tagsString;
