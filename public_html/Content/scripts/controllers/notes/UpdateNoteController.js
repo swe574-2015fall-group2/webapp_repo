@@ -32,22 +32,22 @@ define(['controllers/controllers'],
                             var selectedNote = unescape(Sonuclar5[1]);
                             $scope.selectedNote = selectedNote;
 
-
+                                    
 
 
 
                         
                             var data = JSON.stringify({
                                 authToken: $scope.authToken,
-                                id: $scope.selectedMeeting
+                                id: $scope.selectedNote
                             });
 
 
-                            $http.post("http://162.243.215.160:9000/v1/note/get", data).success(function (data, status) {
+                            $http.post("http://162.243.215.160:9000/v1/note/query", data).success(function (data, status) {
                                 
-                                 $scope.name=data.result.note.title;
-                                 $scope.description=data.result.note.text;                               
-                                 $scope.tags=data.result.note.tagList;
+                                 $scope.name=data.result.title;
+                                 $scope.description=data.result.text;                               
+                                 $scope.tags=data.result.tagList;
 
 
                             }).error(function (data, status, headers, config) {
