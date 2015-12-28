@@ -1,40 +1,42 @@
+<div>
 
 
+  <table class="" style="margin-bottom: 30px; width: 100%">
 
-<div><table class="" style="margin-bottom: 30px; width: 100%">
-
-        <tbody>
-            <tr>
-                <td>
-                    <h3 ng-bind="selectedGroupName"></h3> 
-                    <p  ng-bind="selectedGroupDesc"></p>
-                    <p  ng-bind="tags"></p>
-                </td>
-                <td>
-                    <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; ">
-                        <li >
-                            <a tabindex="-1" href="#">Members            
+    <tbody>
+      <tr>
+        <td>
+          <h3 ng-bind="selectedGroupName"></h3>
+          <p ng-bind="selectedGroupDesc"></p>
+          <p ng-bind="tags"></p>
+        </td>
+        <td>
+          <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; ">
+            <li>
+              <a tabindex="-1" href="#">Members
                             </a>
-                        </li>
-                        <li>
-                          <div ng-bind="userListCount" style="float: left;"></div>&nbsp; user(s) in the group
-                        </li>
-                        <li role="presentation">
-                            Add more
-                        </li>
-                    </ul>
+            </li>
+            <li>
+              <div ng-bind="userListCount" style="float: left;"></div>&nbsp; user(s) in the group
+            </li>
+            <li role="presentation">
+              Add more
+            </li>
+          </ul>
 
-                </td>
-                <td  style="float: right;">
-                    <button type="button" class="btn btn-danger" ng-show="isUserJoined" ng-click="leaveGroup()">Leave Group</button>
-                    <button type="button" class="btn btn-success" ng-show="!isUserJoined" ng-click="joinGroup()">Join Group</button>
-                </td>
-            </tr>
+        </td>
+        <td style="float: right;">
+          <button type="button" class="btn btn-danger" ng-show="isUserJoined" ng-click="leaveGroup()">Leave Group</button>
+          <button type="button" class="btn btn-success" ng-show="!isUserJoined" ng-click="joinGroup()">Join Group</button>
+        </td>
+      </tr>
 
-        </tbody>
-    </table></div>
+    </tbody>
+  </table>
+</div>
 
-<div><ul class="nav nav-pills">
+<div>
+  <ul class="nav nav-pills">
     <!--     <li>
             <a href="#">2 Discussions</a>
         </li>
@@ -47,197 +49,195 @@
         <li>
             <a href="#">4 Meetings</a>
         </li>-->
-        <li style="float: right;">
-            <div class="theme-panel" style="width: 215px;">
-                <div id="aa" class="toggler">
-                    <i class="fa fa-plus"></i>
-                </div>
-                <div id="aab" class="theme-options">
-                    <div class="theme-option">
-                        <a href="#/new_discussion" class="icon-btn" style="width:130px">
-                            <i class="fa fa-comments-o" style="font-size: 35px;"></i>
-                            <div>
-                                Create New Discussion
-                            </div>
-                            <span class="badge badge-important" style="display:none">
-                                2
-                            </span>
-                        </a>
-                    </div>
-                    <div class="theme-option">
-                        <a href="#/new_note" class="icon-btn" style="width:130px">
-                            <i class="fa fa-pencil-square-o" style="font-size: 35px;"></i>
-                            <div>
-                                Create New Note
-                            </div>
-                        </a>
-                    </div>
-                    <div class="theme-option">
-                        <a href="#" class="icon-btn" style="width:130px">
-                            <i class="fa fa-paperclip" style="font-size: 35px;"></i>
-                            <div>
-                                Create New Resource
-                            </div>
-                        </a>
-                    </div>
-                    <div class="theme-option">
-                        <a href="#/new_meeting" class="icon-btn" style="width:130px">
-                            <i class="fa fa-group" style="font-size: 35px;"></i>
-                            <div>
-                                Create New Meeting
-                            </div>
-                        </a>
-                    </div>
+    <li style="float: right;">
+      <div class="theme-panel" style="width: 215px;">
+        <div id="aa" class="toggler">
+          <i class="fa fa-plus"></i>
+        </div>
+        <div id="aab" class="theme-options">
+          <div class="theme-option">
+            <a href="#/new_discussion" class="icon-btn" style="width:130px">
+              <i class="fa fa-comments-o" style="font-size: 35px;"></i>
+              <div>
+                Create New Discussion
+              </div>
+              <span class="badge badge-important" style="display:none">
+                2
+              </span>
+            </a>
+          </div>
+          <div class="theme-option">
+            <a href="#/new_note" class="icon-btn" style="width:130px">
+              <i class="fa fa-pencil-square-o" style="font-size: 35px;"></i>
+              <div>
+                Create New Note
+              </div>
+            </a>
+          </div>
+          <div class="theme-option">
+            <a href="#/resource" class="icon-btn" style="width:130px">
+              <i class="fa fa-paperclip" style="font-size: 35px;"></i>
+              <div>
+                Create New Resource
+              </div>
+            </a>
+          </div>
+          <div class="theme-option">
+            <a href="#/new_meeting" class="icon-btn" style="width:130px">
+              <i class="fa fa-group" style="font-size: 35px;"></i>
+              <div>
+                Create New Meeting
+              </div>
+            </a>
+          </div>
 
-                </div>
-            </div>
-        </li>
-    </ul>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>
 
 
 
 <div class="well well-sm">
-    <h4 >Discussions</h4>
-    <div  ng-show="!discussionList.length">
+  <h4>Discussions</h4>
+  <div ng-show="!discussionList.length">
     <p>Unfortunately, there are no discussions. Maybe you should create one...</p>
     <a href="#/new_discussion" class="icon-btn" style="width:130px">
-                            <i class="fa fa-comments-o" style="font-size: 35px;"></i>
-                            <div>
-                                Create New Discussion
-                            </div>
-                        </a>
-    </div>
-    
-    
+      <i class="fa fa-comments-o" style="font-size: 35px;"></i>
+      <div>
+        Create New Discussion
+      </div>
+    </a>
+  </div>
 
-    
-    <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; " data-ng-repeat="i in discussionList">
-       
-        <li role="presentation">
-            <a role="menuitem" tabindex="-1"  href="" ng-click="toDiscussionDetail(i.id,i.name,i.description)">{{i.name}} 
+
+
+
+  <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; " data-ng-repeat="i in discussionList">
+
+    <li role="presentation">
+      <a role="menuitem" tabindex="-1" href="" ng-click="toDiscussionDetail(i.id,i.name,i.description)">{{i.name}}
             </a>
-        </li>
-    </ul>
+    </li>
+  </ul>
 
 
 </div>
 
 <div class="well well-sm">
-    <h4 >Notes</h4>
-    <div  ng-show="!noteList.length">
+  <h4>Notes</h4>
+  <div ng-show="!noteList.length">
     <p>Unfortunately, there are no notes. Maybe you should create one...</p>
     <a href="#/new_note" class="icon-btn" style="width:130px">
-                            <i class="fa fa-pencil-square-o" style="font-size: 35px;"></i>
-                            <div>
-                                Create New Note
-                            </div>
-                        </a>
-    </div>
-    
-    <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; " data-ng-repeat="i in noteList">
-       
-        <li role="presentation">
-            <a role="menuitem" tabindex="-1"  href="" ng-click="toNoteDetail(i.id,i.title)">{{i.title}} 
+      <i class="fa fa-pencil-square-o" style="font-size: 35px;"></i>
+      <div>
+        Create New Note
+      </div>
+    </a>
+  </div>
+
+  <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; " data-ng-repeat="i in noteList">
+
+    <li role="presentation">
+      <a role="menuitem" tabindex="-1" href="" ng-click="toNoteDetail(i.id,i.title)">{{i.title}}
             </a>
-        </li>
-    </ul>
+    </li>
+  </ul>
 </div>
 
-<!-- 
 
 <div class="well well-sm">
-    <h4 >Resources</h4>
+  <h4>Resources</h4>
 
-    <div class="media">
-        <div class="pull-left " >
-            <table>
-                <tr>
-                    <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>        
-                </tr>
-                <tr>
-                    <td>#Elephants</td>
-                </tr>
-            </table>
-        </div>
+  <div class="media">
+    <div class="pull-left " style="    margin: 10px;" data-ng-repeat="i in resourceList">
+      <table>
 
-        <div class="pull-left">
-            <table>
-                <tr>
-                    <th><img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;" ></th>        
-                </tr>
-                <tr>
-                    <td>#Elephants</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="pull-left">
-            <table>
-                <tr>
-                    <th><img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;" ></th>        
-                </tr>
-                <tr>
-                    <td>#Elephants</td>
-                </tr>
-            </table>
-        </div>
-
+        <tr>
+          <th>
+            <img src="assets/img/file_types/file.png" alt="100%x200" style=" height: 60px; display: block;">
+          </th>
+        </tr>
+        <tr>
+          <td>{{i.description.substring(0, 10)}}..</td>
+        </tr>
+      </table>
     </div>
+
+    <div class="col-md-2" ng-show="showAllResourcesButton">
+      <div class="">
+        <h3 ng-bind="resourceListCount"></h3>
+        <h3> More Resource(s) </h3>
+        <!--<img src="assets/img/pages/3.jpg" alt="" class="img-responsive"/>-->
+        <div class="team-info">
+          <p>
+            <a href="#/resource"> View More...</a>
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p ng-show="!resourceList.length">You do not have any resources yet.</p>
+
+
+
 </div>
--->
+
 
 <div class="well well-sm">
-    <h4 >Meetings</h4>
-    <div  ng-show="!meetingList.length">
+  <h4>Meetings</h4>
+  <div ng-show="!meetingList.length">
     <p>Unfortunately, there are no meetings scheduled. Maybe you should create one...</p>
     <a href="#/new_meeting" class="icon-btn" style="width:130px">
-                            <i class="fa fa-group" style="font-size: 35px;"></i>
-                            <div>
-                                Create New Meeting
-                            </div>
-                        </a>
-    </div>
-    <div data-ng-repeat="i in meetingList">
-        <a class="" href="" ng-click="toMeetingDetail(i.id,i.description,i.location)">
-        <div class="media" style="margin-bottom: 15px;">
-
-            <div class="pull-left well well-sm" style="background-color: white">
-                <table>
-                    <tr>
-                        <td align="center" style="font-size: 36px">28</td>
-                    </tr>
-                    <tr>
-                        <td align="center">May 2016</td>
-                    </tr>
-                    <tr>
-                        <td align="center">14:00-15:00</td>                        
-                    </tr>
-                </table>
-            </div>
-
-            <div class="media-body" style="padding-left: 10px; padding-top: 5px">
-                <h4 class="media-heading">{{i.name}} </h4>
-                <p>{{i.location}} </p>
-                <p><i class="fa fa-group" style="margin-right: 3px;    color: brown;"></i>Face-to-Face Meeting</p>
-            </div>
-        </div>
+      <i class="fa fa-group" style="font-size: 35px;"></i>
+      <div>
+        Create New Meeting
+      </div>
     </a>
-        
-    </div>
+  </div>
+  <div data-ng-repeat="i in meetingList">
+    <a class="" href="" ng-click="toMeetingDetail(i.id,i.description,i.location)">
+      <div class="media" style="margin-bottom: 15px;">
 
-   
+        <div class="pull-left well well-sm" style="background-color: white">
+          <table>
+            <tr>
+              <td align="center" style="font-size: 36px">28</td>
+            </tr>
+            <tr>
+              <td align="center">May 2016</td>
+            </tr>
+            <tr>
+              <td align="center">14:00-15:00</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="media-body" style="padding-left: 10px; padding-top: 5px">
+          <h4 class="media-heading">{{i.name}} </h4>
+          <p>{{i.location}} </p>
+          <p><i class="fa fa-group" style="margin-right: 3px;    color: brown;"></i>Face-to-Face Meeting</p>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+
 </div>
 
 <script>
-    $(document).ready(function () {
-        // initiate layout and plugins
-        $('#aa').click(function () {
-            $(this).toggleClass("open");
-            $('#aab').toggle();
-        });
-
-
+  $(document).ready(function() {
+    // initiate layout and plugins
+    $('#aa').click(function() {
+      $(this).toggleClass("open");
+      $('#aab').toggle();
     });
 
+
+  });
 </script>

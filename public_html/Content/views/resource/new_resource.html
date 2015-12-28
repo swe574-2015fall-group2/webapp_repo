@@ -1,0 +1,166 @@
+<div>
+  <table class="" style="margin-bottom: 30px; width: 100%">
+    <tbody>
+      <tr>
+        <td></td>
+        <td>
+          <button type="button" class="btn btn-navbar" onclick="window.location.href = '#/group_detail';">Back to Group Detail </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<form id="NewMeeting" class="NewMeeting-form" method="post" style="display:block" ng-submit="sendPost()">
+  <div>
+    <table class="" style="margin-bottom: 30px; width: 100%">
+      <div style="margin-bottom: 20px;">
+        <h3 ng-bind="selectedGroupName"></h3>
+        <p>Resources</p>
+      </div>
+    </table>
+  </div>
+
+
+  <div class="well well-sm">
+    <div class="portlet-body form">
+      <!-- BEGIN FORM-->
+      <form action="#" class="horizontal-form">
+        <div class="form-body">
+          <!-- <h3 class="form-section">New Meeting</h3> -->
+          <div class="row">
+            <div class="col-md-6">
+
+              <div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
+                <input type="hidden" value="" name="">
+                <div class="input-group input-group-fixed">
+                  <span class="input-group-btn">
+                    <span class="uneditable-input">
+                      <i class="fa fa-file fileupload-exists"></i>
+                      <span class="fileupload-preview"></span>
+                    </span>
+                  </span>
+                  <span class="btn btn-default btn-file">
+                    <span class="fileupload-new">
+                      <i class="fa fa-paper-clip"></i> Select file
+                    </span>
+                    <span class="fileupload-exists">
+                      <i class="fa fa-undo"></i> Change
+                    </span>
+                    <input type="file" file-model="myFile" />
+                  </span>
+                  <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> Remove</a>
+
+                </div>
+                <div style="margin-top: 10px;">
+                  <button ng-click="uploadFile()" class="btn btn-navbar">Upload File</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+
+
+
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div class="col-md-12">
+          <div class="well well-sm">
+
+
+            <h4>Resources</h4>
+
+            <div class="media">
+              <div class="pull-left " style="    margin: 10px;" data-ng-repeat="i in resourceList">
+                <table>
+
+                  <tr>
+                    <th>
+                      <img src="assets/img/file_types/file.png" alt="100%x200" style=" height: 60px; display: block;">
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>{{i.description.substring(0, 10)}}..</td>
+                  </tr>
+                </table>
+                <button type="button" class="btn btn-danger" ng-click="deleteExternalResource(i.id)">Delete</button>
+
+              </div>
+
+
+
+            </div>
+          </div>
+
+
+        </div>
+        <div class="form-actions right" style="border-top: none;">
+        </div>
+
+
+
+
+
+      </form>
+      <!-- END FORM-->
+    </div>
+  </div>
+</form>
+
+
+
+
+
+<style>
+  /* min Jquery CSS elements for autocomplete */
+
+  .ui-autocomplete {
+    position: absolute;
+    cursor: default;
+  }
+
+  .ui-menu {
+    list-style: none;
+    padding: 2px;
+    margin: 0;
+    display: block;
+    float: left;
+    background-color: #f9f9f9;
+    border: 1px solid #efefef;
+    border-radius: 3px 3px 3px 3px;
+  }
+
+  .ui-menu .ui-menu {
+    margin-top: -3px;
+  }
+
+  .ui-menu .ui-menu-item {
+    margin: 0;
+    padding: 0;
+    zoom: 1;
+    float: left;
+    clear: left;
+    width: 100%;
+    font-family: arial;
+  }
+
+  .ui-menu .ui-menu-item a {
+    text-decoration: none;
+    display: block;
+    padding: .1em .3em;
+    line-height: 1.5;
+    zoom: 1;
+  }
+
+  .ui-menu .ui-menu-item a.ui-state-hover,
+  .ui-menu .ui-menu-item a.ui-state-active {
+    font-weight: bold;
+  }
+</style>
