@@ -9,7 +9,7 @@
                 <td>
                     <button type="button" class="btn btn-navbar" onclick="window.location.href = '#/group_detail';">Back to Group Detail </button>
                 </td>
-                <td style="float:right"> 
+                <td style="float:right">
                     <button type="button" class="btn btn-success" onclick="window.location.href = '#/update_meeting';">Update Meeting</button>
 
                 </td>
@@ -73,7 +73,12 @@
 <div  style="margin-bottom: 20px;">
 
     <h3 ng-bind="meetingName"></h3>
-    <p ng-bind="tags"></p>
+    <ul class="list-inline blog-tags">
+      <i class="fa fa-tags"></i>
+      <li  data-ng-repeat="i in tagsList">
+        <p style="background-color: #F1EAEA;">{{i.tag}}</p>
+      </li>
+    </ul>
 
 </div>
 
@@ -88,12 +93,12 @@
                 <td align="center" style="font-size: 20px;" >{{monthYear}}</td>
             </tr>
             <tr>
-                <td align="center" style="font-size: 15px; font-weight: 700">{{startHour}}:00 - {{endHour}}:00</td>                        
+                <td align="center" style="font-size: 15px; font-weight: 700">{{startHour}}:00 - {{endHour}}:00</td>
             </tr>
 
             <tr>
-                <td align="center" style="font-size: 12px">Location: <p  ng-bind="selectedMeetingLoc"></p></td>                        
-            </tr>              
+                <td align="center" style="font-size: 12px">Location: <p  ng-bind="selectedMeetingLoc"></p></td>
+            </tr>
         </table>
     </div>
 </div>
@@ -115,13 +120,13 @@
         <p>Unfortunately, you have not invited anybody to this meeting.</p>
     </div>
 
-    <table cellpadding="5"  data-ng-repeat="i in invitedUsers">       
+    <table cellpadding="5"  data-ng-repeat="i in invitedUsers">
         <tr>
             <td><img src="assets/img/avatar3.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
             <td valign="top" >
-                <table>                    
+                <table>
                     <tr>
-                        <td><h4 style="padding:0px; margin: 0px">{{i.tempName}}</h4></td>                          
+                        <td><h4 style="padding:0px; margin: 0px">{{i.tempName}}</h4></td>
                     </tr>
                     <tr>
                         <td>Moderator</td>
@@ -129,7 +134,7 @@
                     </tr>
                 </table>
             </td>
-            </tr>  
+            </tr>
     </table>
 </div>
 
@@ -139,13 +144,13 @@
     <div  ng-show="!attandedUsers.length">
         <p>No one has yet accepted your meeting invitation, sorry.</p>
     </div>
-    <table cellpadding="5" data-ng-repeat="i in attandedUsers">       
+    <table cellpadding="5" data-ng-repeat="i in attandedUsers">
         <tr>
             <td><img src="assets/img/blog/12.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
             <td valign="top" >
-                <table>                    
+                <table>
                     <tr>
-                        <td><h4 style="padding:0px; margin: 0px">{{i.tempName}}</h4></td>                          
+                        <td><h4 style="padding:0px; margin: 0px">{{i.tempName}}</h4></td>
                     </tr>
                     <tr>
                         <td>Regular Attendaee</td>
@@ -153,7 +158,7 @@
                     </tr>
                 </table>
             </td>
-            </tr>  
+            </tr>
     </table>
 </div>
 
@@ -165,7 +170,7 @@
 
     <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; ">
         <li >
-            <a tabindex="-1"  href="#/discussion_detail">            
+            <a tabindex="-1"  href="#/discussion_detail">
             </a>
         </li>
         <li role="presentation">
@@ -181,7 +186,7 @@
     <h4 >Notes</h4>
     <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; ">
         <li >
-            <a tabindex="-1" href="#">          
+            <a tabindex="-1" href="#">
             </a>
         </li>
 
@@ -191,13 +196,13 @@
 
 
 <div class="well well-sm media">
-    <div> 
+    <div>
         <h4 >Resources</h4>
     </div>
     <!--<div class="pull-left " >
         <table>
             <tr>
-                <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>          
+                <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>
                 </tr>
                 <tr>
                     <td>#Elephants</td>
@@ -208,7 +213,7 @@
     <div class="pull-left">
         <table>
             <tr>
-                <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>          
+                <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>
                 </tr>
                 <tr>
                     <td>#Elephants</td>
@@ -219,7 +224,7 @@
     <div class="pull-left">
         <table>
             <tr>
-                <th><img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;" ></th>          
+                <th><img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;" ></th>
                 </tr>
                 <tr>
                     <td>#Elephants</td>

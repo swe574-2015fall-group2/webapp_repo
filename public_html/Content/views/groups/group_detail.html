@@ -8,7 +8,13 @@
         <td>
           <h3 ng-bind="selectedGroupName"></h3>
           <p ng-bind="selectedGroupDesc"></p>
-          <p ng-bind="tags"></p>
+          <ul class="list-inline blog-tags">
+            <i class="fa fa-tags"></i>
+            <li  data-ng-repeat="i in tagsList">
+              <p style="background-color: #F1EAEA;">{{i.tag}}</p>
+            </li>
+          </ul>
+
         </td>
         <td>
           <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; ">

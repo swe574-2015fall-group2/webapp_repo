@@ -47,7 +47,7 @@ define(['controllers/controllers'],
             id: $scope.selectedDiscussion
           });
           $http.post("http://162.243.18.170:9000/v1/discussion/query", data).success(function(data, status) {
-
+            $scope.tagsList = data.result.tagList;
             getUserDetails(data.result.commentList);
             getRelatedMeetingsDetails(data.result.meetingIdList)
 

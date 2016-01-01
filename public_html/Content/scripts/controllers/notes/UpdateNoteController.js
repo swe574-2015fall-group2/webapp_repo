@@ -12,14 +12,21 @@ define(['controllers/controllers'],
                             var Cerez = document.cookie;
                             var Duzenli = new RegExp("authToken=([^;=]+)[;\\b]?");
                             var group = new RegExp("selectedGroup=([^;=]+)[;\\b]?");
+                            var groupName = new RegExp("selectedGroupName=([^;=]+)[;\\b]?");
+
+
 
                             var Sonuclar = Duzenli.exec(Cerez);
                             var goupSonuc = group.exec(Cerez);
+                            var groupNameResult = groupName.exec(Cerez);
 
                             var authToken = unescape(Sonuclar[1]);
                             var selectedGroup = unescape(goupSonuc[1]);
+                            var selectedGroupName = unescape(groupNameResult[1]);
+
                             $scope.authToken = authToken;
                             $scope.selectedGroup = selectedGroup;
+                            $scope.selectedGroupName = selectedGroupName;
 
                             var DuzenliM4 = new RegExp("selectedMeeting=([^;=]+)[;\\b]?");
                             var Sonuclar4 = DuzenliM4.exec(Cerez);
@@ -32,11 +39,11 @@ define(['controllers/controllers'],
                             var selectedNote = unescape(Sonuclar5[1]);
                             $scope.selectedNote = selectedNote;
 
-                                    
 
 
 
-                        
+
+
                             var data = JSON.stringify({
                                 authToken: $scope.authToken,
                                 id: $scope.selectedNote
@@ -44,9 +51,9 @@ define(['controllers/controllers'],
 
 
                             $http.post("http://162.243.18.170:9000/v1/note/query", data).success(function (data, status) {
-                                
+
                                  $scope.name=data.result.title;
-                                 $scope.description=data.result.text;                               
+                                 $scope.description=data.result.text;
                                  $scope.tags=data.result.tagList;
 
 
@@ -72,7 +79,7 @@ define(['controllers/controllers'],
                                 $http.post("http://162.243.18.170:9000/v1/note/update", data).success(function (data, status) {
 
                                     alert("Note is updated successfully!");
-//                                    $window.location.href = "#/my_groups";
+                                      $window.location.href = "#/note_detail";
                                 }).error(function (data, status, headers, config) {
                                     alert("Error: " + data.consumerMessage);
 

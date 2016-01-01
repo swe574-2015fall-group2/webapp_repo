@@ -32,6 +32,7 @@ require([
     'services/localStorageService',
     'controllers/rootController',
     'controllers/favsController',
+    'controllers/MainController',
     'controllers/groups/createGroupController',
     'controllers/groups/GroupController',
     'controllers/groups/GroupDetailController',

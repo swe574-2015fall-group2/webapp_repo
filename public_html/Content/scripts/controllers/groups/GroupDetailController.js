@@ -61,18 +61,8 @@ define(['controllers/controllers'],
         $http.post("http://162.243.18.170:9000/v1/group/query", data).success(function(data, status) {
 
 
-          var tags = data.result.tagList;
-          var tagsString = "Tags ";
-
-          for (i = 0; i < tags.length; i++) {
-            tagsString += tags[i].tag;
-
-            if (i < (tags.length - 1)) {
-              tagsString += ", ";
-            }
-          }
-
-          $scope.tags = tagsString;
+          $scope.tagsList = data.result.tagList;
+          
           $scope.userList = data.result.users;
           $scope.userListCount = $scope.userList.length;
 

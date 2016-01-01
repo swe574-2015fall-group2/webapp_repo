@@ -5,7 +5,7 @@
         <tbody>
             <tr>
                 <td></td>
-               
+
                 <td>
                     <button type="button" class="btn btn-navbar" onclick="window.location.href = '#/group_detail';">Back to Group Detail </button>
                 </td>
@@ -19,17 +19,23 @@
         <tbody>
             <tr>
                 <td>
-                    <h3 ng-bind="title"></h3> 
+                    <h3 ng-bind="title"></h3>
                     <p  ng-bind="text"></p>
+                    <ul class="list-inline blog-tags">
+                      <i class="fa fa-tags"></i>
+                      <li  data-ng-repeat="i in tagsList">
+                        <p style="background-color: #F1EAEA;">{{i.tag}}</p>
+                      </li>
+                    </ul>
                 </td>
-                
-                <td style="float:right"> 
+
+                <td style="float:right">
                     <button type="button" class="btn btn-success" onclick="window.location.href = '#/update_note';">Update Note</button>
-                   
+
                 </td>
-                <td style="float:right"> 
+                <td style="float:right">
                     <button type="button" class="btn btn-danger" ng-click="archiveDiscussion()">Archive Note</button>
-                   
+
                 </td>
             </tr>
 
@@ -60,7 +66,7 @@
                         <td align="center">May 2016</td>
                     </tr>
                     <tr>
-                        <td align="center">14:00-15:00</td>                        
+                        <td align="center">14:00-15:00</td>
                     </tr>
                 </table>
             </div>
@@ -72,21 +78,21 @@
             </div>
         </div>
     </a>
-        
+
     </div>
 
-   
+
 </div>
 
 
 <div class="well well-sm media">
-    <div> 
+    <div>
       <h4 >Resources</h4>
     </div>
     <div class="pull-left " >
         <table>
             <tr>
-                <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>          
+                <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>
                     </tr>
                 <tr>
                     <td>#Elephants</td>
@@ -97,7 +103,7 @@
     <div class="pull-left">
         <table>
             <tr>
-                <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>          
+                <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>
                     </tr>
                 <tr>
                     <td>#Elephants</td>
@@ -108,7 +114,7 @@
     <div class="pull-left">
         <table>
             <tr>
-                <th><img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;" ></th>          
+                <th><img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;" ></th>
                     </tr>
                 <tr>
                     <td>#Elephants</td>
@@ -119,25 +125,25 @@
 </div>
 
 
-<div class="well well-sm" >  
+<div class="well well-sm" >
     <h4>Comments</h4>
     <p ng-show="!commentList.length">There is no comment yet</p>
     <div data-ng-repeat="i in commentList">
-    <table cellpadding="5">       
+    <table cellpadding="5">
         <tr>
             <td><img src="assets/img/avatar1.jpg"  style="width: 64px; display: block;" data-src="holder.js/100%x200"></td>
             <td valign="top" >
-                <table>                    
+                <table>
                     <tr>
-                        <td><h4 style="padding:0px; margin: 0px">{{i.name}}</h4><p>Created on {{i.createdTime | date:'medium'}}</p></td>                          
+                        <td><h4 style="padding:0px; margin: 0px">{{i.name}}</h4><p>Created on {{i.createdTime | date:'medium'}}</p></td>
                     </tr>
                     <tr>
                         <td>{{i.comment}}</td>
-                      
+
                     </tr>
                 </table>
             </td>
-            </tr>  
+            </tr>
     </table>
     </div>
 
