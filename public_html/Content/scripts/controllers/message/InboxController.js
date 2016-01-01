@@ -25,7 +25,7 @@ define(['controllers/controllers'],
                             var data = JSON.stringify({
                                 authToken: authToken
                             });
-                            $http.post("http://162.243.215.160:9000/v1/messagebox/getByReceiver", data).success(function (data, status) {
+                            $http.post("http://162.243.18.170:9000/v1/messagebox/getByReceiver", data).success(function (data, status) {
 
                                 var messages = data.result.messages;
                                 var allReceivedMessages = [];
@@ -81,7 +81,7 @@ define(['controllers/controllers'],
                                     groupId: selectedGroup
                                 });
 
-                                $http.post("http://162.243.215.160:9000/v1/group/join", data).success(function (data, status) {
+                                $http.post("http://162.243.18.170:9000/v1/group/join", data).success(function (data, status) {
 
                                     //alert( "successfully joined" );	
                                     document.cookie = "selectedGroupJoined" + "=" + true;
@@ -103,7 +103,7 @@ define(['controllers/controllers'],
                                     groupId: selectedGroup
                                 });
 
-                                $http.post("http://162.243.215.160:9000/v1/group/leave", data).success(function (data, status) {
+                                $http.post("http://162.243.18.170:9000/v1/group/leave", data).success(function (data, status) {
 
                                     //alert( "successfully left the group" );	
                                     document.cookie = "selectedGroupJoined" + "=" + false;
@@ -131,7 +131,7 @@ define(['controllers/controllers'],
                                     });
 
 
-                                    $http.post("http://162.243.215.160:9000/v1/user/get", data).success(function (data, status) {
+                                    $http.post("http://162.243.18.170:9000/v1/user/get", data).success(function (data, status) {
 
                                         var tempName = (data.result.firstname + " " + data.result.lastname);
                                         var tempObj = idList[sayac];

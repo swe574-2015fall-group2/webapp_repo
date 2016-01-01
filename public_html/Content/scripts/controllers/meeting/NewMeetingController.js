@@ -99,7 +99,7 @@ define(['controllers/controllers'],
                                     tagList: $scope.selectedTagList
                                 });
 
-                                $http.post("http://162.243.215.160:9000/v1/meeting/create", data).success(function (data, status) {
+                                $http.post("http://162.243.18.170:9000/v1/meeting/create", data).success(function (data, status) {
 
                                     alert("Meeting is created successfully!");
                                     $window.location.href = "#/my_groups";
@@ -121,7 +121,7 @@ define(['controllers/controllers'],
                                 });
 
 
-                                $http.post("http://162.243.215.160:9000/v1/semantic/queryLabel", data).success(function (data, status) {
+                                $http.post("http://162.243.18.170:9000/v1/semantic/queryLabel", data).success(function (data, status) {
 
                                     $scope.myGroupListCount = data.result.dataList.length;
 

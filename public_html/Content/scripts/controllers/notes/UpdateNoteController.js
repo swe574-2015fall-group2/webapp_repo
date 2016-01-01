@@ -43,7 +43,7 @@ define(['controllers/controllers'],
                             });
 
 
-                            $http.post("http://162.243.215.160:9000/v1/note/query", data).success(function (data, status) {
+                            $http.post("http://162.243.18.170:9000/v1/note/query", data).success(function (data, status) {
                                 
                                  $scope.name=data.result.title;
                                  $scope.description=data.result.text;                               
@@ -69,7 +69,7 @@ define(['controllers/controllers'],
                                     resourceIds: [""]
                                 });
 
-                                $http.post("http://162.243.215.160:9000/v1/note/update", data).success(function (data, status) {
+                                $http.post("http://162.243.18.170:9000/v1/note/update", data).success(function (data, status) {
 
                                     alert("Note is updated successfully!");
 //                                    $window.location.href = "#/my_groups";

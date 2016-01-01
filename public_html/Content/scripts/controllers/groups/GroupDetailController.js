@@ -58,7 +58,7 @@ define(['controllers/controllers'],
           authToken: authToken,
           id: selectedGroup
         });
-        $http.post("http://162.243.215.160:9000/v1/group/query", data).success(function(data, status) {
+        $http.post("http://162.243.18.170:9000/v1/group/query", data).success(function(data, status) {
 
 
           var tags = data.result.tagList;
@@ -88,7 +88,7 @@ define(['controllers/controllers'],
           authToken: authToken,
           id: selectedGroup
         });
-        $http.post("http://162.243.215.160:9000/v1/resource/queryResourcesByGroup", data).success(function(data, status) {
+        $http.post("http://162.243.18.170:9000/v1/resource/queryResourcesByGroup", data).success(function(data, status) {
           $scope.resourceList = data.result.slice(0, 5);
 
 
@@ -107,10 +107,11 @@ define(['controllers/controllers'],
           authToken: authToken,
           id: selectedGroup
         });
-        $http.post("http://162.243.215.160:9000/v1/meeting/queryByGroup", data).success(function(data, status) {
+        $http.post("http://162.243.18.170:9000/v1/meeting/queryByGroup", data).success(function(data, status) {
 
 
           $scope.meetingList = data.result.meetingList;
+          getRelatedMeetingsDetails(data.result.meetingList);
           //alert( "meeting list got" );
         }).error(function(data, status, headers, config) {
           //alert("Error: " + data.consumerMessage);
@@ -123,7 +124,7 @@ define(['controllers/controllers'],
           authToken: authToken,
           id: selectedGroup
         });
-        $http.post("http://162.243.215.160:9000/v1/discussion/list", data).success(function(data, status) {
+        $http.post("http://162.243.18.170:9000/v1/discussion/list", data).success(function(data, status) {
 
 
           $scope.discussionList = data.result.discussionList;
@@ -139,7 +140,7 @@ define(['controllers/controllers'],
           authToken: authToken,
           id: selectedGroup
         });
-        $http.post("http://162.243.215.160:9000/v1/note/queryByGroup", data).success(function(data, status) {
+        $http.post("http://162.243.18.170:9000/v1/note/queryByGroup", data).success(function(data, status) {
 
 
           $scope.noteList = data.result.noteList;
@@ -151,6 +152,63 @@ define(['controllers/controllers'],
         });
 
 
+        //get the related meetings
+        function getRelatedMeetingsDetails(meetingList) {
+          $scope.shownMeetingList = [];
+          var com;
+          var sayac = 0;
+          for (com in meetingList) {
+
+
+              var date = new Date(meetingList[com].datetime);
+              meetingList[com].day = date.getDate();
+              var month = date.getMonth() + 1;
+
+              switch (month) {
+                case 1:
+                  month = "Jan"
+                  break;
+                case 2:
+                  month = "Feb"
+                  break;
+                case 3:
+                  month = "Mar"
+                  break;
+                case 4:
+                  month = "Apr"
+                  break;
+                case 5:
+                  month = "May"
+                  break;
+                case 6:
+                  month = "Jun"
+                  break;
+                case 7:
+                  month = "Jul"
+                  break;
+                case 8:
+                  month = "Aug"
+                  break;
+                case 9:
+                  month = "Sep"
+                  break;
+                case 10:
+                  month = "Oct"
+                  break;
+                case 11:
+                  month = "Nov"
+                  break;
+                case 12:
+                  month = "Dec"
+                  break;
+              }
+              meetingList[com].monthYear = month + " " + date.getFullYear();
+              $scope.shownMeetingList.push(meetingList[com]);
+
+            sayac++;
+          }
+        }
+
         $scope.joinGroup = function() {
 
           var data = JSON.stringify({
@@ -158,7 +216,7 @@ define(['controllers/controllers'],
             groupId: selectedGroup
           });
 
-          $http.post("http://162.243.215.160:9000/v1/group/join", data).success(function(data, status) {
+          $http.post("http://162.243.18.170:9000/v1/group/join", data).success(function(data, status) {
 
             //alert( "successfully joined" );
             document.cookie = "selectedGroupJoined" + "=" + true;
@@ -180,7 +238,7 @@ define(['controllers/controllers'],
             groupId: selectedGroup
           });
 
-          $http.post("http://162.243.215.160:9000/v1/group/leave", data).success(function(data, status) {
+          $http.post("http://162.243.18.170:9000/v1/group/leave", data).success(function(data, status) {
 
             //alert( "successfully left the group" );
             document.cookie = "selectedGroupJoined" + "=" + false;

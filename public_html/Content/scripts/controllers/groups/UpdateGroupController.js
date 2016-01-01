@@ -15,7 +15,7 @@ define(['controllers/controllers'],
                 password: "string"
             });
         
-        $http.post("http://162.243.215.160:9000/v1/user/login", data).success(function(data, status) {
+        $http.post("http://162.243.18.170:9000/v1/user/login", data).success(function(data, status) {
             alert("success");
         });*/
         
@@ -41,7 +41,7 @@ define(['controllers/controllers'],
                         id: $scope.selectedGroupId
                     });
         var a = 0;
-       $http.post("http://162.243.215.160:9000/v1/group/query", data).success(function(data, status) {
+       $http.post("http://162.243.18.170:9000/v1/group/query", data).success(function(data, status) {
                     
                     $scope.name = data.result.name;
                     $scope.description = data.result.description;
@@ -66,7 +66,7 @@ define(['controllers/controllers'],
                         description: $scope.description
                     });
         
-       $http.post("http://162.243.215.160:9000/v1/group/update", data).success(function(data, status) {
+       $http.post("http://162.243.18.170:9000/v1/group/update", data).success(function(data, status) {
                     //alert(data.result.token);
                     //alert("success");
                     //document.cookie = "authToken" + "=" + data.result.token;

@@ -14,7 +14,7 @@ define(['controllers/controllers'],
 
                             var Duzenli = new RegExp("authToken=([^;=]+)[;\\b]?");
                             var Sonuclar = Duzenli.exec(Cerez);
-                            //alert( unescape(Sonuclar[1]) );	
+                            //alert( unescape(Sonuclar[1]) );
                             var authToken = unescape(Sonuclar[1]);
 
                             var Duzenli2 = new RegExp("selectedMeetingLoc=([^;=]+)[;\\b]?");
@@ -56,7 +56,7 @@ define(['controllers/controllers'],
                                 authToken: authToken,
                                 id: selectedMeeting
                             });
-                            $http.post("http://162.243.215.160:9000/v1/meeting/get", data).success(function (data, status) {
+                            $http.post("http://162.243.18.170:9000/v1/meeting/get", data).success(function (data, status) {
 
                                 $scope.meetingName = data.result.meeting.name;
                                 $scope.meetingDescription = data.result.meeting.description;
@@ -148,7 +148,7 @@ define(['controllers/controllers'],
                                     });
 
 
-                                    $http.post("http://162.243.215.160:9000/v1/user/get", data).success(function (data, status) {
+                                    $http.post("http://162.243.18.170:9000/v1/user/get", data).success(function (data, status) {
 
                                         var tempName = (data.result.firstname + " " + data.result.lastname);
 

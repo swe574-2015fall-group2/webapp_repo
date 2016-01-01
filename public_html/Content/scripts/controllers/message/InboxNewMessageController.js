@@ -44,7 +44,7 @@ define(['controllers/controllers'],
                                 receiverId: $scope.InboxDetailSenderId,
                                 message:$scope.message
                             });
-                             $http.post("http://162.243.215.160:9000/v1/messagebox/send", data).success(function (data, status) {
+                             $http.post("http://162.243.18.170:9000/v1/messagebox/send", data).success(function (data, status) {
 
 
                                 

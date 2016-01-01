@@ -90,7 +90,7 @@ define(['controllers/controllers'],
                                     resourceIds: [""]
                                 });
 
-                                $http.post("http://162.243.215.160:9000/v1/note/create", data).success(function (data, status) {
+                                $http.post("http://162.243.18.170:9000/v1/note/create", data).success(function (data, status) {
 
                                     alert("Note is created successfully!");
                                     $window.location.href = "#/my_groups";
@@ -122,7 +122,7 @@ define(['controllers/controllers'],
                                 });
 
 
-                                $http.post("http://162.243.215.160:9000/v1/semantic/queryLabel", data).success(function (data, status) {
+                                $http.post("http://162.243.18.170:9000/v1/semantic/queryLabel", data).success(function (data, status) {
 
                                     $scope.myGroupListCount = data.result.dataList.length;
 

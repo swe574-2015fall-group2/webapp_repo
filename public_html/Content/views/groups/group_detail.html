@@ -190,7 +190,7 @@
 
 <div class="well well-sm">
   <h4>Meetings</h4>
-  <div ng-show="!meetingList.length">
+  <div ng-show="!shownMeetingList.length">
     <p>Unfortunately, there are no meetings scheduled. Maybe you should create one...</p>
     <a href="#/new_meeting" class="icon-btn" style="width:130px">
       <i class="fa fa-group" style="font-size: 35px;"></i>
@@ -199,20 +199,20 @@
       </div>
     </a>
   </div>
-  <div data-ng-repeat="i in meetingList">
+  <div data-ng-repeat="i in shownMeetingList">
     <a class="" href="" ng-click="toMeetingDetail(i.id,i.description,i.location)">
       <div class="media" style="margin-bottom: 15px;">
 
         <div class="pull-left well well-sm" style="background-color: white">
           <table>
             <tr>
-              <td align="center" style="font-size: 36px">28</td>
+              <td align="center" style="font-size: 36px">{{i.day}}</td>
             </tr>
             <tr>
-              <td align="center">May 2016</td>
+              <td align="center">{{i.monthYear}}</td>
             </tr>
             <tr>
-              <td align="center">14:00-15:00</td>
+              <td align="center">{{i.startHour}}-{{i.endHour}}</td>
             </tr>
           </table>
         </div>

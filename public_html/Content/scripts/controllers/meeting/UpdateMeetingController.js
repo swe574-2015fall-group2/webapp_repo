@@ -86,7 +86,7 @@ define(['controllers/controllers'],
                             });
 
 
-                            $http.post("http://162.243.215.160:9000/v1/meeting/get", data).success(function (data, status) {
+                            $http.post("http://162.243.18.170:9000/v1/meeting/get", data).success(function (data, status) {
 
                                 $scope.name = data.result.meeting.name;
                                 $scope.description = data.result.meeting.description;
@@ -172,7 +172,7 @@ define(['controllers/controllers'],
 //                                    status: "NOT_STARTED"
                                 });
 
-                                $http.post("http://162.243.215.160:9000/v1/meeting/update", data).success(function (data, status) {
+                                $http.post("http://162.243.18.170:9000/v1/meeting/update", data).success(function (data, status) {
 
                                     alert("Meeting is updated successfully!");
                                     $window.location.href = "#/meeting_detail";

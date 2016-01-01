@@ -44,7 +44,7 @@ define(['controllers/controllers'],
                                     id: $scope.selectedDiscussion
                                 });
 
-                                $http.post("http://162.243.215.160:9000/v1/discussion/query", data).success(function (data, status) {
+                                $http.post("http://162.243.18.170:9000/v1/discussion/query", data).success(function (data, status) {
 
                                     $scope.name=data.result.name;
                                     $scope.description=data.result.description;
@@ -80,7 +80,7 @@ define(['controllers/controllers'],
                                     discussionId: $scope.selectedDiscussion
                                 });
 
-                                $http.post("http://162.243.215.160:9000/v1/discussion/update", data).success(function (data, status) {
+                                $http.post("http://162.243.18.170:9000/v1/discussion/update", data).success(function (data, status) {
 
                                     //alert("Discussion is created successfully!");
                                     $window.location.href = "#/discussion_detail";

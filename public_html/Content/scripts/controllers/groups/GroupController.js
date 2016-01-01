@@ -38,7 +38,7 @@ define(['controllers/controllers'],
                             });
 
 
-                            $http.post("http://162.243.215.160:9000/v1/user/get", data).success(function (data, status) {
+                            $http.post("http://162.243.18.170:9000/v1/user/get", data).success(function (data, status) {
 
 
                                 document.getElementById('firstName').innerHTML = data.result.firstname + " " + data.result.lastname;
@@ -62,7 +62,7 @@ define(['controllers/controllers'],
                             });
 
                             $scope.groupList = "";
-                            $http.post("http://162.243.215.160:9000/v1/group/listAll", data).success(function (data, status) {
+                            $http.post("http://162.243.18.170:9000/v1/group/listAll", data).success(function (data, status) {
 
                                 // alert( "There are your groups" );	
                                 $scope.groupList = data.result.groupList.slice(0, 3);
@@ -78,7 +78,7 @@ define(['controllers/controllers'],
 
 
                             $scope.myGroupList = "";
-                            $http.post("http://162.243.215.160:9000/v1/group/listMyGroups", data).success(function (data, status) {
+                            $http.post("http://162.243.18.170:9000/v1/group/listMyGroups", data).success(function (data, status) {
 
                                 // alert( "There are your groups" );	
                                 $scope.myGroupList = data.result.groupList.slice(0, 3);
@@ -97,7 +97,7 @@ define(['controllers/controllers'],
 
 
                             $scope.popularGroupList = "";
-                            $http.post("http://162.243.215.160:9000/v1/group/listPopularGroups", data).success(function (data, status) {
+                            $http.post("http://162.243.18.170:9000/v1/group/listPopularGroups", data).success(function (data, status) {
 
                                 // alert( "There are your groups" );	
                                 $scope.popularGroupList = data.result.groupList.slice(0, 3);
@@ -113,7 +113,7 @@ define(['controllers/controllers'],
 
 
                             $scope.latestGroupList = "";
-                            $http.post("http://162.243.215.160:9000/v1/group/listLatest", data).success(function (data, status) {
+                            $http.post("http://162.243.18.170:9000/v1/group/listLatest", data).success(function (data, status) {
 
                                 // alert( "There are your groups" );	
                                 $scope.latestGroupList = data.result.groupList.slice(0, 3);
@@ -128,7 +128,7 @@ define(['controllers/controllers'],
                             });
 
                             $scope.recommendedGroupList = "";
-                            $http.post("http://162.243.215.160:9000/v1/group/listRecommended", data).success(function (data, status) {
+                            $http.post("http://162.243.18.170:9000/v1/group/listRecommended", data).success(function (data, status) {
 
                                 // alert( "There are your groups" );	
                                 $scope.recommendedGroupList = data.result.groupList.slice(0, 3);

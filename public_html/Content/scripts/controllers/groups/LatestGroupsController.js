@@ -29,7 +29,7 @@ define(['controllers/controllers'],
         
         $scope.groupList="";
         
-        $http.post("http://162.243.215.160:9000/v1/group/listAll", data).success(function(data, status) {
+        $http.post("http://162.243.18.170:9000/v1/group/listAll", data).success(function(data, status) {
                     
                  //alert( "There are your groups" );	
                    $scope.groupList=data.result.groupList;
@@ -49,7 +49,7 @@ define(['controllers/controllers'],
        };
         
         /*
-        $http.post("http://162.243.215.160:9000/v1/group/listAll", data).success(function(data, status) {
+        $http.post("http://162.243.18.170:9000/v1/group/listAll", data).success(function(data, status) {
                     
                    // alert( "There are your groups" );	
                    $scope.groupList=data.result.groupList.slice(0,3);
@@ -63,7 +63,7 @@ define(['controllers/controllers'],
             
             
         $scope.myGroupList="";
-        $http.post("http://162.243.215.160:9000/v1/group/listMyGroups", data).success(function(data, status) {
+        $http.post("http://162.243.18.170:9000/v1/group/listMyGroups", data).success(function(data, status) {
                     
                    // alert( "There are your groups" );	
                    $scope.myGroupList=data.result.groupList.slice(0,3);

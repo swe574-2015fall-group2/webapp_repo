@@ -24,7 +24,7 @@ define(['controllers/controllers',
                 password: "string"
             });
         
-        $http.post("http://162.243.215.160:9000/v1/user/login", data).success(function(data, status) {
+        $http.post("http://162.243.18.170:9000/v1/user/login", data).success(function(data, status) {
             alert("success");
         });*/
         var Cerez = document.cookie;

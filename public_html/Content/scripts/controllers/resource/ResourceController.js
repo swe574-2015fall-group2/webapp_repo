@@ -17,7 +17,7 @@ define(['controllers/controllers'],
                              password: "string"
                              });
 
-                             $http.post("http://162.243.215.160:9000/v1/user/login", data).success(function(data, status) {
+                             $http.post("http://162.243.18.170:9000/v1/user/login", data).success(function(data, status) {
                              alert("success");
                              });*/
 
@@ -48,7 +48,7 @@ define(['controllers/controllers'],
                             });
 
 
-                            $http.post("http://162.243.215.160:9000/v1/resource/queryResourcesByGroup", data).success(function (data, status) {
+                            $http.post("http://162.243.18.170:9000/v1/resource/queryResourcesByGroup", data).success(function (data, status) {
                                 $scope.resourceList = data.result;
 
 
@@ -67,7 +67,7 @@ define(['controllers/controllers'],
                                 var file = $scope.myFile;
                                 console.log('file is ');
                                 console.dir(file);
-                                var uploadUrl = 'http://162.243.215.160:9000/v1/resource/upload?groupId='+ selectedGroup+'&authToken=' + authToken;
+                                var uploadUrl = 'http://162.243.18.170:9000/v1/resource/upload?groupId='+ selectedGroup+'&authToken=' + authToken;
                                 fileUpload.uploadFileToUrl(file, uploadUrl);
 
                             };
@@ -80,7 +80,7 @@ define(['controllers/controllers'],
                                     id: id
                                 });
 
-                                $http.post("http://162.243.215.160:9000/v1/resource/"+id, data).success(function (data, status) {
+                                $http.post("http://162.243.18.170:9000/v1/resource/"+id, data).success(function (data, status) {
                                     //alert(data.result.token);
                                     alert("success");
                                     //document.cookie = "authToken" + "=" + data.result.token;
