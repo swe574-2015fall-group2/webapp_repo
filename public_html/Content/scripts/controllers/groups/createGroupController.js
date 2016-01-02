@@ -26,11 +26,27 @@ define(['controllers/controllers'],
                             var Sonuclar = Duzenli.exec(Cerez);
                             // alert( unescape(Sonuclar[1]) );	
                             var authToken = unescape(Sonuclar[1]);
-
+                            $scope.groupIsCreated = false;
                             $scope.authToken = authToken;
                             $scope.name = "";
                             $scope.description = "";
                             $scope.sendPost = function () {
+
+                                if (isEmpty($scope.name))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a group name.";
+                                    $scope.popUpVisible = true;
+                                    return;
+                                }
+
+                                if (isEmpty($scope.description))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a description for the group.";
+                                    $scope.popUpVisible = true;
+                                    return;
+                                }
 
                                 var data = JSON.stringify({
                                     authToken: $scope.authToken,
@@ -51,15 +67,40 @@ define(['controllers/controllers'],
                                      var Duzenli = new RegExp("sinan=([^;=]+)[;\\b]?");
                                      var Sonuclar = Duzenli.exec(Cerez);
                                      alert( unescape(Sonuclar[1]) );	*/
-                                    alert("Group is created successfully!");
-                                    $window.location.href = "#/my_groups";
+                                    $scope.popUpHeader = "Success";
+                                    $scope.popUpBody = "Group is created successfully.";
+                                    $scope.popUpVisible = true;
+                                    $scope.groupIsCreated = true;
                                 }).error(function (data, status, headers, config) {
-                                    alert("Error: " + data.consumerMessage);
+
+                                    $scope.popUpHeader = "Error";
+                                    $scope.popUpBody = data.consumerMessage;
+                                    $scope.popUpVisible = true;
 
                                 });
                             };
 
 
+                            function isEmpty(MyVariable)
+                            {
+                                if (
+                                        (MyVariable.length == 0)
+                                        ||
+                                        (MyVariable == "")
+                                        ||
+                                        (MyVariable.replace(/\s/g, "") == "")
+                                        ||
+                                        (!/[^\s]/.test(MyVariable))
+                                        ||
+                                        (/^\s*$/.test(MyVariable))
+                                        )
+                                {
+                                    return true;
+                                } else
+                                {
+                                    return false;
+                                }
+                            }
 
 
                             $scope.yeniTagList = [];
@@ -115,7 +156,18 @@ define(['controllers/controllers'],
                             };
 
 
+                            $scope.popUpHeader = "Header";
+                            $scope.popUpBody = "Body";
+                            $scope.popUpVisible = false;
 
+                            $scope.closePopUp = function () {
+                                $scope.popUpVisible = false;
+
+                                if ($scope.groupIsCreated)
+                                {
+                                    $window.location.href = "#/my_groups";
+                                }
+                            };
 
 
                         }]);
