@@ -89,6 +89,7 @@ define(['controllers/controllers'],
                              "phoneNumber": "string"
                              }*/
 
+                            $scope.invitedUserIdList = [];
                             $scope.createMeeting = function () {
 
                                 if (!isValid())
@@ -104,7 +105,11 @@ define(['controllers/controllers'],
                                 var diziTag = $scope.tags.split(",");
 
                                 $scope.contactDetail = {name: $scope.contactName, surname: $scope.contactSurname, email: $scope.contactEmail, phoneNumber: $scope.contactPhone};
-                             
+
+                                $scope.invitedUserIdList = [];
+                                for (var i = 0; i <= $scope.invitedUsers.length - 1; i++) {
+                                    $scope.invitedUserIdList.push($scope.invitedUsers[i].id);
+                                }
 
                                 var data = JSON.stringify({
                                     authToken: $scope.authToken,
@@ -118,7 +123,7 @@ define(['controllers/controllers'],
                                     description: $scope.description,
                                     type: $scope.tip,
                                     groupId: $scope.selectedGroup,
-                                    /*invitedUserIdList:[""],*/
+                                    invitedUserIdList: $scope.invitedUserIdList,
                                     tagList: $scope.selectedTagList,
                                     contactDetails: $scope.contactDetail
                                 });
@@ -157,15 +162,8 @@ define(['controllers/controllers'],
 
                                     $scope.yeniTagList = data.result.dataList;
 
-                                    for (var i = 0; i <= $scope.myGroupListCount - 1; i++) {
-                                        if ($scope.yeniTagList[i].label == $scope.inputTag)
-                                        {
-                                            $scope.selectedTagList.push($scope.yeniTagList[i].label, $scope.yeniTagList[i].clazz);
-                                        }
-                                    }
 
                                 }).error(function (data, status, headers, config) {
-                                    // alert("Error: " + data.consumerMessage);
 
                                 });
                             };
@@ -190,6 +188,13 @@ define(['controllers/controllers'],
 
 
                             };
+
+
+
+
+
+
+
 
 
                             $scope.agendaList = [];
@@ -364,6 +369,57 @@ define(['controllers/controllers'],
                                 var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                                 return re.test(email);
                             }
+
+
+                            $scope.userList = [];
+                            $scope.allUserCount = 0;
+
+
+                            var getAllUserData = JSON.stringify({
+                                authToken: authToken,
+                                queryString: ""
+                            });
+
+                            $http.post("http://162.243.18.170:9000/v1/user/query", getAllUserData).success(function (data, status) {
+
+                                $scope.userList = data.result.userList;
+                                $scope.allUserCount = data.result.userList.length;
+                            }).error(function (data, status, headers, config) {
+
+                            });
+
+
+                            $scope.array;
+                            $scope.invitedUsers = [];
+
+                            $scope.addInvitedUser = function () {
+
+                                var x = $scope.ngUser;
+                                x = x.replace(/[\s]/g, '');
+                                $scope.array = x.split('|');
+                                for (var i = 0; i <= $scope.allUserCount - 1; i++) {
+                                    if ($scope.userList[i].username == $scope.array[$scope.array.length - 1]) {
+
+                                        $scope.invitedUsers.push({firstname: $scope.userList[i].firstname, lastname: $scope.userList[i].lastname, id: $scope.userList[i].id, username: $scope.userList[i].username});
+                                        $scope.ngUser = "";
+                                        break;
+                                    }
+                                }
+                            };
+
+                            $scope.inviteAllUsers = function () {
+
+                                $scope.invitedUsers = [];
+
+                                for (var i = 0; i <= $scope.allUserCount - 1; i++) {
+
+                                    $scope.invitedUsers.push({firstname: $scope.userList[i].firstname, lastname: $scope.userList[i].lastname, id: $scope.userList[i].id, username: $scope.userList[i].username});
+                                }
+
+                            };
+
+
+
 
 
 

@@ -1,9 +1,9 @@
 <div ng-show="popUpVisible" style=" background-color:black;
-        width:100%;
-        height:100%;
-      	display:block;
-        position:absolute;
-    	z-index:100;top: 0; left: 0; bottom: 0; right: 0; opacity:0.5"></div>
+     width:100%;
+     height:100%;
+     display:block;
+     position:absolute;
+     z-index:100;top: 0; left: 0; bottom: 0; right: 0; opacity:0.5"></div>
 
 
 <div ng-show="popUpVisible" style=" width: 500px;      height: 300px;      overflow: auto;      margin: auto;      position: absolute;      top: 0; left: 0; bottom: 0; right: 0;  z-index:110">
@@ -322,6 +322,61 @@
         </div>
         </td> 
         </tr>
+
+
+
+
+
+
+        <tr>
+            <td>Invite User</td>
+            <td>
+                <table style="width:400px; border-color:#35363a" cellpadding="3"  >
+
+                    <tr>
+                        <td>
+                    <input id="inputUser" class="form-control" type="text" name="product" style="width:300px" list="inputUserList" ng-model="ngUser"   />
+                    <datalist id="inputUserList">
+                        <option   ng-repeat="item in userList"  value="{{item.firstname}} {{item.lastname}}  |  {{item.username}}" > </option>
+                    </datalist>
+            </td>
+            <td> 
+                <table cellpadding="1">
+                    <tr>
+                        <td><button type="submit" class="btn btn-success" ng-click="addInvitedUser()" >Invite User</button>      
+                        </td>
+                        <td> <button type="submit" class="btn btn-success" ng-click="inviteAllUsers()" >Invite All User</button>
+                        </td> 
+                    </tr>
+                </table>
+
+
+            </td> 
+        </tr>
+        </table>
+
+        <table style="width:400px; border-color:#35363a" cellpadding="3"  >
+
+            <tr>
+                <th>Invited Users</th>              
+            </tr>
+
+            <tr >
+
+                <td > <span data-ng-repeat="user in invitedUsers"> {{user.firstname}} {{user.lastname}} | </span></td>               
+            </tr>
+        </table>
+
+        </td> 
+        </tr> 
+
+
+
+
+
+
+
+
 
 
 
