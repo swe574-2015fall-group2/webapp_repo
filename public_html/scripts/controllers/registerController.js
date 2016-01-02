@@ -59,17 +59,17 @@ define(['controllers/controllers',
                                 });
 
                                 $http.post("http://162.243.18.170:9000/v1/user/create", data).success(function (data, status) {
-                                    //alert(data.result.token);
-                                    //document.cookie = "authToken" + "=" + data.result.token;
-                                    //$location.path( "~/Content/" );
+                                  
+                                    $scope.popUpHeader = "Success";
+                                    $scope.popUpBody = "Your account is created successfully.";
+                                    $scope.popUpVisible = true;
+                                    $scope.userIsCreated = true;
 
-                                    alert("user created, proceeding to login")
 
-
-
-                                    $window.location.href = '#/login';
                                 }).error(function (data, status, headers, config) {
-                                    alert("Error! Check your info2");
+                                    $scope.popUpHeader = "Error";
+                                    $scope.popUpBody = "An error is occurred during creating user account.";
+                                    $scope.popUpVisible = true;
                                 });
 
                             };
@@ -110,7 +110,7 @@ define(['controllers/controllers',
 
                                 if ($scope.userIsCreated)
                                 {
-                                    $window.location.href = "#/my_groups";
+                                    $window.location.href = '#/login';
                                 }
                             };
 
