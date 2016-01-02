@@ -71,8 +71,8 @@ define(['controllers/controllers'],
                                 $scope.selectedMeetingLoc = data.result.meeting.location;
                                 $scope.tagsList = data.result.meeting.tagList;
 
-                                $scope.attandedUsers = getUserDetails(data.result.meeting.attandedUserSet);
-                                $scope.invitedUsers = getUserDetails(data.result.meeting.invitedUserSet);
+                                $scope.attandedUsers = data.result.meeting.attandedUserSet;
+                                $scope.invitedUsers = data.result.meeting.invitedUserSet;
                                 $scope.startHour = data.result.meeting.startHour;
                                 $scope.endHour = data.result.meeting.endHour;
                                 var date = new Date($scope.datetime);
