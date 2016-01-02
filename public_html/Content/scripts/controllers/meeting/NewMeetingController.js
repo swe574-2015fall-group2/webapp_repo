@@ -78,9 +78,10 @@ define(['controllers/controllers'],
                             $scope.contactPhone = "";
 
                             $scope.contactDetail = "";
+                            $scope.isPinned = "";
 
 
-
+                            var pinned;
 
                             /*"contactDetails": {
                              "name": "string",
@@ -95,6 +96,14 @@ define(['controllers/controllers'],
                                 if (!isValid())
                                 {
                                     return;
+                                }
+
+                                if ($scope.isPinned == "Yes")
+                                {
+                                    pinned = true;
+                                } else
+                                {
+                                    pinned = false;
                                 }
 
                                 if ($scope.isOnlineMeeting == true)
@@ -125,7 +134,8 @@ define(['controllers/controllers'],
                                     groupId: $scope.selectedGroup,
                                     invitedUserIdList: $scope.invitedUserIdList,
                                     tagList: $scope.selectedTagList,
-                                    contactDetails: $scope.contactDetail
+                                    contactDetails: $scope.contactDetail,
+                                    isPinned: pinned
                                 });
 
                                 $http.post("http://162.243.18.170:9000/v1/meeting/create", data).success(function (data, status) {
