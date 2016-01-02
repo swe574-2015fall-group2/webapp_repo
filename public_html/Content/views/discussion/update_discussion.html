@@ -1,9 +1,37 @@
+
+
+<div ng-show="popUpVisible" style=" background-color:black;
+        width:100%;
+        height:100%;
+      	display:block;
+        position:absolute;
+    	z-index:100;top: 0; left: 0; bottom: 0; right: 0; opacity:0.5"></div>
+
+
+<div ng-show="popUpVisible" style=" width: 500px;      height: 300px;      overflow: auto;      margin: auto;      position: absolute;      top: 0; left: 0; bottom: 0; right: 0;  z-index:110">
+    <div class="modal-content" >
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closePopUp()"></button>
+            <h4 class="modal-title">{{popUpHeader}}</h4>
+        </div>
+        <div class="modal-body">
+            <p>
+                {{popUpBody}}
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button data-dismiss="modal" class="btn btn-success" ng-click="closePopUp()">OK</button>
+        </div>
+    </div>
+</div>
+
+
 <div><table class="" style="margin-bottom: 30px; width: 100%">
 
         <tbody>
             <tr>
                 <td></td>
-               
+
                 <td>
                     <button type="button" class="btn btn-navbar" onclick="window.location.href = '#/discussion_detail';">Back to Discussion Detail </button>
                 </td>
@@ -14,13 +42,13 @@
 
 <div style="margin-bottom: 20px;">
 
-  
+
     <h3  ng-bind="selectedGroupName"></h3>
     <p>Update Discussion</p>
 </div>
- <form role="form" ng-submit="sendPost()">   
-<div class="well well-sm"> 
-       
+<form role="form" >   
+    <div class="well well-sm"> 
+
 
         <div class="form-body">            
             <table cellpadding="5">               
@@ -33,28 +61,55 @@
                         <td>Description</td>
                         <td> <textarea class="form-control" ng-model="description" placeholder="Enter text" style="width:450px; height: 150px"></textarea></td>
                     </tr>
+
+
                     <tr>
-                    <td>
-                        Tags
-                    </td>
-                    <td>      
-                <input  class="form-control" id="exampleInputEmail1" ng-model="tags" placeholder="Enter text" ng-model="tags" style="width:450px">
-                    </td>
+                        <td>Tags</td>
+                        <td>
+                            <table border="1" style="width:400px; border_color:#35363a" cellpadding="3"  >
+
+                                <tr>
+                                    <td>
+                                <input id="inputTag" class="form-control" type="text" name="product" style="width:300px" list="inputTagList" ng-model="ngTag"  ng-change="getTag()"/>
+                                <datalist id="inputTagList">
+                                    <option  ng-repeat="option in yeniTagList" value="{{option.label}}" >{{option.clazz}} </option>
+                                </datalist>
+                        </td>
+                        <td> 
+                            <button type="submit" class="btn btn-success" ng-click="setTag()" >Add Tag</button>
+                        </td> 
                     </tr>
+            </table>
+
+            <table border="1" style="width:400px; border_color:#35363a" cellpadding="3"  >
+
+                <tr>
+                    <th>Selected Tag</th>
+                    <th>Selected context</th>
+                </tr>
+
+                <tr data-ng-repeat="selectedTag in selectedTagList">
+                    <td>{{selectedTag.tag}}</td>
+                    <td>{{selectedTag.clazz}}</td> 
+                </tr>
+            </table>
+
+            </td> 
+            </tr>
 
             </table>     
 
         </div>
-    
-</div>
+
+    </div>
 
 
 
 
 
 
-<div class="well well-sm">
-    <button type="submit" class="btn btn-success">Update Discussion</button>
-</div>
-     
- </form>
+    <div class="well well-sm">
+        <button type="submit" class="btn btn-success" ng-click="updateDiscussion()">Update Discussion</button>
+    </div>
+
+</form>
