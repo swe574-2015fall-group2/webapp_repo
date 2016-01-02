@@ -213,13 +213,21 @@ define(['controllers/controllers'],
 
                     $scope.sendPost = function () {
 
-                        var tagList = $scope.tags.split(',');
-                        $scope.tagList = tagList;
+                        if (isEmpty($scope.name))
+                        {
+                            $scope.popUpHeader = "Warning";
+                            $scope.popUpBody = "You have to enter a discussion name.";
+                            $scope.popUpVisible = true;
+                            return;
+                        }
 
-                        if ($scope.meetingtype == true)
-                            $scope.tip = "ONLINE";
-                        else
-                            $scope.tip = "FACE_TO_FACE";
+                        if (isEmpty($scope.description))
+                        {
+                            $scope.popUpHeader = "Warning";
+                            $scope.popUpBody = "You have to enter a description.";
+                            $scope.popUpVisible = true;
+                            return;
+                        }
 
                         var data = JSON.stringify({
                             authToken: $scope.authToken,
@@ -313,9 +321,29 @@ define(['controllers/controllers'],
                                 clazz: ""
                             });
                         }
-
-
                     };
+
+
+                    function isEmpty(MyVariable)
+                    {
+                        if (
+                                (MyVariable.length == 0)
+                                ||
+                                (MyVariable == "")
+                                ||
+                                (MyVariable.replace(/\s/g, "") == "")
+                                ||
+                                (!/[^\s]/.test(MyVariable))
+                                ||
+                                (/^\s*$/.test(MyVariable))
+                                )
+                        {
+                            return true;
+                        } else
+                        {
+                            return false;
+                        }
+                    }
 
 
 
