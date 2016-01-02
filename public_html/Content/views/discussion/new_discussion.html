@@ -49,6 +49,36 @@
   }
 </style>
 
+
+
+
+<div ng-show="popUpVisible" style=" background-color:black;
+        width:100%;
+        height:100%;
+      	display:block;
+        position:absolute;
+    	z-index:100;top: 0; left: 0; bottom: 0; right: 0; opacity:0.5"></div>
+
+
+<div ng-show="popUpVisible" style=" width: 500px;      height: 300px;      overflow: auto;      margin: auto;      position: absolute;      top: 0; left: 0; bottom: 0; right: 0;  z-index:110">
+    <div class="modal-content" >
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closePopUp()"></button>
+            <h4 class="modal-title">{{popUpHeader}}</h4>
+        </div>
+        <div class="modal-body">
+            <p>
+                {{popUpBody}}
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button data-dismiss="modal" class="btn btn-success" ng-click="closePopUp()">OK</button>
+        </div>
+    </div>
+</div>
+
+
+
 <div>
   <table class="" style="margin-bottom: 30px; width: 100%">
 
@@ -79,13 +109,13 @@
       <tr>
         <td>Discussion Name</td>
         <td>
-          <input ng-model="name" class="form-control" placeholder="Enter text" style="width:450px">
+          <input ng-model="name" class="form-control" placeholder="Enter text" style="width:450px" required>
         </td>
       </tr>
       <tr>
         <td>Description</td>
         <td>
-          <textarea class="form-control" ng-model="description" placeholder="Enter text" style="width:450px; height: 150px"></textarea>
+          <textarea class="form-control" ng-model="description" placeholder="Enter text" style="width:450px; height: 150px" required></textarea>
         </td>
       </tr>
       <tr>
