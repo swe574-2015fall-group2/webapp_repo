@@ -72,9 +72,29 @@ define(['controllers/controllers'],
                             $scope.timezone = "";
                             $scope.location = "";
 
+                            $scope.contactName = "";
+                            $scope.contactSurname = "";
+                            $scope.contactEmail = "";
+                            $scope.contactPhone = "";
+
+                            $scope.contactDetail = "";
 
 
-                            $scope.sendPost = function () {
+
+
+                            /*"contactDetails": {
+                             "name": "string",
+                             "surname": "string",
+                             "email": "string",
+                             "phoneNumber": "string"
+                             }*/
+
+                            $scope.createMeeting = function () {
+
+                                if (!isValid())
+                                {
+                                    return;
+                                }
 
                                 if ($scope.isOnlineMeeting == true)
                                     $scope.tip = "ONLINE";
@@ -83,28 +103,38 @@ define(['controllers/controllers'],
 
                                 var diziTag = $scope.tags.split(",");
 
+                                $scope.contactDetail = {name: $scope.contactName, surname: $scope.contactSurname, email: $scope.contactEmail, phoneNumber: $scope.contactPhone};
+                             
+
                                 var data = JSON.stringify({
                                     authToken: $scope.authToken,
                                     name: $scope.name,
                                     datetime: $scope.date,
                                     timezone: $scope.timezone,
-                                    startHour: $scope.starthour +":" +  $scope.starthourmin,
-                                    endHour: $scope.finishhour +":" +  $scope.finishhourmin,
-                                    agendaSet:  $scope.agendaList,
+                                    startHour: $scope.starthour + ":" + $scope.starthourmin,
+                                    endHour: $scope.finishhour + ":" + $scope.finishhourmin,
+                                    agendaSet: $scope.agendaList,
                                     location: $scope.location,
                                     description: $scope.description,
                                     type: $scope.tip,
                                     groupId: $scope.selectedGroup,
                                     /*invitedUserIdList:[""],*/
-                                    tagList: $scope.selectedTagList
+                                    tagList: $scope.selectedTagList,
+                                    contactDetails: $scope.contactDetail
                                 });
 
                                 $http.post("http://162.243.18.170:9000/v1/meeting/create", data).success(function (data, status) {
 
-                                    alert("Meeting is created successfully!");
-                                    $window.location.href = "#/my_groups";
+                                    $scope.popUpHeader = "Success";
+                                    $scope.popUpBody = "Meeting is created successfully.";
+                                    $scope.popUpVisible = true;
+                                    $scope.meetingCreated = true;
+
                                 }).error(function (data, status, headers, config) {
-                                    alert("Error: " + data.consumerMessage);
+
+                                    $scope.popUpHeader = "Error";
+                                    $scope.popUpBody = data.consumerMessage;
+                                    $scope.popUpVisible = true;
 
                                 });
                             };
@@ -168,6 +198,172 @@ define(['controllers/controllers'],
 
                                 $scope.agendaList.push($scope.ngAgenda);
                             };
+
+                            function isValid()
+                            {
+                                /*     
+                                 $scope.tags = "";
+                                 $scope.invitelis = "";     
+                                 */
+
+                                if (isEmpty($scope.name))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a meeting name.";
+                                    $scope.popUpVisible = true;
+                                    return false;
+                                }
+
+                                if (isEmpty($scope.description))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a meeting description.";
+                                    $scope.popUpVisible = true;
+                                    return false;
+                                }
+
+                                if (isEmpty($scope.date))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a meeting date.";
+                                    $scope.popUpVisible = true;
+                                    return false;
+                                }
+
+                                if (isEmpty($scope.starthour))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a meeting start hour.";
+                                    $scope.popUpVisible = true;
+                                    return false;
+                                }
+
+                                if (isEmpty($scope.starthourmin))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a meeting start minute.";
+                                    $scope.popUpVisible = true;
+                                    return false;
+                                }
+
+
+                                if (isEmpty($scope.finishhour))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a meeting finish hour.";
+                                    $scope.popUpVisible = true;
+                                    return false;
+                                }
+
+                                if (isEmpty($scope.finishhourmin))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a meeting finish minute.";
+                                    $scope.popUpVisible = true;
+                                    return false;
+                                }
+
+                                if (isEmpty($scope.timezone))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a meeting timezone.";
+                                    $scope.popUpVisible = true;
+                                    return false;
+                                }
+
+
+                                if (isEmpty($scope.location))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a meeting location.";
+                                    $scope.popUpVisible = true;
+                                    return false;
+                                }
+
+                                if (isEmpty($scope.contactName))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a contact name.";
+                                    $scope.popUpVisible = true;
+                                    return false;
+                                }
+
+                                if (isEmpty($scope.contactSurname))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a contact surname.";
+                                    $scope.popUpVisible = true;
+                                    return false;
+                                }
+
+                                if (isEmpty($scope.contactEmail))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a contact email address.";
+                                    $scope.popUpVisible = true;
+                                    return false;
+                                }
+
+                                if (!isEmailValid($scope.contactEmail))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have entered an invalid contact email address.";
+                                    $scope.popUpVisible = true;
+                                    return false;
+                                }
+
+                                if (isEmpty($scope.contactPhone))
+                                {
+                                    $scope.popUpHeader = "Warning";
+                                    $scope.popUpBody = "You have to enter a contact phone number.";
+                                    $scope.popUpVisible = true;
+                                    return false;
+                                }
+
+                                return true;
+                            }
+
+
+                            $scope.popUpHeader = "";
+                            $scope.popUpBody = "";
+                            $scope.meetingCreated = false;
+                            $scope.popUpVisible = false;
+
+                            $scope.closePopUp = function () {
+                                $scope.popUpVisible = false;
+
+                                if ($scope.meetingCreated)
+                                {
+                                    $window.location.href = "#/my_groups";
+                                }
+                            };
+
+                            function isEmpty(MyVariable)
+                            {
+                                if (
+                                        (MyVariable.length == 0)
+                                        ||
+                                        (MyVariable == "")
+                                        ||
+                                        (MyVariable.replace(/\s/g, "") == "")
+                                        ||
+                                        (!/[^\s]/.test(MyVariable))
+                                        ||
+                                        (/^\s*$/.test(MyVariable))
+                                        )
+                                {
+                                    return true;
+                                } else
+                                {
+                                    return false;
+                                }
+                            }
+
+                            function isEmailValid(email)
+                            {
+                                var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                                return re.test(email);
+                            }
 
 
 
