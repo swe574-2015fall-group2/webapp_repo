@@ -1,5 +1,29 @@
 
-<!-- BEGIN LOGIN -->
+<div ng-show="popUpVisible" style=" background-color:black;
+        width:100%;
+        height:100%;
+      	display:block;
+        position:absolute;
+    	z-index:100;top: 0; left: 0; bottom: 0; right: 0; opacity:0.5"></div>
+
+
+<div ng-show="popUpVisible" style=" width: 500px;      height: 300px;      overflow: auto;      margin: auto;      position: absolute;      top: 0; left: 0; bottom: 0; right: 0;  z-index:110">
+    <div class="modal-content" >
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closePopUp()"></button>
+            <h4 class="modal-title">{{popUpHeader}}</h4>
+        </div>
+        <div class="modal-body">
+            <p>
+                {{popUpBody}}
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button data-dismiss="modal" class="btn btn-success" ng-click="closePopUp()">OK</button>
+        </div>
+    </div>
+</div>
+
 
 
 <div class="content">
@@ -17,7 +41,7 @@
 			<label class="control-label visible-ie8 visible-ie9">Name</label>
 			<div class="input-icon">
 				<i class="fa fa-font"></i>
-				<input class="form-control placeholder-no-fix" type="text" placeholder="Name" name="fullname" ng-model="firstname"/>
+				<input class="form-control placeholder-no-fix" type="text" placeholder="Name" name="fullname" ng-model="firstname" required/>
 			</div>
 		</div>
                 
@@ -25,7 +49,7 @@
 			<label class="control-label visible-ie8 visible-ie9">Last Name</label>
 			<div class="input-icon">
 				<i class="fa fa-font"></i>
-				<input class="form-control placeholder-no-fix" type="text" placeholder="Last Name" name="fullname" ng-model="lastname"/>
+				<input class="form-control placeholder-no-fix" type="text" placeholder="Last Name" name="fullname" ng-model="lastname" required/>
 			</div>
 		</div>
                 
@@ -34,7 +58,7 @@
 			<label class="control-label visible-ie8 visible-ie9">Email</label>
 			<div class="input-icon">
 				<i class="fa fa-envelope"></i>
-				<input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" ng-model="username"/>
+				<input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" ng-model="username" required/>
 			</div>
 		</div>
 		
@@ -43,7 +67,7 @@
 			<label class="control-label visible-ie8 visible-ie9">Password</label>
 			<div class="input-icon">
 				<i class="fa fa-lock"></i>
-				<input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Password" name="password" ng-model="password"/>
+				<input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Password" name="password" ng-model="password" required/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -51,8 +75,9 @@
 			<div class="controls">
 				<div class="input-icon">
 					<i class="fa fa-check"></i>
-					<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="rpassword"/>
-				</div>
+					<input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password2" placeholder="Re-type password" name="password2" ng-model="password2" required/>
+                                
+                                </div>
 			</div>
 		</div>
 		<div class="form-group" style="display:none">
