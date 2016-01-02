@@ -74,10 +74,10 @@
 
     <h3 ng-bind="meetingName"></h3>
     <ul class="list-inline blog-tags">
-      <i class="fa fa-tags"></i>
-      <li  data-ng-repeat="i in tagsList">
-        <p style="background-color: #F1EAEA;">{{i.tag}}</p>
-      </li>
+        <i class="fa fa-tags"></i>
+        <li  data-ng-repeat="i in tagsList">
+            <p style="background-color: #F1EAEA;">{{i.tag}}</p>
+        </li>
     </ul>
 
 </div>
@@ -102,6 +102,35 @@
         </table>
     </div>
 </div>
+
+<div class="well well-sm">
+    <h4>Contact</h4>
+    <table style="" cellpadding="5">
+        <tr>
+            <td>Contact Name</td>
+            <td>:</td>
+            <td>{{contactName}}</td>
+        </tr>
+        <tr>
+            <td>Contact Surname</td>
+            <td>:</td>
+            <td>{{contactSurname}}</td>
+        </tr>
+        <tr>
+            <td>Contact Email</td>
+            <td>:</td>
+            <td>{{contactEmail}}</td>
+        </tr>
+        <tr>
+            <td>Contact Phone Number</td>
+            <td>:</td>
+            <td>{{contactPhone}}</td>
+        </tr>
+
+    </table>
+</div>
+
+
 
 <div class="well well-sm">
     <h4>Agenda Items</h4>

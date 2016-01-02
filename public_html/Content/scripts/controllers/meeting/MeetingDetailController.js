@@ -51,6 +51,11 @@ define(['controllers/controllers'],
                             $scope.selectedMeetingDesc = selectedMeetingDesc;
                             $scope.selectedMeeting = selectedMeeting;
 
+                            $scope.contactName = "";
+                            $scope.contactSurname = "";
+                            $scope.contactEmail = "";
+                            $scope.contactPhone = "";
+
                             //get the meetings
                             var data = JSON.stringify({
                                 authToken: authToken,
@@ -73,6 +78,12 @@ define(['controllers/controllers'],
                                 var date = new Date($scope.datetime);
                                 $scope.day = date.getDate();
                                 $scope.month = date.getMonth() + 1;
+
+                                $scope.contactName = data.result.meeting.contactDetails.name;
+                                $scope.contactSurname = data.result.meeting.contactDetails.surname;
+                                $scope.contactEmail = data.result.meeting.contactDetails.email;
+                                $scope.contactPhone = data.result.meeting.contactDetails.phoneNumber;
+
 
                                 var tagsString = "Tags: ";
                                 var tags = data.result.meeting.tagList;
