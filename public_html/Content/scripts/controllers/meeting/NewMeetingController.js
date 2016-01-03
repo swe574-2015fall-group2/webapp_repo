@@ -11,6 +11,23 @@ define(['controllers/controllers'],
 
                             $(document).ready(function () {
 
+                              $('#textarea')
+                                .textext({
+                                  plugins: 'tags autocomplete'
+                                })
+                                .bind('getSuggestions', function(e, data) {
+                                  var list = $scope.getTag(),
+                                    textext = $(e.target).textext()[0],
+                                    query = (data ? data.query : '') || '';
+
+                                  $(this).trigger(
+                                    'setSuggestions', {
+                                      result: textext.itemManager().filter(list, query)
+                                    }
+                                  );
+                                });
+
+
                                 $scope.userList = ["Sinan Can", "Hayrican", "Barış", "Mehmet", "Orkun", "Recep", "Ahmet", "Kerem", "Veli", "George", "Kyle"];
 
                                 $("#tags").autocomplete({
@@ -47,7 +64,7 @@ define(['controllers/controllers'],
 
                             var Duzenli2 = new RegExp("selectedGroupName=([^;=]+)[;\\b]?");
                             var Sonuclar2 = Duzenli2.exec(Cerez);
-                            //alert( unescape(Sonuclar[1]) );	
+                            //alert( unescape(Sonuclar[1]) );
                             var selectedGroupName = unescape(Sonuclar2[1]);
 
 
@@ -120,6 +137,20 @@ define(['controllers/controllers'],
                                     $scope.invitedUserIdList.push($scope.invitedUsers[i].id);
                                 }
 
+
+                                 $scope.tagListTemp = $('#tagListData').val();
+                                 $scope.tagListTemp = $scope.tagListTemp.substr(1, $scope.tagListTemp.length-2);
+                                 $scope.tagListTemp = $scope.tagListTemp.split(",");
+
+                                   var tagsListToSend = [];
+                                   for (var i = 0; i <= $scope.tagListTemp.length - 1; i++) {
+                                     var clazz = $scope.tagListTemp[i].split(" - ")[1].replace("\"","");
+                                     var tag = $scope.tagListTemp[i].split(" - ")[0].replace("\"","");
+                                     var tagObj = {tag:tag, clazz:clazz};
+                                     tagsListToSend.push(tagObj);
+                                   }
+
+
                                 var data = JSON.stringify({
                                     authToken: $scope.authToken,
                                     name: $scope.name,
@@ -133,7 +164,7 @@ define(['controllers/controllers'],
                                     type: $scope.tip,
                                     groupId: $scope.selectedGroup,
                                     invitedUserIdList: $scope.invitedUserIdList,
-                                    tagList: $scope.selectedTagList,
+                                    tagList: tagsListToSend,
                                     contactDetails: $scope.contactDetail,
                                     isPinned: pinned
                                 });
@@ -156,9 +187,16 @@ define(['controllers/controllers'],
 
                             $scope.yeniTagList = [];
                             $scope.selectedTagList = [];
+                            $scope.yeniTagList2 = [];
 
 
                             $scope.getTag = function () {
+
+                              $scope.ngTag = $('#textarea').val();
+                                if($scope.ngTag=="")
+                                {
+                                  $scope.ngTag = "a";
+                                }
 
                                 var data = JSON.stringify({
                                     authToken: $scope.authToken,
@@ -172,11 +210,35 @@ define(['controllers/controllers'],
 
                                     $scope.yeniTagList = data.result.dataList;
 
+                                    for (var i = 0; i <= $scope.myGroupListCount - 1; i++) {
+                                        $scope.yeniTagList2.push("" + $scope.yeniTagList[i].label + " - " + $scope.yeniTagList[i].clazz);
+                                          }
 
                                 }).error(function (data, status, headers, config) {
 
                                 });
+
+                                $scope.yeniTagList2 = $scope.eliminateDuplicates($scope.yeniTagList2);
+
+                                return $scope.yeniTagList2;
+
                             };
+
+
+                            $scope.eliminateDuplicates = function(arr) {
+                              var i,
+                                  len=arr.length,
+                                  out=[],
+                                  obj={};
+
+                              for (i=0;i<len;i++) {
+                                obj[arr[i]]=0;
+                              }
+                              for (i in obj) {
+                                out.push(i);
+                              }
+                              return out;
+                            }
 
 
                             $scope.setTag = function () {
@@ -216,9 +278,9 @@ define(['controllers/controllers'],
 
                             function isValid()
                             {
-                                /*     
+                                /*
                                  $scope.tags = "";
-                                 $scope.invitelis = "";     
+                                 $scope.invitelis = "";
                                  */
 
                                 if (isEmpty($scope.name))
