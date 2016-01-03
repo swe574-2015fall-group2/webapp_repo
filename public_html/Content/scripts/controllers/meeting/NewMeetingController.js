@@ -11,6 +11,8 @@ define(['controllers/controllers'],
 
                             $(document).ready(function () {
 
+                            $('#datePicker').datepick({dateFormat: 'yyyy-mm-dd'});
+
                               $('#textarea')
                                 .textext({
                                   plugins: 'tags autocomplete'
@@ -298,7 +300,8 @@ define(['controllers/controllers'],
                                     $scope.popUpVisible = true;
                                     return false;
                                 }
-
+                                
+                                $scope.date = $('#datePicker').val();
                                 if (isEmpty($scope.date))
                                 {
                                     $scope.popUpHeader = "Warning";
