@@ -10,7 +10,7 @@
           <p ng-bind="selectedGroupDesc"></p>
           <ul class="list-inline blog-tags">
             <i class="fa fa-tags"></i>
-            <li  data-ng-repeat="i in tagsList">
+            <li data-ng-repeat="i in tagsList">
               <p style="background-color: #F1EAEA;">{{i.tag}}</p>
             </li>
           </ul>
@@ -103,139 +103,142 @@
   </ul>
 </div>
 
-
-
-<div class="well well-sm">
-  <h4>Discussions</h4>
-  <div ng-show="!discussionList.length">
-    <p>Unfortunately, there are no discussions. Maybe you should create one...</p>
-    <a href="#/new_discussion" class="icon-btn" style="width:130px">
-      <i class="fa fa-comments-o" style="font-size: 35px;"></i>
-      <div>
-        Create New Discussion
-      </div>
-    </a>
-  </div>
-
-
-
-
-  <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; " data-ng-repeat="i in discussionList">
-
-    <li role="presentation">
-      <a role="menuitem" tabindex="-1" href="" ng-click="toDiscussionDetail(i.id,i.name,i.description)">{{i.name}}
-            </a>
-    </li>
-  </ul>
-
-
-</div>
-
-<div class="well well-sm">
-  <h4>Notes</h4>
-  <div ng-show="!noteList.length">
-    <p>Unfortunately, there are no notes. Maybe you should create one...</p>
-    <a href="#/new_note" class="icon-btn" style="width:130px">
-      <i class="fa fa-pencil-square-o" style="font-size: 35px;"></i>
-      <div>
-        Create New Note
-      </div>
-    </a>
-  </div>
-
-  <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; " data-ng-repeat="i in noteList">
-
-    <li role="presentation">
-      <a role="menuitem" tabindex="-1" href="" ng-click="toNoteDetail(i.id,i.title)">{{i.title}}
-            </a>
-    </li>
-  </ul>
-</div>
-
-
-<div class="well well-sm">
-  <h4>Resources</h4>
-
-  <div class="media">
-    <div class="pull-left " style="    margin: 10px;" data-ng-repeat="i in resourceList">
-      <table>
-
-        <tr>
-          <th>
-            <img src="assets/img/file_types/file.png" alt="100%x200" style=" height: 60px; display: block;">
-          </th>
-        </tr>
-        <tr>
-          <td>{{i.description.substring(0, 10)}}..</td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="col-md-2" ng-show="showAllResourcesButton">
-      <div class="">
-        <h3 ng-bind="resourceListCount"></h3>
-        <h3> More Resource(s) </h3>
-        <!--<img src="assets/img/pages/3.jpg" alt="" class="img-responsive"/>-->
-        <div class="team-info">
-          <p>
-            <a href="#/resource"> View More...</a>
-          </p>
-
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-6">
+      <div class="well well-sm">
+        <h4>Discussions</h4>
+        <div ng-show="!discussionList.length">
+          <p>Unfortunately, there are no discussions. Maybe you should create one...</p>
+          <a href="#/new_discussion" class="icon-btn" style="width:130px">
+            <i class="fa fa-comments-o" style="font-size: 35px;"></i>
+            <div>
+              Create New Discussion
+            </div>
+          </a>
         </div>
+
+
+
+
+        <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; " data-ng-repeat="i in discussionList">
+
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="" ng-click="toDiscussionDetail(i.id,i.name,i.description)">{{i.name}}
+            </a>
+          </li>
+        </ul>
+
+
       </div>
     </div>
-
-  </div>
-
-  <p ng-show="!resourceList.length">You do not have any resources yet.</p>
-
-
-
-</div>
-
-
-<div class="well well-sm">
-  <h4>Meetings</h4>
-  <div ng-show="!shownMeetingList.length">
-    <p>Unfortunately, there are no meetings scheduled. Maybe you should create one...</p>
-    <a href="#/new_meeting" class="icon-btn" style="width:130px">
-      <i class="fa fa-group" style="font-size: 35px;"></i>
-      <div>
-        Create New Meeting
-      </div>
-    </a>
-  </div>
-  <div data-ng-repeat="i in shownMeetingList">
-    <a class="" href="" ng-click="toMeetingDetail(i.id,i.description,i.location)">
-      <div class="media" style="margin-bottom: 15px;">
-
-        <div class="pull-left well well-sm" style="background-color: white">
-          <table>
-            <tr>
-              <td align="center" style="font-size: 36px">{{i.day}}</td>
-            </tr>
-            <tr>
-              <td align="center">{{i.monthYear}}</td>
-            </tr>
-            <tr>
-              <td align="center">{{i.startHour}}-{{i.endHour}}</td>
-            </tr>
-          </table>
+    <div class="col-md-6">
+      <div class="well well-sm">
+        <h4>Notes</h4>
+        <div ng-show="!noteList.length">
+          <p>Unfortunately, there are no notes. Maybe you should create one...</p>
+          <a href="#/new_note" class="icon-btn" style="width:130px">
+            <i class="fa fa-pencil-square-o" style="font-size: 35px;"></i>
+            <div>
+              Create New Note
+            </div>
+          </a>
         </div>
 
-        <div class="media-body" style="padding-left: 10px; padding-top: 5px">
-          <h4 class="media-heading">{{i.name}} </h4>
-          <p>{{i.location}} </p>
-          <p><i class="fa fa-group" style="margin-right: 3px;    color: brown;"></i>Face-to-Face Meeting</p>
-        </div>
-      </div>
-    </a>
+        <ul style="list-style-type: none; margin-left:0px; padding-left: 0px; " data-ng-repeat="i in noteList">
 
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="" ng-click="toNoteDetail(i.id,i.title)">{{i.title}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 
+  <div class="col-md-12">
+    <div class="col-md-6">
+      <div class="well well-sm">
+        <h4>Resources</h4>
+        <div ng-show="!resourceList.length">
+          <p>Unfortunately, there are no resources. You can create one</p>
+          <a href="#/resource" class="icon-btn" style="width:130px">
+            <i class="fa fa-paperclip" style="font-size: 35px;"></i>
+            <div>
+              Create New Resource
+            </div>
+          </a>
+        </div>
+        <div class="media">
+          <div class="pull-left " style="    margin: 10px;" data-ng-repeat="i in resourceList">
+            <a href="" ng-click="downloadResource(i.id, i.type, i.link)">
+              <table>
 
+                <tr>
+                  <th>
+                    <img src={{i.imgLink}} alt="100%x200" style=" height: 60px; display: block;">
+                  </th>
+                </tr>
+                <tr>
+                  <td>{{i.description.substring(0, 10)}}..</td>
+                </tr>
+              </table>
+            </a>
+
+          </div>
+
+
+        </div>
+
+
+
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="well well-sm">
+        <h4>Meetings</h4>
+        <div ng-show="!shownMeetingList.length">
+          <p>Unfortunately, there are no meetings scheduled. Maybe you should create one...</p>
+          <a href="#/new_meeting" class="icon-btn" style="width:130px">
+            <i class="fa fa-group" style="font-size: 35px;"></i>
+            <div>
+              Create New Meeting
+            </div>
+          </a>
+        </div>
+        <div data-ng-repeat="i in shownMeetingList">
+          <a class="" href="" ng-click="toMeetingDetail(i.id,i.description,i.location)">
+            <div class="media" style="margin-bottom: 15px;">
+
+              <div class="pull-left well well-sm" style="background-color: white">
+                <table>
+                  <tr>
+                    <td align="center" style="font-size: 36px">{{i.day}}</td>
+                  </tr>
+                  <tr>
+                    <td align="center">{{i.monthYear}}</td>
+                  </tr>
+                  <tr>
+                    <td align="center">{{i.startHour}}-{{i.endHour}}</td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="media-body" style="padding-left: 10px; padding-top: 5px">
+                <h4 class="media-heading">{{i.name}} </h4>
+                <p>{{i.location}} </p>
+                <p><i class="fa fa-group" style="margin-right: 3px;    color: brown;"></i>Face-to-Face Meeting</p>
+              </div>
+            </div>
+          </a>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
 </div>
-
 <script>
   $(document).ready(function() {
     // initiate layout and plugins

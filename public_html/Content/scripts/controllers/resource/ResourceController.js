@@ -44,12 +44,24 @@ define(['controllers/controllers'],
                             //Get resourceList
                             var data = JSON.stringify({
                                 authToken: authToken,
-                                id: selectedGroup
+                                groupId: selectedGroup
                             });
 
 
                             $http.post("http://162.243.18.170:9000/v1/resource/queryResourcesByGroup", data).success(function (data, status) {
                                 $scope.resourceList = data.result;
+
+                                for(var i = 0; i< $scope.resourceList.length; i++){
+
+                                    if($scope.resourceList[i].type == "INTERNAL"){
+                                        $scope.resourceList[i].imgLink = "assets/img/file_types/file.png";
+                                      }
+
+                                      if($scope.resourceList[i].type == "EXTERNAL"){
+                                        $scope.resourceList[i].imgLink = "assets/img/file_types/icon256.png";
+                                      }
+
+                                }
 
 
                             }).error(function (data, status, headers, config) {
@@ -70,6 +82,59 @@ define(['controllers/controllers'],
                                 var uploadUrl = 'http://162.243.18.170:9000/v1/resource/upload?groupId='+ selectedGroup+'&authToken=' + authToken;
                                 fileUpload.uploadFileToUrl(file, uploadUrl);
 
+                            };
+
+
+                            $scope.addURL3 = function () {
+
+                              if(!($scope.extURL.indexOf("http")>-1)){
+
+                               $scope.extURL = "http://" + $scope.extURL;
+                               }
+
+                                var data = JSON.stringify({
+                                    authToken: authToken,
+                                    name: $scope.extURLName,
+                                    link:$scope.extURL,
+                                    groupId:selectedGroup,
+                                    tagList:[]
+
+                                });
+
+                                $http.post("http://162.243.18.170:9000/v1/resource/create", data).success(function (data, status) {
+                                    //alert(data.result.token);
+                                    //alert("success");
+
+                                    $window.location.reload();
+                                }).error(function (data, status, headers, config) {
+                                    alert("Error: " + data.consumerMessage);
+
+                                });
+                            };
+
+
+
+
+                            //Add external resource
+                            $scope.addURL = function () {
+                                var data = JSON.stringify({
+                                    authToken: authToken,
+                                    name: $scope.extURLName,
+                                    link:$scope.extURL,
+                                    groupId:selectedGroup,
+                                    tagList:[]
+
+                                });
+
+                                $http.post("http://162.243.18.170:9000/v1/resource/create", data).success(function (data, status) {
+                                    //alert(data.result.token);
+                                    alert("success");
+
+                                    $window.location.reload();
+                                }).error(function (data, status, headers, config) {
+                                    alert("Error: " + data.consumerMessage);
+
+                                });
                             };
 
                             $scope.deleteExternalResource = function (id) {
@@ -103,7 +168,14 @@ define(['controllers/controllers'],
                                 });
                             };
 
+                            $scope.downloadResource = function (id, type, link) {
 
+                              if(type=="INTERNAL")
+                              window.open("http://162.243.18.170:9000/v1/resource/downloadResource?resourceId="+ id +"&authToken=b1167600-b282-11e5-b8df-04019494e201", '_blank');
+                              else if (type=="EXTERNAL")
+                                window.open(link, '_blank')
+
+                            };
 
 
 

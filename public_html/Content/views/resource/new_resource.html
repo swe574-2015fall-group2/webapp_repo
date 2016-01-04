@@ -23,95 +23,189 @@
     </table>
   </div>
 
-
-  <div class="well well-sm">
-    <div class="portlet-body form">
-      <!-- BEGIN FORM-->
-      <form action="#" class="horizontal-form">
-        <div class="form-body">
-          <!-- <h3 class="form-section">New Meeting</h3> -->
-          <div class="row">
-            <div class="col-md-6">
-
-              <div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
-                <input type="hidden" value="" name="">
-                <div class="input-group input-group-fixed">
-                  <span class="input-group-btn">
-                    <span class="uneditable-input">
-                      <i class="fa fa-file fileupload-exists"></i>
-                      <span class="fileupload-preview"></span>
-                    </span>
-                  </span>
-                  <span class="btn btn-default btn-file">
-                    <span class="fileupload-new">
-                      <i class="fa fa-paper-clip"></i> Select file
-                    </span>
-                    <span class="fileupload-exists">
-                      <i class="fa fa-undo"></i> Change
-                    </span>
-                    <input type="file" file-model="myFile" />
-                  </span>
-                  <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> Remove</a>
-
-                </div>
-                <div style="margin-top: 10px;">
-                  <button ng-click="uploadFile()" class="btn btn-navbar">Upload File</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-
-
-
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-        <div class="col-md-12">
+  <div class="col-md-12">
+    <!--BEGIN TABS-->
+    <div class="tabbable tabbable-custom">
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#tab_1_1" data-toggle="tab">Upload Resource</a>
+        </li>
+        <li>
+          <a href="#tab_1_2" data-toggle="tab">Add External Resource</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab_1_1">
           <div class="well well-sm">
+            <div class="portlet-body form">
+              <!-- BEGIN FORM-->
+              <form action="#" class="horizontal-form">
+                <div class="form-body">
+                  <!-- <h3 class="form-section">New Meeting</h3> -->
+                  <div class="row">
+                    <div class="col-md-6">
+
+                      <div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
+                        <input type="hidden" value="" name="">
+                        <div class="input-group input-group-fixed">
+                          <span class="input-group-btn">
+                            <span class="uneditable-input">
+                              <i class="fa fa-file fileupload-exists"></i>
+                              <span class="fileupload-preview"></span>
+                            </span>
+                          </span>
+                          <span class="btn btn-default btn-file">
+                            <span class="fileupload-new">
+                              <i class="fa fa-paper-clip"></i> Select file
+                            </span>
+                            <span class="fileupload-exists">
+                              <i class="fa fa-undo"></i> Change
+                            </span>
+                            <input type="file" file-model="myFile" />
+                          </span>
+                          <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> Remove</a>
+
+                        </div>
+                        <div style="margin-top: 10px;">
+                          <button ng-click="uploadFile()" class="btn btn-navbar">Upload File</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
 
 
-            <h4>Resources</h4>
 
-            <div class="media">
-              <div class="pull-left " style="    margin: 10px;" data-ng-repeat="i in resourceList">
-                <table>
 
-                  <tr>
-                    <th>
-                      <img src="assets/img/file_types/file.png" alt="100%x200" style=" height: 60px; display: block;">
-                    </th>
-                  </tr>
-                  <tr>
-                    <td>{{i.description.substring(0, 10)}}..</td>
-                  </tr>
-                </table>
-                <button type="button" class="btn btn-danger" ng-click="deleteExternalResource(i.id)">Delete</button>
+                    </div>
 
-              </div>
+                  </div>
+
+
+                </div>
+
+
+                <div class="form-actions right" style="border-top: none;">
+                </div>
 
 
 
+
+
+              </form>
+              <!-- END FORM-->
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class="tab-pane" id="tab_1_2">
+
+          <div class="well well-sm">
+            <div class="portlet-body form">
+              <!-- BEGIN FORM-->
+                <div class="form-body">
+                  <!-- <h3 class="form-section">New Meeting</h3> -->
+                  <div class="row">
+                    <div class="col-md-6">
+
+                      <table cellpadding="5">
+                          <tr>
+                              <td>
+                                  Resource Name
+                              </td>
+                              <td>
+                          <input class="form-control" placeholder="Enter Name" style="width:450px" ng-model="extURLName">
+                              </td>
+                              </tr>
+
+                              <tr>
+                                  <td>
+                                      Resource URL
+                                  </td>
+                                  <td>
+                              <input class="form-control"  placeholder="Enter URL" style="width:450px" ng-model="extURL">
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+
+                      </div>
+                    </div>
+                    <div style="margin-top: 10px;">
+                      <button ng-click="addURL3()" class="btn btn-navbar">Add URL</button>
+                    </div>
+                    <div class="col-md-6">
+
+
+
+
+                    </div>
+
+                  </div>
+
+
+                </div>
+
+
+                <div class="form-actions right" style="border-top: none;">
+                </div>
+
+
+
+
+
+              <!-- END FORM-->
             </div>
           </div>
 
 
         </div>
-        <div class="form-actions right" style="border-top: none;">
+
+      </div>
+    </div>
+    <!--END TABS-->
+  </div>
+  <div class="col-md-12">
+    <div class="well well-sm">
+
+
+      <h4>Resources</h4>
+
+              <p ng-show="!resourceList.length">You do not have any resources yet.</p>
+
+      <div class="media">
+        <div class="pull-left " style="    margin: 10px;" data-ng-repeat="i in resourceList">
+            <a href="" ng-click="downloadResource(i.id, i.type, i.link)">
+          <table >
+
+            <tr>
+              <th>
+                <img src={{i.imgLink}} alt="100%x200" style=" height: 60px; display: block;">
+              </th>
+            </tr>
+            <tr>
+              <td>{{i.description.substring(0, 10)}}..</td>
+            </tr>
+          </table>
+        </a>
+          <button type="button" class="btn btn-danger" style="display:none" ng-click="deleteExternalResource(i.id)">Delete</button>
+
+
         </div>
 
 
 
-
-
-      </form>
-      <!-- END FORM-->
+      </div>
     </div>
+
+
   </div>
+
+
 </form>
 
 

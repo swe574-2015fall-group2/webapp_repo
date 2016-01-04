@@ -79,21 +79,44 @@ define(['controllers/controllers'],
                     //get the resource
                     var data = JSON.stringify({
                         authToken: authToken,
-                        id: selectedGroup
+                        groupId: selectedGroup
                     });
                     $http.post("http://162.243.18.170:9000/v1/resource/queryResourcesByGroup", data).success(function (data, status) {
-                        $scope.resourceList = data.result.slice(0, 5);
+                        $scope.resourceList = data.result;
+
+                        for(var i = 0; i< $scope.resourceList.length; i++){
+
+                            if($scope.resourceList[i].type == "INTERNAL"){
+                                $scope.resourceList[i].imgLink = "assets/img/file_types/file.png";
+                              }
+
+                              if($scope.resourceList[i].type == "EXTERNAL"){
+                                $scope.resourceList[i].imgLink = "assets/img/file_types/icon256.png";
+                              }
+
+                        }
 
 
-                        if (data.result.length > 5) {
+                        /*if (data.result.length > 5) {
                             $scope.resourceListCount = data.result.length - 5;
                             $scope.showAllResourcesButton = true;
-                        }
+                        }*/
 
                     }).error(function (data, status, headers, config) {
                         alert("Error: " + data.consumerMessage);
 
                     });
+
+                    //download resource
+                    $scope.downloadResource = function (id, type, link) {
+
+                      if(type=="INTERNAL")
+                      window.open("http://162.243.18.170:9000/v1/resource/downloadResource?resourceId="+ id +"&authToken=b1167600-b282-11e5-b8df-04019494e201", '_blank');
+                      else if (type=="EXTERNAL")
+                        window.open(link, '_blank')
+
+                    };
+
 
                     //get the meetings
                     var data = JSON.stringify({
