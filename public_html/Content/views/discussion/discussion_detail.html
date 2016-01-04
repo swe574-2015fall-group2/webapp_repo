@@ -25,7 +25,7 @@
           <p ng-bind="selectedDiscussionDesc"></p>
           <ul class="list-inline blog-tags">
             <i class="fa fa-tags"></i>
-            <li  data-ng-repeat="i in tagsList">
+            <li data-ng-repeat="i in tagsList">
               <p style="background-color: #F1EAEA;">{{i.tag}}</p>
             </li>
           </ul>
@@ -44,137 +44,143 @@
     </tbody>
   </table>
 </div>
-
-<div class="well well-sm media">
-  <div>
-    <h4>Resources</h4>
-  </div>
-  <div class="pull-left ">
-    <table>
-      <tr>
-        <th>
-          <img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;">
-        </th>
-      </tr>
-      <tr>
-        <td>#Elephants</td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="pull-left">
-    <table>
-      <tr>
-        <th>
-          <img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;">
-        </th>
-      </tr>
-      <tr>
-        <td>#Elephants</td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="pull-left">
-    <table>
-      <tr>
-        <th>
-          <img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;">
-        </th>
-      </tr>
-      <tr>
-        <td>#Elephants</td>
-      </tr>
-    </table>
-  </div>
-
-</div>
-
-<div class="well well-sm">
-  <h4>Meetings</h4>
-  <div ng-show="!shownMeetingList.length">
-    <p>Unfortunately, there are no meetings scheduled. Maybe you should create one...</p>
-    <a href="#/new_meeting" class="icon-btn" style="width:130px">
-      <i class="fa fa-group" style="font-size: 35px;"></i>
-      <div>
-        Create New Meeting
-      </div>
-    </a>
-  </div>
-  <div data-ng-repeat="i in shownMeetingList">
-    <a class="" href="" ng-click="toMeetingDetail(i.id,i.value,i.location)">
-      <div class="media" style="margin-bottom: 15px;">
-
-        <div class="pull-left well well-sm" style="background-color: white">
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-6">
+      <div class="well well-sm media">
+        <div>
+          <h4>Resources</h4>
+        </div>
+        <div class="pull-left ">
           <table>
             <tr>
-              <td align="center" style="font-size: 36px">{{i.day}}</td>
+              <th>
+                <img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;">
+              </th>
             </tr>
             <tr>
-              <td align="center">{{i.monthYear}}</td>
-            </tr>
-            <tr>
-              <td align="center">{{i.startHour}}-{{i.endHour}}</td>
+              <td>#Elephants</td>
             </tr>
           </table>
         </div>
 
-        <div class="media-body" style="padding-left: 10px; padding-top: 5px">
-          <h4 class="media-heading">{{i.label}} </h4>
-          <p>{{i.location}} </p>
-          <p><i class="fa fa-group" style="margin-right: 3px;    color: brown;"></i>Face-to-Face Meeting</p>
-        </div>
-      </div>
-    </a>
-
-  </div>
-
-
-</div>
-
-
-<div class="well well-sm">
-  <h4>Comments</h4>
-  <p ng-show="!commentList.length">There is no comment yet</p>
-  <div data-ng-repeat="i in commentList">
-    <table cellpadding="5">
-      <tr>
-        <td>
-          <img src="assets/img/avatar1.jpg" style="width: 64px; display: block;" data-src="holder.js/100%x200">
-        </td>
-        <td valign="top">
+        <div class="pull-left">
           <table>
             <tr>
-              <td>
-                <h4 style="padding:0px; margin: 0px">{{i.name}}</h4>
-                <p>Created on {{i.createdTime | date:'medium'}}</p>
-              </td>
+              <th>
+                <img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;">
+              </th>
             </tr>
             <tr>
-              <td>{{i.comment}}</td>
-
+              <td>#Elephants</td>
             </tr>
           </table>
-        </td>
-      </tr>
-    </table>
-  </div>
+        </div>
 
-  <div class="post-comment">
-    <h3>Leave a Comment</h3>
-    <form role="form" ng-submit="addComment()">
-      <div class="form-group">
-        <label class="control-label">Message
-          <span class="required">
-            *
-          </span>
-        </label>
-        <textarea class="col-md-10 form-control" rows="8" ng-model="commentText"></textarea>
+        <div class="pull-left">
+          <table>
+            <tr>
+              <th>
+                <img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;">
+              </th>
+            </tr>
+            <tr>
+              <td>#Elephants</td>
+            </tr>
+          </table>
+        </div>
+
       </div>
-      <button class="margin-top-20 btn btn-info" type="submit">Post a Comment</button>
-    </form>
+    </div>
+    <div class="col-md-6">
+      <div class="well well-sm">
+        <h4>Meetings</h4>
+        <div ng-show="!shownMeetingList.length">
+          <p>Unfortunately, there are no meetings scheduled. Update discussion for connecting meeeting.</p>
+          <a href="#/update_discussion" class="icon-btn" style="width:130px">
+            <div>
+              Update Discussion
+            </div>
+          </a>
+        </div>
+        <div data-ng-repeat="i in shownMeetingList">
+          <a class="" href="" ng-click="toMeetingDetail(i.id,i.value,i.location)">
+            <div class="media" style="margin-bottom: 15px;">
+
+              <div class="pull-left well well-sm" style="background-color: white">
+                <table>
+                  <tr>
+                    <td align="center" style="font-size: 36px">{{i.day}}</td>
+                  </tr>
+                  <tr>
+                    <td align="center">{{i.monthYear}}</td>
+                  </tr>
+                  <tr>
+                    <td align="center">{{i.startHour}}-{{i.endHour}}</td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="media-body" style="padding-left: 10px; padding-top: 5px">
+                <h4 class="media-heading">{{i.label}} </h4>
+                <p>{{i.location}} </p>
+                <p><i class="fa fa-group" style="margin-right: 3px;    color: brown;"></i>Face-to-Face Meeting</p>
+              </div>
+            </div>
+          </a>
+
+        </div>
+
+
+      </div>
+    </div>
   </div>
 
+  <div class="col-md-12">
+    <div class="well well-sm">
+      <h4>Comments</h4>
+      <p ng-show="!commentList.length">There is no comment yet</p>
+      <div data-ng-repeat="i in commentList">
+        <table cellpadding="5">
+          <tr>
+            <td>
+              <img src="assets/img/avatar1.jpg" style="width: 64px; display: block;" data-src="holder.js/100%x200">
+            </td>
+            <td valign="top">
+              <table>
+                <tr>
+                  <td>
+                    <h4 style="padding:0px; margin: 0px">{{i.name}}</h4>
+                    <p>Created on {{i.createdTime | date:'medium'}}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{i.comment}}</td>
+
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="post-comment">
+        <h3>Leave a Comment</h3>
+        <form role="form" ng-submit="addComment()">
+          <div class="form-group">
+            <label class="control-label">Message
+              <span class="required">
+                *
+              </span>
+            </label>
+            <textarea class="col-md-10 form-control" rows="8" ng-model="commentText"></textarea>
+          </div>
+          <button class="margin-top-20 btn btn-info" type="submit">Post a Comment</button>
+        </form>
+      </div>
 
 
+
+    </div>
+  </div>
 </div>

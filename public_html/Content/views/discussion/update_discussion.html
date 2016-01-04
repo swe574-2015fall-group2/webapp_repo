@@ -1,3 +1,54 @@
+<style>
+  .ui-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    display: none;
+    min-width: 160px;
+    _width: 160px;
+    padding: 4px 0;
+    margin: 2px 0 0 0;
+    list-style: none;
+    background-color: #ffffff;
+    border-color: #ccc;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    *border-right-width: 2px;
+    *border-bottom-width: 2px;
+    .ui-menu-item > a.ui-corner-all {
+      display: block;
+      padding: 5px 15px;
+      clear: both;
+      font-weight: normal;
+      line-height: 18px;
+      color: #555555;
+      white-space: nowrap;
+      &.ui-state-hover,
+      &.ui-state-active {
+        color: #ffffff;
+        text-decoration: none;
+        background-color: #0088cc;
+        border-radius: 0px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        background-image: none;
+      }
+    }
+  }
+</style>
+
 
 
 <div ng-show="popUpVisible" style=" background-color:black;
@@ -5,111 +56,161 @@
         height:100%;
       	display:block;
         position:absolute;
-    	z-index:100;top: 0; left: 0; bottom: 0; right: 0; opacity:0.5"></div>
+    	z-index:100;top: 0; left: 0; bottom: 0; right: 0; opacity:0.5">
 
-
-<div ng-show="popUpVisible" style=" width: 500px;      height: 300px;      overflow: auto;      margin: auto;      position: absolute;      top: 0; left: 0; bottom: 0; right: 0;  z-index:110">
-    <div class="modal-content" >
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closePopUp()"></button>
-            <h4 class="modal-title">{{popUpHeader}}</h4>
-        </div>
-        <div class="modal-body">
-            <p>
-                {{popUpBody}}
-            </p>
-        </div>
-        <div class="modal-footer">
-            <button data-dismiss="modal" class="btn btn-success" ng-click="closePopUp()">OK</button>
-        </div>
-    </div>
 </div>
 
 
-<div><table class="" style="margin-bottom: 30px; width: 100%">
+<div ng-show="popUpVisible" style=" width: 500px;      height: 300px;      overflow: auto;      margin: auto;      position: absolute;      top: 0; left: 0; bottom: 0; right: 0;  z-index:110">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closePopUp()"></button>
+      <h4 class="modal-title">{{popUpHeader}}</h4>
+    </div>
+    <div class="modal-body">
+      <p>
+        {{popUpBody}}
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button data-dismiss="modal" class="btn btn-success" ng-click="closePopUp()">OK</button>
+    </div>
+  </div>
+</div>
 
-        <tbody>
-            <tr>
-                <td></td>
 
-                <td>
-                    <button type="button" class="btn btn-navbar" onclick="window.location.href = '#/discussion_detail';">Back to Discussion Detail </button>
-                </td>
-            </tr>
+<div>
+  <table class="" style="margin-bottom: 30px; width: 100%">
 
-        </tbody>
-    </table></div>
+    <tbody>
+      <tr>
+        <td></td>
+
+        <td>
+          <button type="button" class="btn btn-navbar" onclick="window.location.href = '#/discussion_detail';">Back to Discussion Detail </button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
 
 <div style="margin-bottom: 20px;">
 
 
-    <h3  ng-bind="selectedGroupName"></h3>
-    <p>Update Discussion</p>
+  <h3 ng-bind="selectedGroupName"></h3>
+  <p>Update Discussion</p>
 </div>
-<form role="form" >   
-    <div class="well well-sm"> 
+<form role="form">
+  <div class="well well-sm">
 
 
-        <div class="form-body">            
-            <table cellpadding="5">               
-                <tr>
-                    <td>Discussion Name</td>
-                    <td>      <input ng-model="name" class="form-control"  placeholder="Enter text" style="width:450px">
-                    </td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td> <textarea class="form-control" ng-model="description" placeholder="Enter text" style="width:450px; height: 150px"></textarea></td>
-                    </tr>
+    <div class="form-body">
+      <table cellpadding="5">
+        <tr>
+          <td>Discussion Name</td>
+          <td>
+            <input ng-model="name" class="form-control" placeholder="Enter text" style="width:450px">
+          </td>
+        </tr>
+        <tr>
+          <td>Description</td>
+          <td>
+            <textarea class="form-control" ng-model="description" placeholder="Enter text" style="width:450px; height: 150px"></textarea>
+          </td>
+        </tr>
 
 
-                    <tr>
-                        <td>Tags</td>
-                        <td>
-                            <table border="1" style="width:400px; border_color:#35363a" cellpadding="3"  >
+        <tr>
+          <td>Tags</td>
+          <td>
+            <table border="1" style="width:400px; border_color:#35363a" cellpadding="3">
 
-                                <tr>
-                                    <td>
-                                <input id="inputTag" class="form-control" type="text" name="product" style="width:300px" list="inputTagList" ng-model="ngTag"  ng-change="getTag()"/>
-                                <datalist id="inputTagList">
-                                    <option  ng-repeat="option in yeniTagList" value="{{option.label}}" >{{option.clazz}} </option>
-                                </datalist>
-                        </td>
-                        <td> 
-                            <button type="submit" class="btn btn-success" ng-click="setTag()" >Add Tag</button>
-                        </td> 
-                    </tr>
+              <tr>
+                <td>
+                  <input id="inputTag" class="form-control" type="text" name="product" style="width:300px" list="inputTagList" ng-model="ngTag" ng-change="getTag()" />
+                  <datalist id="inputTagList">
+                    <option ng-repeat="option in yeniTagList" value="{{option.label}}">{{option.clazz}} </option>
+                  </datalist>
+                </td>
+                <td>
+                  <button type="submit" class="btn btn-success" ng-click="setTag()">Add Tag</button>
+                </td>
+              </tr>
             </table>
 
-            <table border="1" style="width:400px; border_color:#35363a" cellpadding="3"  >
+            <table border="1" style="width:400px; border_color:#35363a" cellpadding="3">
 
-                <tr>
-                    <th>Selected Tag</th>
-                    <th>Selected context</th>
-                </tr>
+              <tr>
+                <th>Selected Tag</th>
+                <th>Selected context</th>
+              </tr>
 
-                <tr data-ng-repeat="selectedTag in selectedTagList">
-                    <td>{{selectedTag.tag}}</td>
-                    <td>{{selectedTag.clazz}}</td> 
-                </tr>
+              <tr data-ng-repeat="selectedTag in selectedTagList">
+                <td>{{selectedTag.tag}}</td>
+                <td>{{selectedTag.clazz}}</td>
+              </tr>
             </table>
 
-            </td> 
-            </tr>
+          </td>
+        </tr>
 
-            </table>     
+      </table>
 
+    </div>
+
+  </div>
+
+  <div class="well well-sm">
+    <div>
+      <table>
+        <tr>
+          <td>
+            <h4>Related Meetings</h4>
+          </td>
+          <td>
+            <a href="#/new_meeting" style="margin-left: 15px;"> Create New Meeting</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <input id="meetings" style="width:70%" type="text" class="form-control" ng-model="inviteText" placeholder="Search for a member to add">
+    </div>
+    <div data-ng-repeat="i in selectedMeetingList">
+      <div class="media" style="margin-bottom: 10px; margin-top: 10px">
+        <a class="" href="#">
+          <div class="pull-left well well-sm" style="background-color: white">
+            <table>
+              <tr>
+                <td align="center" style="font-size: 19px">{{i.day}}</td>
+              </tr>
+              <tr>
+                <td align="center">{{i.monthYear}}</td>
+              </tr>
+              <tr>
+                <td align="center">{{i.startHour}}-{{i.endHour}}</td>
+              </tr>
+            </table>
+          </div>
+        </a>
+        <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
+          <h4 class="media-heading">{{i.label}}</h4>
+          <p>{{i.location}}</p>
+          <p><i class="fa fa-group" style="margin-right: 3px"></i>Face-to-Face Meeting</p>
         </div>
-
+        <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
+          <button type="submit" class="btn btn-danger" ng-click="removeMeeting(i)">Delete</button>
+        </div>
+      </div>
     </div>
+  </div>
 
 
 
 
-
-
-    <div class="well well-sm">
-        <button type="submit" class="btn btn-success" ng-click="updateDiscussion()">Update Discussion</button>
-    </div>
+  <div class="well well-sm">
+    <button type="submit" class="btn btn-success" ng-click="updateDiscussion()">Update Discussion</button>
+  </div>
 
 </form>

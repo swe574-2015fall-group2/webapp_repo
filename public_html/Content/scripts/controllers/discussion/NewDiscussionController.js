@@ -119,8 +119,8 @@ define(['controllers/controllers'],
 
                         $scope.fillAutocomplete();
                         /*
-                         
-                         
+
+
                          */
                     }).error(function (data, status, headers, config) {
 
@@ -189,17 +189,6 @@ define(['controllers/controllers'],
                             }
                         });
 
-                        /*
-                         alert("autocopm")
-                         $scope.userList = ["Sinan Can", "Hayrican", "Barış", "Mehmet", "Orkun", "Recep", "Ahmet", "Kerem", "Veli", "George", "Kyle"];
-                         
-                         $("#meetings").autocomplete({
-                         source:   $scope.meetingList,
-                         messages: {
-                         noResults: '',
-                         results: function() {}
-                         }
-                         });*/
 
 
 
@@ -229,13 +218,19 @@ define(['controllers/controllers'],
                             return;
                         }
 
+                        $scope.meetingListToSend = [];
+                        for(var i = 0 ;i < $scope.selectedMeetingList.length ; i++){
+                          $scope.meetingListToSend.push($scope.selectedMeetingList[i].id);
+
+                        }
+
                         var data = JSON.stringify({
                             authToken: $scope.authToken,
                             groupId: $scope.selectedGroup,
                             name: $scope.name,
                             description: $scope.description,
                             tagList: $scope.selectedTagList,
-                            meetingIdList: $scope.selectedMeetingListtoService
+                            meetingIdList: $scope.meetingListToSend
                         });
 
                         $http.post("http://162.243.18.170:9000/v1/discussion/create", data).success(function (data, status) {
