@@ -9,6 +9,19 @@ define(['controllers/controllers'],
         $http) {
 
         $(document).ready(function() {
+        //  $('#somecomponent').locationpicker();
+
+        $('#us2').locationpicker({
+        	location: {latitude: 41.03928746010097, longitude: 28.919078826904297},
+        	radius: 2,
+        	inputBinding: {
+                latitudeInput: $('#us2-lat'),
+                longitudeInput: $('#us2-lon'),
+                radiusInput: $('#us2-radius'),
+                locationNameInput: $('#us2-address')
+            }
+        	});
+
 
           $('#datePicker').datepick({
             dateFormat: 'yyyy-mm-dd'
@@ -174,7 +187,7 @@ define(['controllers/controllers'],
             startHour: $scope.starthour + ":" + $scope.starthourmin,
             endHour: $scope.finishhour + ":" + $scope.finishhourmin,
             agendaSet: $scope.agendaList,
-            location: $scope.location,
+            location: $('#us2-address').val(),
             description: $scope.description,
             type: $scope.tip,
             groupId: $scope.selectedGroup,
@@ -371,7 +384,7 @@ define(['controllers/controllers'],
           }
 
 
-          if (isEmpty($scope.location)) {
+          if (isEmpty($('#us2-address').val())) {
             $scope.popUpHeader = "Warning";
             $scope.popUpBody = "You have to enter a meeting location.";
             $scope.popUpVisible = true;
