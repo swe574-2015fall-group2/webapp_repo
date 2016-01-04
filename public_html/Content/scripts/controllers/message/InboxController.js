@@ -16,7 +16,7 @@ define(['controllers/controllers'],
 
                             var Duzenli = new RegExp("authToken=([^;=]+)[;\\b]?");
                             var Sonuclar = Duzenli.exec(Cerez);
-                            //alert( unescape(Sonuclar[1]) );	
+                            //alert( unescape(Sonuclar[1]) );
                             var authToken = unescape(Sonuclar[1]);
 
                             $scope.allReceivedMessages = [];
@@ -29,7 +29,7 @@ define(['controllers/controllers'],
 
                                 var messages = data.result.messages;
                                 var allReceivedMessages = [];
-                                
+
                                 for(var i = 0; i < messages.length; i++){
                                      for(var j = 0; j < messages[i].messageList.length; j++){
                                      var temp = messages[i].messageList[j];
@@ -37,18 +37,18 @@ define(['controllers/controllers'],
                                         allReceivedMessages.push(messages[i].messageList[j]);
                                     }
                                 }
-                                
+
                                 var a = allReceivedMessages.sort(function(x, y){
                                     return x.datetime - y.datetime;
                                 })
-                                
+
                                 /*for (var i = 0; i < a.length; i++){
                                     var temp = a[i];
                                      temp.senderName = getUserDetails(a[i].senderId);
                                 }*/
                                 var abb = getUserDetails(a);
-                                
-                                
+
+
                                 /*var tags = data.result.tagList;
                                 var tagsString = "";
 
@@ -72,7 +72,7 @@ define(['controllers/controllers'],
                             });
 
 
-                            
+
 
                             $scope.joinGroup = function () {
 
@@ -83,7 +83,7 @@ define(['controllers/controllers'],
 
                                 $http.post("http://162.243.18.170:9000/v1/group/join", data).success(function (data, status) {
 
-                                    //alert( "successfully joined" );	
+                                    //alert( "successfully joined" );
                                     document.cookie = "selectedGroupJoined" + "=" + true;
                                     $window.location.reload();
 
@@ -105,7 +105,7 @@ define(['controllers/controllers'],
 
                                 $http.post("http://162.243.18.170:9000/v1/group/leave", data).success(function (data, status) {
 
-                                    //alert( "successfully left the group" );	
+                                    //alert( "successfully left the group" );
                                     document.cookie = "selectedGroupJoined" + "=" + false;
                                     $window.location.reload();
 
@@ -117,7 +117,7 @@ define(['controllers/controllers'],
 
 
                             };
-                            
+
                             function getUserDetails(idList) {
                                 var resultList = [];
                                 var com;
@@ -149,9 +149,9 @@ define(['controllers/controllers'],
                                 $scope.allReceivedMessages = resultList;
                                 return resultList;
                             }
-                                
-                            
-                            
+
+
+
 
                             $scope.toInboxDetail = function (name, id,  date, mes) {
                                 document.cookie = "InboxDetailSenderName" + "=" + name;

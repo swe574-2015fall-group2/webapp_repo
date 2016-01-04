@@ -65,72 +65,72 @@ define(['controllers/controllers'],
           for (var i = 0; i < $scope.meetingIdList.length; i++) {
 
             var data = JSON.stringify({
-                authToken: $scope.authToken,
-                id: $scope.meetingIdList[i]
+              authToken: $scope.authToken,
+              id: $scope.meetingIdList[i]
             });
 
             $http.post("http://162.243.18.170:9000/v1/meeting/get", data).success(function(data, status) {
 
 
-                          var date = new Date(data.result.meeting.datetime);
-                          $scope.day = date.getDate();
-                          var month = date.getMonth() + 1;
+              var date = new Date(data.result.meeting.datetime);
+              $scope.day = date.getDate();
+              var month = date.getMonth() + 1;
 
-                          switch (month) {
-                            case 1:
-                              month = "Jan"
-                              break;
-                            case 2:
-                              month = "Feb"
-                              break;
-                            case 3:
-                              month = "Mar"
-                              break;
-                            case 4:
-                              month = "Apr"
-                              break;
-                            case 5:
-                              month = "May"
-                              break;
-                            case 6:
-                              month = "Jun"
-                              break;
-                            case 7:
-                              month = "Jul"
-                              break;
-                            case 8:
-                              month = "Aug"
-                              break;
-                            case 9:
-                              month = "Sep"
-                              break;
-                            case 10:
-                              month = "Oct"
-                              break;
-                            case 11:
-                              month = "Nov"
-                              break;
-                            case 12:
-                              month = "Dec"
-                              break;
-                          }
-                          $scope.monthYear = month + " " + date.getFullYear();
+              switch (month) {
+                case 1:
+                  month = "Jan"
+                  break;
+                case 2:
+                  month = "Feb"
+                  break;
+                case 3:
+                  month = "Mar"
+                  break;
+                case 4:
+                  month = "Apr"
+                  break;
+                case 5:
+                  month = "May"
+                  break;
+                case 6:
+                  month = "Jun"
+                  break;
+                case 7:
+                  month = "Jul"
+                  break;
+                case 8:
+                  month = "Aug"
+                  break;
+                case 9:
+                  month = "Sep"
+                  break;
+                case 10:
+                  month = "Oct"
+                  break;
+                case 11:
+                  month = "Nov"
+                  break;
+                case 12:
+                  month = "Dec"
+                  break;
+              }
+              $scope.monthYear = month + " " + date.getFullYear();
 
 
-                          var tempMeeting = {
-                            id: data.result.meeting.id,
-                            value: data.result.meeting.description,
-                            label: data.result.meeting.name,
-                            location: data.result.meeting.location,
-                            startHour: data.result.meeting.startHour,
-                            endHour: data.result.meeting.endHour,
-                            day: $scope.day,
-                            monthYear: $scope.monthYear
-                          };
+              var tempMeeting = {
+                id: data.result.meeting.id,
+                value: data.result.meeting.description,
+                label: data.result.meeting.name,
+                location: data.result.meeting.location,
+                startHour: data.result.meeting.startHour,
+                endHour: data.result.meeting.endHour,
+                day: $scope.day,
+                monthYear: $scope.monthYear
+              };
 
-                          $scope.selectedMeetingList.push(tempMeeting);
+              $scope.selectedMeetingList.push(tempMeeting);
 
-            }).error(function(data, status, headers, config) {           });
+            }).error(function(data, status, headers, config) {});
 
 
 
@@ -140,8 +140,37 @@ define(['controllers/controllers'],
         }
 
 
+        //Get related resourceList
+        var data = JSON.stringify({
+            authToken: authToken,
+            discussionId: $scope.selectedDiscussion
+        });
 
+        //get the resources for related resources
+        //$scope.resourceList = []; // meeting list that comes from the service
+        $scope.selectedResourceList = []; // meetings that user has selected
+        //$scope.selectedMeetingListtoService = [];  //meetings that record id to send to service on save
 
+        $http.post("http://162.243.18.170:9000/v1/resource/queryResourcesByGroup", data).success(function(data, status) {
+
+          //  $scope.resourceList = data.result;
+
+          for (var i = 0; i < data.result.length; i++) {
+
+            var tempResource = {
+              id: data.result[i].id,
+              value: data.result[i].description,
+              label: data.result[i].description
+            };
+
+            $scope.selectedResourceList.push(tempResource);
+
+          }
+          //$scope.fillAutocompleteResource();
+
+        }).error(function(data, status, headers, config) {
+
+        });
 
 
 
@@ -293,8 +322,106 @@ define(['controllers/controllers'],
           $scope.selectedMeetingList.splice(index, 1);
         }
 
+        //Get resourceList
+        var data = JSON.stringify({
+            authToken: authToken,
+            groupId: $scope.selectedGroup
+        });
+
+        //get the resources for related resources
+        $scope.resourceList = []; // meeting list that comes from the service
+        //$scope.selectedResourceList = []; // meetings that user has selected
+        //$scope.selectedMeetingListtoService = [];  //meetings that record id to send to service on save
+
+        $http.post("http://162.243.18.170:9000/v1/resource/queryResourcesByGroup", data).success(function(data, status) {
+
+          //  $scope.resourceList = data.result;
+
+          for (var i = 0; i < data.result.length; i++) {
+
+            var tempResource = {
+              id: data.result[i].id,
+              value: data.result[i].description,
+              label: data.result[i].description
+            };
+
+            $scope.resourceList.push(tempResource);
+
+          }
+          $scope.fillAutocompleteResource();
+
+        }).error(function(data, status, headers, config) {
+
+        });
+
+        $scope.fillAutocompleteResource = function() {
+
+          $("#resources").autocomplete({
+            source: $scope.resourceList,
+            minLength: 1,
+            messages: {
+              noResults: '',
+              results: function() {}
+            },
+            select: function(event, ui) {
+
+              var tempResource = {
+                id: ui.item.id,
+                value: ui.item.value,
+                label: ui.item.label
+              };
+
+              $scope.selectedResourceList.push(tempResource);
+              $scope.$apply(function() {});
+
+              $scope.resourceText = "";
+              $('#resources').val('');
+              $('#resources').html('');
+
+              // feed hidden id field
+              $("#field_id").val(ui.item.id);
+              // update number of returned rows
+              $('#results_count').html('');
+            },
+            open: function(event, ui) {
+              // update number of returned rows
+              var len = $('.ui-autocomplete > li').length;
+              $('#results_count').html('(#' + len + ')');
+            },
+            close: function(event, ui) {
+              // update number of returned rows
+              $('#results_count').html('');
+
+              $scope.resourceText = "";
+              $('#resources').val('');
+              $('#resources').html('');
+            },
+            // mustMatch implementation
+            change: function(event, ui) {
+
+              if (ui.item === null) {
+                $(this).val('');
+                $('#field_id').val('');
+              }
+            }
+          });
+
+          // mustMatch (no value) implementation
+          $("#field").focusout(function() {
+            if ($("#field").val() === '') {
+              $('#field_id').val('');
+            }
+          });
 
 
+
+
+        };
+
+        $scope.removeResource = function(item) {
+          var index = $scope.selectedResourceList.indexOf(item);
+          $scope.selectedResourceList.splice(index, 1);
+        }
 
 
 
@@ -317,8 +444,14 @@ define(['controllers/controllers'],
           }
 
           $scope.meetingListToSend = [];
-          for(var i = 0 ;i < $scope.selectedMeetingList.length ; i++){
+          for (var i = 0; i < $scope.selectedMeetingList.length; i++) {
             $scope.meetingListToSend.push($scope.selectedMeetingList[i].id);
+
+          }
+
+          $scope.resourceListToSend = [];
+          for(var i = 0 ;i < $scope.selectedResourceList.length ; i++){
+            $scope.resourceListToSend.push($scope.selectedResourceList[i].id);
 
           }
 
@@ -329,7 +462,8 @@ define(['controllers/controllers'],
             description: $scope.description,
             tagList: $scope.selectedTagList,
             discussionId: $scope.selectedDiscussion,
-            meetingIdList: $scope.meetingListToSend
+            meetingIdList: $scope.meetingListToSend,
+            resourceIdList:  $scope.resourceListToSend
           });
           $http.post("http://162.243.18.170:9000/v1/discussion/update", data).success(function(data, status) {
 

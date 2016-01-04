@@ -48,6 +48,7 @@ define(['controllers/controllers'],
                         id: $scope.selectedGroup,
                     });
 
+                    //get the meetings of the groups for related meetings
                     $scope.meetingList = []; // meeting list that comes from the service
                     $scope.selectedMeetingList = []; // meetings that user has selected
                     $scope.selectedMeetingListtoService = [];  //meetings that record id to send to service on save
@@ -117,7 +118,7 @@ define(['controllers/controllers'],
                         }
 
 
-                        $scope.fillAutocomplete();
+                        $scope.fillAutocompleteMeeting();
                         /*
 
 
@@ -126,7 +127,7 @@ define(['controllers/controllers'],
 
                     });
 
-                    $scope.fillAutocomplete = function () {
+                    $scope.fillAutocompleteMeeting = function () {
 
                         $("#meetings").autocomplete({
                             source: $scope.meetingList,
@@ -200,6 +201,109 @@ define(['controllers/controllers'],
                     }
 
 
+                    //get resources of the group
+                    var data = JSON.stringify({
+                        authToken: $scope.authToken,
+                        groupId: $scope.selectedGroup,
+                    });
+
+                    //get the resources for related resources
+                    $scope.resourceList = []; // meeting list that comes from the service
+                    $scope.selectedResourceList = []; // meetings that user has selected
+                    //$scope.selectedMeetingListtoService = [];  //meetings that record id to send to service on save
+
+                    $http.post("http://162.243.18.170:9000/v1/resource/queryResourcesByGroup", data).success(function (data, status) {
+
+                    //  $scope.resourceList = data.result;
+
+                      for (var i = 0; i < data.result.length; i++) {
+
+                        var tempResource = {
+                            id: data.result[i].id,
+                            value: data.result[i].description,
+                            label: data.result[i].description
+                        };
+
+                        $scope.resourceList.push(tempResource);
+
+                      }
+
+                        $scope.fillAutocompleteResource();
+
+                    }).error(function (data, status, headers, config) {
+
+                    });
+
+                    $scope.fillAutocompleteResource = function () {
+
+                        $("#resources").autocomplete({
+                            source: $scope.resourceList,
+                            minLength: 1,
+                            messages: {
+                                noResults: '',
+                                results: function () {}
+                            },
+                            select: function (event, ui) {
+
+                              var tempResource = {
+                                  id: ui.item.id,
+                                  value: ui.item.value,
+                                  label: ui.item.label
+                              };
+
+                              $scope.selectedResourceList.push(tempResource);
+                              $scope.$apply(function () {});
+
+                                $scope.resourceText = "";
+                                $('#resources').val('');
+                                $('#resources').html('');
+
+                                // feed hidden id field
+                                $("#field_id").val(ui.item.id);
+                                // update number of returned rows
+                                $('#results_count').html('');
+                            },
+                            open: function (event, ui) {
+                                // update number of returned rows
+                                var len = $('.ui-autocomplete > li').length;
+                                $('#results_count').html('(#' + len + ')');
+                            },
+                            close: function (event, ui) {
+                                // update number of returned rows
+                                $('#results_count').html('');
+
+                                $scope.resourceText = "";
+                                $('#resources').val('');
+                                $('#resources').html('');
+                            },
+                            // mustMatch implementation
+                            change: function (event, ui) {
+
+                                if (ui.item === null) {
+                                    $(this).val('');
+                                    $('#field_id').val('');
+                                }
+                            }
+                        });
+
+                        // mustMatch (no value) implementation
+                        $("#field").focusout(function () {
+                            if ($("#field").val() === '') {
+                                $('#field_id').val('');
+                            }
+                        });
+
+
+
+
+                    };
+
+                    $scope.removeResource = function (item) {
+                        var index = $scope.selectedResourceList.indexOf(item);
+                        $scope.selectedResourceList.splice(index, 1);
+                    }
+
+
                     $scope.sendPost = function () {
 
                         if (isEmpty($scope.name))
@@ -224,13 +328,20 @@ define(['controllers/controllers'],
 
                         }
 
+                        $scope.resourceListToSend = [];
+                        for(var i = 0 ;i < $scope.selectedResourceList.length ; i++){
+                          $scope.resourceListToSend.push($scope.selectedResourceList[i].id);
+
+                        }
+
                         var data = JSON.stringify({
                             authToken: $scope.authToken,
                             groupId: $scope.selectedGroup,
                             name: $scope.name,
                             description: $scope.description,
                             tagList: $scope.selectedTagList,
-                            meetingIdList: $scope.meetingListToSend
+                            meetingIdList: $scope.meetingListToSend,
+                            resourceIdList:  $scope.resourceListToSend
                         });
 
                         $http.post("http://162.243.18.170:9000/v1/discussion/create", data).success(function (data, status) {

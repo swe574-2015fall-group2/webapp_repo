@@ -175,7 +175,7 @@
       </table>
     </div>
     <div>
-      <input id="meetings" style="width:70%" type="text" class="form-control" ng-model="inviteText" placeholder="Search for a member to add">
+      <input id="meetings" style="width:70%" type="text" class="form-control" ng-model="inviteText" placeholder="Search for a meeting to add">
     </div>
     <div data-ng-repeat="i in selectedMeetingList">
       <div class="media" style="margin-bottom: 10px; margin-top: 10px">
@@ -206,7 +206,32 @@
     </div>
   </div>
 
+  <div class="well well-sm">
+    <div>
+      <table>
+        <tr>
+          <td>
+            <h4>Related Resources</h4>
+          </td>
+          <td>
+            <a href="#/resource" style="margin-left: 15px;"> Create New Resource</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <input id="resources" style="width:70%" type="text" class="form-control" ng-model="resourceText" placeholder="Search for a resource to add">
+    </div>
+    <div data-ng-repeat="i in selectedResourceList" style="margin-top: 10px;">
+      <ul>
+        <li>{{i.value}}
 
+            <button type="submit" class="btn btn-danger" ng-click="removeResource(i)">Delete</button>
+
+        </li>
+        <ul>
+    </div>
+  </div>
 
 
   <div class="well well-sm">

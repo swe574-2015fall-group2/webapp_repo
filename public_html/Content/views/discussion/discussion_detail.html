@@ -48,48 +48,33 @@
   <div class="col-md-12">
     <div class="col-md-6">
       <div class="well well-sm media">
-        <div>
-          <h4>Resources</h4>
-        </div>
-        <div class="pull-left ">
-          <table>
-            <tr>
-              <th>
-                <img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;">
-              </th>
-            </tr>
-            <tr>
-              <td>#Elephants</td>
-            </tr>
-          </table>
-        </div>
+        <h4>Resources</h4>
 
-        <div class="pull-left">
-          <table>
-            <tr>
-              <th>
-                <img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;">
-              </th>
-            </tr>
-            <tr>
-              <td>#Elephants</td>
-            </tr>
-          </table>
-        </div>
+                <p ng-show="!resourceList.length">You do not have any resources yet.</p>
 
-        <div class="pull-left">
-          <table>
-            <tr>
-              <th>
-                <img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;">
-              </th>
-            </tr>
-            <tr>
-              <td>#Elephants</td>
-            </tr>
-          </table>
-        </div>
+        <div class="media">
+          <div class="pull-left " style="    margin: 10px;" data-ng-repeat="i in resourceList">
+              <a href="" ng-click="downloadResource(i.id, i.type, i.link)">
+            <table >
 
+              <tr>
+                <th>
+                  <img src={{i.imgLink}} alt="100%x200" style=" height: 60px; display: block;">
+                </th>
+              </tr>
+              <tr>
+                <td>{{i.description.substring(0, 10)}}..</td>
+              </tr>
+            </table>
+          </a>
+            <button type="button" class="btn btn-danger" style="display:none" ng-click="deleteExternalResource(i.id)">Delete</button>
+
+
+          </div>
+
+
+
+        </div>
       </div>
     </div>
     <div class="col-md-6">
