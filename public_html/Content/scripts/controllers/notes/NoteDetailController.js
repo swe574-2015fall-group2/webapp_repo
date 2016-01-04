@@ -57,121 +57,47 @@ define(['controllers/controllers'],
 
         });
 
-        /*
-                                    //get the meetings
-                                    var data = JSON.stringify({
-                                        authToken: authToken,
-                                        id: selectedGroup
-                                    });
-                                    $http.post("http://162.243.18.170:9000/v1/meeting/queryByGroup", data).success(function (data, status) {
-
-
-                                        $scope.meetingList = data.result.meetingList;
-                                        //alert( "meeting list got" );
-                                    }).error(function (data, status, headers, config) {
-                                        //alert("Error: " + data.consumerMessage);
-
-                                    });
-
-
-                                    //get the discussions
-                                    var data = JSON.stringify({
-                                        authToken: authToken,
-                                        id: selectedGroup
-                                    });
-                                    $http.post("http://162.243.18.170:9000/v1/discussion/list", data).success(function (data, status) {
-
-
-                                        $scope.discussionList = data.result.discussionList;
-                                        //alert( "meeting list got" );
-                                    }).error(function (data, status, headers, config) {
-                                        //alert("Error: " + data.consumerMessage);
-
-                                    });
-
-
-                                    //get the notes
-                                    var data = JSON.stringify({
-                                        authToken: authToken,
-                                        id: selectedGroup
-                                    });
-                                    $http.post("http://162.243.18.170:9000/v1/note/queryByGroup", data).success(function (data, status) {
-
-
-                                        $scope.noteList = data.result.noteList;
-
-                                        //alert( "meeting list got" );
-                                    }).error(function (data, status, headers, config) {
-                                        //alert("Error: " + data.consumerMessage);
-
-                                    });
-
-
-                                    $scope.joinGroup = function () {
-
-                                        var data = JSON.stringify({
-                                            authToken: authToken,
-                                            groupId: selectedGroup
-                                        });
-
-                                        $http.post("http://162.243.18.170:9000/v1/group/join", data).success(function (data, status) {
-
-                                            //alert( "successfully joined" );
-                                            document.cookie = "selectedGroupJoined" + "=" + true;
-                                            $window.location.reload();
-
-                                            //$window.location.href = '#/group_detail';
-                                        }).error(function (data, status, headers, config) {
-                                            alert("Error: " + data.consumerMessage);
-
-                                        });
-
-
-                                    };
-
-                                    $scope.leaveGroup = function () {
-
-                                        var data = JSON.stringify({
-                                            authToken: authToken,
-                                            groupId: selectedGroup
-                                        });
-
-                                        $http.post("http://162.243.18.170:9000/v1/group/leave", data).success(function (data, status) {
-
-                                            //alert( "successfully left the group" );
-                                            document.cookie = "selectedGroupJoined" + "=" + false;
-                                            $window.location.reload();
-
-                                            //$window.location.href = '#/group_detail';
-                                        }).error(function (data, status, headers, config) {
-                                            alert("Error: " + data.consumerMessage);
-
-                                        });
-
-
-                                    };*/
-
-        /*
-        $scope.addComment = function() {
-
-          var data = JSON.stringify({
+        //get the resource
+        var data = JSON.stringify({
             authToken: authToken,
-            discussionId: $scope.selectedDiscussion,
-            comment: $scope.commentText
-          });
+            noteId: selectedNote
+        });
+        $http.post("http://162.243.18.170:9000/v1/resource/queryResourcesByGroup", data).success(function (data, status) {
+            $scope.resourceList = data.result;
 
-          $http.post("http://162.243.18.170:9000/v1/discussion/addComment", data).success(function(data, status) {
-            getComments();
-            $scope.commentText = "";
-            // alert("Note is created successfully!");
-            //                                    $window.location.href = "#/my_groups";
-          }).error(function(data, status, headers, config) {
+            for(var i = 0; i< $scope.resourceList.length; i++){
+
+                if($scope.resourceList[i].type == "INTERNAL"){
+                    $scope.resourceList[i].imgLink = "assets/img/file_types/file.png";
+                  }
+
+                  if($scope.resourceList[i].type == "EXTERNAL"){
+                    $scope.resourceList[i].imgLink = "assets/img/file_types/icon256.png";
+                  }
+
+            }
+
+
+            /*if (data.result.length > 5) {
+                $scope.resourceListCount = data.result.length - 5;
+                $scope.showAllResourcesButton = true;
+            }*/
+
+        }).error(function (data, status, headers, config) {
             alert("Error: " + data.consumerMessage);
 
-          });
+        });
+
+        //download resource
+        $scope.downloadResource = function (id, type, link) {
+
+          if(type=="INTERNAL")
+          window.open("http://162.243.18.170:9000/v1/resource/downloadResource?resourceId="+ id +"&authToken=b1167600-b282-11e5-b8df-04019494e201", '_blank');
+          else if (type=="EXTERNAL")
+            window.open(link, '_blank')
 
         };
-        */
+
 
 
         $scope.toMeetingDetail = function(id, desc, loc) {

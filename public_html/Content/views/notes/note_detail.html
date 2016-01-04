@@ -1,125 +1,83 @@
+<div>
 
+  <table class="" style="margin-bottom: 30px; width: 100%">
 
-<div><table class="" style="margin-bottom: 30px; width: 100%">
+    <tbody>
+      <tr>
+        <td></td>
 
-        <tbody>
-            <tr>
-                <td></td>
+        <td>
+          <button type="button" class="btn btn-navbar" onclick="window.location.href = '#/group_detail';">Back to Group Detail </button>
+        </td>
+      </tr>
 
-                <td>
-                    <button type="button" class="btn btn-navbar" onclick="window.location.href = '#/group_detail';">Back to Group Detail </button>
-                </td>
-            </tr>
+    </tbody>
+  </table>
+</div>
 
-        </tbody>
-    </table></div>
+<div>
+  <table class="" style="margin-bottom: 30px; width: 100%">
 
-<div><table class="" style="margin-bottom: 30px; width: 100%">
+    <tbody>
+      <tr>
+        <td>
+          <h3 ng-bind="title"></h3>
+          <p ng-bind="text"></p>
+          <ul class="list-inline blog-tags">
+            <i class="fa fa-tags"></i>
+            <li data-ng-repeat="i in tagsList">
+              <p style="background-color: #F1EAEA;">{{i.tag}}</p>
+            </li>
+          </ul>
+        </td>
 
-        <tbody>
-            <tr>
-                <td>
-                    <h3 ng-bind="title"></h3>
-                    <p  ng-bind="text"></p>
-                    <ul class="list-inline blog-tags">
-                      <i class="fa fa-tags"></i>
-                      <li  data-ng-repeat="i in tagsList">
-                        <p style="background-color: #F1EAEA;">{{i.tag}}</p>
-                      </li>
-                    </ul>
-                </td>
+        <td style="float:right">
+          <button type="button" class="btn btn-success" onclick="window.location.href = '#/update_note';">Update Note</button>
 
-                <td style="float:right">
-                    <button type="button" class="btn btn-success" onclick="window.location.href = '#/update_note';">Update Note</button>
+        </td>
+        <td style="float:right">
+          <button type="button" class="btn btn-danger" ng-click="archiveDiscussion()">Archive Note</button>
 
-                </td>
-                <td style="float:right">
-                    <button type="button" class="btn btn-danger" ng-click="archiveDiscussion()">Archive Note</button>
+        </td>
+      </tr>
 
-                </td>
-            </tr>
-
-        </tbody>
-    </table></div>
-
-<div class="well well-sm">
-    <h4 >Meetings</h4>
-    <div  ng-show="!meetingList.length">
-    <p>Unfortunately, there are no meetings scheduled. Maybe you should create one...</p>
-    <a href="#/new_meeting" class="icon-btn" style="width:130px">
-                            <i class="fa fa-group" style="font-size: 35px;"></i>
-                            <div>
-                                Create New Meeting
-                            </div>
-                        </a>
-    </div>
-    <div data-ng-repeat="i in meetingList">
-        <a class="" href="" ng-click="toMeetingDetail(i.id,i.description,i.location)">
-        <div class="media" style="margin-bottom: 15px;">
-
-            <div class="pull-left well well-sm" style="background-color: white">
-                <table>
-                    <tr>
-                        <td align="center" style="font-size: 36px">28</td>
-                    </tr>
-                    <tr>
-                        <td align="center">May 2016</td>
-                    </tr>
-                    <tr>
-                        <td align="center">14:00-15:00</td>
-                    </tr>
-                </table>
-            </div>
-
-            <div class="media-body" style="padding-left: 10px; padding-top: 5px">
-                <h4 class="media-heading">{{i.name}} </h4>
-                <p>{{i.location}} </p>
-                <p><i class="fa fa-group" style="margin-right: 3px;    color: brown;"></i>Face-to-Face Meeting</p>
-            </div>
-        </div>
-    </a>
-
-    </div>
-
-
+    </tbody>
+  </table>
 </div>
 
 
 <div class="well well-sm media">
-    <div>
-      <h4 >Resources</h4>
-    </div>
-    <div class="pull-left " >
+  <h4>Resources</h4>
+  <div ng-show="!resourceList.length">
+    <p>Unfortunately, there are no resources. You can create one</p>
+    <a href="#/resource" class="icon-btn" style="width:130px">
+      <i class="fa fa-paperclip" style="font-size: 35px;"></i>
+      <div>
+        Create New Resource
+      </div>
+    </a>
+  </div>
+  <div class="media">
+    <div class="pull-left " style="    margin: 10px;" data-ng-repeat="i in resourceList">
+      <a href="" ng-click="downloadResource(i.id, i.type, i.link)">
         <table>
-            <tr>
-                <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>
-                    </tr>
-                <tr>
-                    <td>#Elephants</td>
-                </tr>
+
+          <tr>
+            <th>
+              <img src={{i.imgLink}} alt="100%x200" style=" height: 60px; display: block;">
+            </th>
+          </tr>
+          <tr>
+            <td>{{i.description.substring(0, 10)}}..</td>
+          </tr>
         </table>
+      </a>
+
     </div>
 
-    <div class="pull-left">
-        <table>
-            <tr>
-                <th><img src="assets/img/file_types/pdf.png" alt="100%x200" style=" height: 60px; display: block;" ></th>
-                    </tr>
-                <tr>
-                    <td>#Elephants</td>
-                </tr>
-        </table>
-    </div>
 
-    <div class="pull-left">
-        <table>
-            <tr>
-                <th><img src="assets/img/file_types/docx.png" alt="100%x200" style=" height: 60px; display: block;" ></th>
-                    </tr>
-                <tr>
-                    <td>#Elephants</td>
-                </tr>
-        </table>
-    </div>
+  </div>
+
+
 
 </div>
