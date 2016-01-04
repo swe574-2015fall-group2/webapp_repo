@@ -56,6 +56,7 @@ require([
     'controllers/resource/ResourceController',
     'controllers/ProfileController',
     'controllers/SearchController',
+    'controllers/search',
     'directives/ngbkFocus',
     'directives/draggable',
     'directives/resizable',
