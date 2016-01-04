@@ -52,10 +52,20 @@ define(['controllers/controllers'],
                                     }
                                 }
 
-                                searchData = JSON.stringify({
-                                    authToken: $scope.authToken,
-                                    tagData: {tag: searchQuery, clazz: $scope.searchedClass}
-                                });
+                                if ($scope.searchedClass == "")
+                                {
+                                    searchData = JSON.stringify({
+                                        authToken: $scope.authToken,
+                                        tagData: {tag: searchQuery}
+                                    });
+                                } else
+                                {
+                                    searchData = JSON.stringify({
+                                        authToken: $scope.authToken,
+                                        tagData: {tag: searchQuery, clazz: $scope.searchedClass}
+                                    });
+                                }
+
 
                                 search(searchData);
 
