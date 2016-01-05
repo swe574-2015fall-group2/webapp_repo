@@ -14,7 +14,7 @@ define(['controllers/controllers'],
                              username: "string2",
                              password: "string"
                              });
-                             
+
                              $http.post("http://162.243.18.170:9000/v1/user/login", data).success(function(data, status) {
                              alert("success");
                              });*/
@@ -24,7 +24,7 @@ define(['controllers/controllers'],
 
                             var Duzenli = new RegExp("authToken=([^;=]+)[;\\b]?");
                             var Sonuclar = Duzenli.exec(Cerez);
-                            // alert( unescape(Sonuclar[1]) );	
+                            // alert( unescape(Sonuclar[1]) );
                             var authToken = unescape(Sonuclar[1]);
                             $scope.groupIsCreated = false;
                             $scope.authToken = authToken;
@@ -52,7 +52,7 @@ define(['controllers/controllers'],
                                     authToken: $scope.authToken,
                                     name: $scope.name,
                                     description: $scope.description,
-                                    tagList: $scope.selectedTagList
+                                    tagList: $scope.tagsListToSend
                                 });
 
                                 $http.post("http://162.243.18.170:9000/v1/group/create", data).success(function (data, status) {
@@ -63,7 +63,7 @@ define(['controllers/controllers'],
 
                                     /*
                                      var Cerez = document.cookie;
-                                     
+
                                      var Duzenli = new RegExp("sinan=([^;=]+)[;\\b]?");
                                      var Sonuclar = Duzenli.exec(Cerez);
                                      alert( unescape(Sonuclar[1]) );	*/
@@ -79,6 +79,7 @@ define(['controllers/controllers'],
 
                                 });
                             };
+
 
 
                             function isEmpty(MyVariable)
@@ -103,7 +104,55 @@ define(['controllers/controllers'],
                             }
 
 
-                            $scope.yeniTagList = [];
+                            // NEW TAG SYSYTEM START
+                            $scope.queryTags = [];
+                            $scope.selectedQueryTags = [];
+                            $scope.tagsListToSend = [];
+
+                            $scope.searchTagChanged = function() {
+                              var data = JSON.stringify({
+                                authToken: $scope.authToken,
+                                queryString: $scope.searcTag
+                              });
+                              $http.post("http://162.243.18.170:9000/v1/semantic/queryLabel", data).success(function(data, status) {
+
+                                $scope.tagListCount = data.result.dataList.length;
+                                $scope.yeniTagList = data.result.dataList;
+                                $scope.queryTags = data.result.dataList;
+                                //  for (var i = 0; i <= $scope.tagListCount - 1; i++) {
+                                //    $scope.yeniTagList.push("" + $scope.yeniTagList[i].label + " - " + $scope.yeniTagList[i].clazz);
+                                //  }
+
+                              }).error(function(data, status, headers, config) {
+
+                              });
+                            }
+
+                            $scope.addTag = function(item) {
+                              $scope.selectedQueryTags.push(item);
+                              $scope.updateTagsList();
+                            }
+                            $scope.removeTag = function(item) {
+                              var index = $scope.selectedQueryTags.indexOf(item);
+                              $scope.selectedQueryTags.splice(index, 1);
+                              $scope.updateTagsList();
+                            }
+
+                            $scope.updateTagsList = function(item) {
+                              $scope.tagsListToSend= [];
+                              for (var i = 0; i <= $scope.selectedQueryTags.length; i++) {
+                                $scope.tagsListToSend.push({
+                                  tag: $scope.selectedQueryTags[i].label,
+                                  clazz: $scope.selectedQueryTags[i].clazz
+                                });
+                              }
+                            }
+
+                            // NEW TAG SYSYTEM FINISH
+
+
+
+                            /*$scope.yeniTagList = [];
                             $scope.selectedTagList = [];
 
 
@@ -153,7 +202,7 @@ define(['controllers/controllers'],
                                 }
 
 
-                            };
+                            };*/
 
 
                             $scope.popUpHeader = "Header";

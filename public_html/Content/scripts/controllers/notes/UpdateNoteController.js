@@ -41,7 +41,51 @@ define(['controllers/controllers'],
 
 
 
+                            // NEW TAG SYSYTEM START
+                            $scope.queryTags = [];
+                            $scope.selectedQueryTags = [];
+                            $scope.tagsListToSend = [];
 
+                            $scope.searchTagChanged = function() {
+                              var data = JSON.stringify({
+                                authToken: $scope.authToken,
+                                queryString: $scope.searcTag
+                              });
+                              $http.post("http://162.243.18.170:9000/v1/semantic/queryLabel", data).success(function(data, status) {
+
+                                $scope.tagListCount = data.result.dataList.length;
+                                $scope.yeniTagList = data.result.dataList;
+                                $scope.queryTags = data.result.dataList;
+                                //  for (var i = 0; i <= $scope.tagListCount - 1; i++) {
+                                //    $scope.yeniTagList.push("" + $scope.yeniTagList[i].label + " - " + $scope.yeniTagList[i].clazz);
+                                //  }
+
+                              }).error(function(data, status, headers, config) {
+
+                              });
+                            }
+
+                            $scope.addTag = function(item) {
+                              $scope.reDesignedSelectedTagList.push(item);
+                              $scope.updateTagsList();
+                            }
+                            $scope.removeTag = function(item) {
+                              var index = $scope.reDesignedSelectedTagList.indexOf(item);
+                              $scope.reDesignedSelectedTagList.splice(index, 1);
+                              $scope.updateTagsList();
+                            }
+
+                            $scope.updateTagsList = function(item) {
+                              $scope.tagsListToSend= [];
+                              for (var i = 0; i <= $scope.reDesignedSelectedTagList.length; i++) {
+                                $scope.tagsListToSend.push({
+                                  tag: $scope.reDesignedSelectedTagList[i].label,
+                                  clazz: $scope.reDesignedSelectedTagList[i].clazz
+                                });
+                              }
+                            }
+
+                            // NEW TAG SYSYTEM FINISH
 
 
                             var data = JSON.stringify({
@@ -54,7 +98,16 @@ define(['controllers/controllers'],
 
                                  $scope.name=data.result.title;
                                  $scope.description=data.result.text;
-                                 $scope.tags=data.result.tagList;
+                                 $scope.selectedTagList=data.result.tagList;
+
+
+                                           $scope.reDesignedSelectedTagList = [];
+                                           for (var i = 0; i < $scope.selectedTagList.length; i++) {
+                                             $scope.reDesignedSelectedTagList.push({
+                                               label: $scope.selectedTagList[i].tag,
+                                               clazz: $scope.selectedTagList[i].clazz
+                                             });
+                                           }
 
 
                             }).error(function (data, status, headers, config) {
@@ -72,9 +125,11 @@ define(['controllers/controllers'],
                                     text: $scope.description,
                                     groupId: $scope.selectedGroup,
                                     meetingId: $scope.selectedMeeting,
-//                                    tagList:[$scope.tags], parametrelerde yok
+                                    tagList:$scope.tagsListToSend,
                                     resourceIds: [""]
                                 });
+
+
 
                                 $http.post("http://162.243.18.170:9000/v1/note/update", data).success(function (data, status) {
 

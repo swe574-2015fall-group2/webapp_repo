@@ -75,51 +75,67 @@
                         <td> <textarea class="form-control" placeholder="Enter text" ng-model="description" style="width:450px; height: 150px"></textarea></td>
                     </tr>
 
-                    <tr>
-                        <td>
-                            Tags
-                        </td>
-                        <td>
-
-
-                            <table border="1" style="width:400px; border_color:#35363a" cellpadding="3"  >
-
-                                <tr>
-                                    <td>
-                                <input id="inputTag" class="form-control" type="text" name="product" style="width:300px" list="inputTagList" ng-model="ngTag"  ng-change="getTag()"/>
-                                <datalist id="inputTagList">
-                                    <option  ng-repeat="option in yeniTagList" value="{{option.label}}" >{{option.clazz}} </option>
-                                </datalist>
-                        </td>
-                        <td>
-                            <button type="submit" class="btn btn-success" ng-click="setTag()" >Add Tag</button>
-                        </td>
-                    </tr>
             </table>
 
-            <table border="1" style="width:400px; border_color:#35363a" cellpadding="3"  >
-
-                <tr>
-                    <th>Selected Tag</th>
-                    <th>Selected context</th>
-                </tr>
-
-                <tr data-ng-repeat="selectedTag in selectedTagList">
-                    <td>{{selectedTag.tag}}</td>
-                    <td>{{selectedTag.clazz}}</td>
-                </tr>
-            </table>
         </div>
 
 
-        </td>
-        </tr>
-
-        </table>
 
 </div>
 </form>
+
+<div class="well well-sm">
+<div class="row" style="    margin-left: 0px;">
+  <div>
+    <table>
+      <tr>
+        <td>
+          <h4>Tag Select</h4>
+        </td>
+        <td>
+
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div>
+    <div style="height: 45px;margin: 10px;float: left;" data-ng-repeat="i in selectedQueryTags">
+
+      <div class="alert alert-success">
+        <strong>{{i.label}}</strong> {{i.clazz}}
+        <i class="fa fa-trash-o" style="    color: red;    margin-left: 10px;    font-size: 20px;" ng-click="removeTag(i)"></i>
+      </div>
+
+
+    </div>
+  </div>
 </div>
+<div class="row">
+
+  <div style="margin-bottom: 15px;margin-left: 15px;">
+    <input style="width:70%;margin-top:15px;" type="text" class="form-control" ng-model="searcTag" ng-change="searchTagChanged()" placeholder="Search for a tag to add">
+  </div>
+  <div class="well well-sm" style="max-height: 400px;overflow-y: auto;margin: 15px;    width: 70%;" ng-show="queryTags.length">
+    <div data-ng-repeat="i in queryTags">
+      <div class="media" style="margin-bottom: 10px; margin-top: 10px">
+        <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
+          <h4 class="media-heading">{{i.label}}</h4>
+          <p>{{i.clazz}}</p>
+
+        </div>
+        <div class="pull-left media-body" style="padding-left: 10px; padding-top: 5px">
+          <button type="submit" class="btn btn-warning" ng-click="addTag(i)">Add Tag</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
 
 <div class="well well-sm">
   <div>

@@ -362,7 +362,7 @@ define(['controllers/controllers'],
             text: $scope.description,
             groupId: $scope.selectedGroup,
             meetingId: $scope.meetingListToSend[0],
-            tagList: $scope.selectedTagList,
+            tagList: $scope.tagsListToSend,
             resourceIds:$scope.resourceListToSend
           });
 
@@ -387,11 +387,67 @@ define(['controllers/controllers'],
         };
 
 
-        $scope.yeniTagList = [];
-        $scope.selectedTagList = [];
+        // NEW TAG SYSYTEM START
+        $scope.queryTags = [];
+        $scope.selectedQueryTags = [];
+        $scope.tagsListToSend = [];
+
+        $scope.searchTagChanged = function() {
+          var data = JSON.stringify({
+            authToken: $scope.authToken,
+            queryString: $scope.searcTag
+          });
+          $http.post("http://162.243.18.170:9000/v1/semantic/queryLabel", data).success(function(data, status) {
+
+            $scope.tagListCount = data.result.dataList.length;
+            $scope.yeniTagList = data.result.dataList;
+            $scope.queryTags = data.result.dataList;
+            //  for (var i = 0; i <= $scope.tagListCount - 1; i++) {
+            //    $scope.yeniTagList.push("" + $scope.yeniTagList[i].label + " - " + $scope.yeniTagList[i].clazz);
+            //  }
+
+          }).error(function(data, status, headers, config) {
+
+          });
+        }
+
+        $scope.addTag = function(item) {
+          $scope.selectedQueryTags.push(item);
+          $scope.updateTagsList();
+        }
+        $scope.removeTag = function(item) {
+          var index = $scope.selectedQueryTags.indexOf(item);
+          $scope.selectedQueryTags.splice(index, 1);
+          $scope.updateTagsList();
+        }
+
+        $scope.updateTagsList = function(item) {
+          $scope.tagsListToSend= [];
+          for (var i = 0; i <= $scope.selectedQueryTags.length; i++) {
+            $scope.tagsListToSend.push({
+              tag: $scope.selectedQueryTags[i].label,
+              clazz: $scope.selectedQueryTags[i].clazz
+            });
+          }
+        }
+
+        // NEW TAG SYSYTEM FINISH
 
 
-        $scope.getTag = function() {
+
+
+
+
+
+
+        //$scope.yeniTagList = [];
+      //  $scope.selectedTagList = [];
+
+
+
+
+
+        /*$scope.getTag = function() {
 
           var data = JSON.stringify({
             authToken: $scope.authToken,
@@ -441,7 +497,7 @@ define(['controllers/controllers'],
 
 
         };
-
+*/
 
 
 

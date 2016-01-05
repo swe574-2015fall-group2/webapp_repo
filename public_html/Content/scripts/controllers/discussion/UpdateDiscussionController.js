@@ -46,6 +46,18 @@ define(['controllers/controllers'],
           $scope.name = data.result.name;
           $scope.description = data.result.description;
           $scope.selectedTagList = data.result.tagList;
+
+
+                    $scope.reDesignedSelectedTagList = [];
+                    for (var i = 0; i < $scope.selectedTagList.length; i++) {
+                      $scope.reDesignedSelectedTagList.push({
+                        label: $scope.selectedTagList[i].tag,
+                        clazz: $scope.selectedTagList[i].clazz
+                      });
+                    }
+
+
+
           $scope.meetingIdList = data.result.meetingIdList;
 
           //gets meetingIdList details
@@ -172,7 +184,11 @@ define(['controllers/controllers'],
 
         });
 
-
+        //get meetings of the group
+        var data = JSON.stringify({
+            authToken: authToken,
+            id: selectedGroup,
+        });
 
 
         $http.post("http://162.243.18.170:9000/v1/meeting/queryByGroup", data).success(function(data, status) {
@@ -460,7 +476,7 @@ define(['controllers/controllers'],
             groupId: $scope.selectedGroup,
             name: $scope.name,
             description: $scope.description,
-            tagList: $scope.selectedTagList,
+            tagList: $scope.tagsListToSend,
             discussionId: $scope.selectedDiscussion,
             meetingIdList: $scope.meetingListToSend,
             resourceIdList:  $scope.resourceListToSend
@@ -481,11 +497,56 @@ define(['controllers/controllers'],
           });
         };
 
+        // NEW TAG SYSYTEM START
+        $scope.queryTags = [];
+        $scope.selectedQueryTags = [];
+        $scope.tagsListToSend = [];
+
+        $scope.searchTagChanged = function() {
+          var data = JSON.stringify({
+            authToken: $scope.authToken,
+            queryString: $scope.searcTag
+          });
+          $http.post("http://162.243.18.170:9000/v1/semantic/queryLabel", data).success(function(data, status) {
+
+            $scope.tagListCount = data.result.dataList.length;
+            $scope.yeniTagList = data.result.dataList;
+            $scope.queryTags = data.result.dataList;
+            //  for (var i = 0; i <= $scope.tagListCount - 1; i++) {
+            //    $scope.yeniTagList.push("" + $scope.yeniTagList[i].label + " - " + $scope.yeniTagList[i].clazz);
+            //  }
+
+          }).error(function(data, status, headers, config) {
+
+          });
+        }
+
+        $scope.addTag = function(item) {
+          $scope.reDesignedSelectedTagList.push(item);
+          $scope.updateTagsList();
+        }
+        $scope.removeTag = function(item) {
+          var index = $scope.reDesignedSelectedTagList.indexOf(item);
+          $scope.reDesignedSelectedTagList.splice(index, 1);
+          $scope.updateTagsList();
+        }
+
+        $scope.updateTagsList = function(item) {
+          $scope.tagsListToSend= [];
+          for (var i = 0; i <= $scope.reDesignedSelectedTagList.length; i++) {
+            $scope.tagsListToSend.push({
+              tag: $scope.reDesignedSelectedTagList[i].label,
+              clazz: $scope.reDesignedSelectedTagList[i].clazz
+            });
+          }
+        }
+        // NEW TAG SYSYTEM FINISH
+
 
         $scope.yeniTagList = [];
         $scope.selectedTagList = [];
 
-        $scope.getTag = function() {
+        /*$scope.getTag = function() {
 
           var data = JSON.stringify({
             authToken: $scope.authToken,
@@ -495,28 +556,23 @@ define(['controllers/controllers'],
 
             $scope.myGroupListCount = data.result.dataList.length;
             $scope.yeniTagList = data.result.dataList;
-            /* for (var i = 0; i <= $scope.myGroupListCount - 1; i++) {
-             if ($scope.yeniTagList[i].label == $scope.inputTag)
-             {
-             $scope.selectedTagList.push($scope.yeniTagList[i].label, $scope.yeniTagList[i].clazz);
-             }
-             }*/
+
 
           }).error(function(data, status, headers, config) {
             // alert("Error: " + data.consumerMessage);
 
           });
-        };
+        };*/
 
 
-        $scope.setTag = function() {
+        /*$scope.setTag = function() {
 
           var index = 0;
-          for (var i = 0; i <= $scope.myGroupListCount - 1; i++) {
+          for (var i = 0; i <= $scope.selectedTagList - 1; i++) {
             if ($scope.yeniTagList[i].label == $scope.ngTag) {
               index = 1;
-              $scope.selectedTagList.push({
-                tag: $scope.yeniTagList[i].label,
+              $scope.selectedQueryTags.push({
+                label: $scope.yeniTagList[i].label,
                 clazz: $scope.yeniTagList[i].clazz
               });
               break;
@@ -531,7 +587,7 @@ define(['controllers/controllers'],
           }
 
 
-        };
+        };*/
 
         $scope.popUpHeader = "";
         $scope.popUpBody = "";
