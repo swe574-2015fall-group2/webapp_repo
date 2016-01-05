@@ -162,8 +162,18 @@ define(['controllers/controllers'],
           } else {
             $scope.isPinned = "No";
           }
-
           $scope.selectedTagList = data.result.meeting.tagList;
+
+
+          $scope.reDesignedSelectedTagList = [];
+          for (var i = 0; i < $scope.selectedTagList.length; i++) {
+            $scope.reDesignedSelectedTagList.push({
+              label: $scope.selectedTagList[i].tag,
+              clazz: $scope.selectedTagList[i].clazz
+            });
+          }
+
+
 
           $scope.agendaList = data.result.meeting.agendaSet;
 
@@ -255,7 +265,7 @@ define(['controllers/controllers'],
             agendaSet: $scope.agendaList,
             contactDetails: $scope.contactDetail,
             invitedUserIdList: $scope.invitedUserIdList,
-            tagList: $scope.selectedTagList,
+            tagList: $scope.tagsListToSend,
             meetingId: $scope.selectedMeeting,
             todoSet: $scope.todoSet
           });
@@ -277,9 +287,57 @@ define(['controllers/controllers'],
           });
         };
 
+        // NEW TAG SYSYTEM START
+        $scope.queryTags = [];
+        $scope.selectedQueryTags = [];
+        $scope.tagsListToSend = [];
+
+        $scope.searchTagChanged = function() {
+          var data = JSON.stringify({
+            authToken: $scope.authToken,
+            queryString: $scope.searcTag
+          });
+          $http.post("http://162.243.18.170:9000/v1/semantic/queryLabel", data).success(function(data, status) {
+
+            $scope.tagListCount = data.result.dataList.length;
+            $scope.yeniTagList = data.result.dataList;
+            $scope.queryTags = data.result.dataList;
+            //  for (var i = 0; i <= $scope.tagListCount - 1; i++) {
+            //    $scope.yeniTagList.push("" + $scope.yeniTagList[i].label + " - " + $scope.yeniTagList[i].clazz);
+            //  }
+
+          }).error(function(data, status, headers, config) {
+
+          });
+        }
+
+        $scope.addTag = function(item) {
+          $scope.reDesignedSelectedTagList.push(item);
+          $scope.updateTagsList();
+        }
+        $scope.removeTag = function(item) {
+          var index = $scope.reDesignedSelectedTagList.indexOf(item);
+          $scope.reDesignedSelectedTagList.splice(index, 1);
+          $scope.updateTagsList();
+        }
+
+        $scope.updateTagsList = function(item) {
+          $scope.tagsListToSend= [];
+          for (var i = 0; i <= $scope.reDesignedSelectedTagList.length; i++) {
+            $scope.tagsListToSend.push({
+              tag: $scope.reDesignedSelectedTagList[i].label,
+              clazz: $scope.reDesignedSelectedTagList[i].clazz
+            });
+          }
+        }
+
+        // NEW TAG SYSYTEM FINISH
+
+
+
 
         $scope.yeniTagList = [];
-        $scope.selectedTagList = [];
+        //$scope.selectedTagList = [];
 
         $scope.getTag = function() {
 

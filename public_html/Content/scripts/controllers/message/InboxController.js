@@ -1,4 +1,4 @@
-define(['controllers/controllers'],
+//define(['controllers/controllers'],
         function (controllers) {
             controllers.controller('InboxContr',
                     ['$window',

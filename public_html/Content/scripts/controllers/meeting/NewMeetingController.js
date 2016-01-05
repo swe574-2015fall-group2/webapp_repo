@@ -9,50 +9,26 @@ define(['controllers/controllers'],
         $http) {
 
         $(document).ready(function() {
-        //  $('#somecomponent').locationpicker();
 
-        $('#us2').locationpicker({
-        	location: {latitude: 41.03928746010097, longitude: 28.919078826904297},
-        	radius: 2,
-        	inputBinding: {
-                latitudeInput: $('#us2-lat'),
-                longitudeInput: $('#us2-lon'),
-                radiusInput: $('#us2-radius'),
-                locationNameInput: $('#us2-address')
+          $('#us2').locationpicker({
+            location: {
+              latitude: 41.03928746010097,
+              longitude: 28.919078826904297
+            },
+            radius: 2,
+            inputBinding: {
+              latitudeInput: $('#us2-lat'),
+              longitudeInput: $('#us2-lon'),
+              radiusInput: $('#us2-radius'),
+              locationNameInput: $('#us2-address')
             }
-        	});
+          });
 
 
           $('#datePicker').datepick({
             dateFormat: 'yyyy-mm-dd'
           });
 
-          $('#textarea')
-            .textext({
-              plugins: 'tags autocomplete'
-            })
-            .bind('getSuggestions', function(e, data) {
-              var list = $scope.getTag(),
-                textext = $(e.target).textext()[0],
-                query = (data ? data.query : '') || '';
-
-              $(this).trigger(
-                'setSuggestions', {
-                  result: textext.itemManager().filter(list, query)
-                }
-              );
-            });
-
-
-          $scope.userList = ["Sinan Can", "Hayrican", "Barış", "Mehmet", "Orkun", "Recep", "Ahmet", "Kerem", "Veli", "George", "Kyle"];
-
-          $("#tags").autocomplete({
-            source: $scope.userList,
-            messages: {
-              noResults: '',
-              results: function() {}
-            }
-          });
 
         });
 
@@ -158,27 +134,6 @@ define(['controllers/controllers'],
           }
 
 
-          $scope.tagListTemp = $('#tagListData').val();
-          $scope.tagListTemp = $scope.tagListTemp.substr(1, $scope.tagListTemp.length - 2);
-          $scope.tagListTemp = $scope.tagListTemp.split(",");
-
-          var tagsListToSend = [];
-          if ($('#tagListData').val() != "[]") {
-
-            for (var i = 0; i <= $scope.tagListTemp.length - 1; i++) {
-              var clazz = $scope.tagListTemp[i].split(" - ")[1].replace("\"", "");
-              var tag = $scope.tagListTemp[i].split(" - ")[0].replace("\"", "");
-              var tagObj = {
-                tag: tag,
-                clazz: clazz
-              };
-              tagsListToSend.push(tagObj);
-            }
-          }
-
-          $scope.tagsListToSend = tagsListToSend;
-
-
           var data = JSON.stringify({
             authToken: $scope.authToken,
             name: $scope.name,
@@ -213,43 +168,54 @@ define(['controllers/controllers'],
           });
         };
 
-        $scope.yeniTagList = [];
-        $scope.selectedTagList = [];
-        $scope.yeniTagList2 = [];
 
 
-        $scope.getTag = function() {
 
-          $scope.ngTag = $('#textarea').val();
-          if ($scope.ngTag == "") {
-            $scope.ngTag = "a";
-          }
+        // NEW TAG SYSYTEM START
+        $scope.queryTags = [];
+        $scope.selectedQueryTags = [];
+        $scope.tagsListToSend = [];
 
+        $scope.searchTagChanged = function() {
           var data = JSON.stringify({
             authToken: $scope.authToken,
-            queryString: $scope.ngTag
+            queryString: $scope.searcTag
           });
-
-
           $http.post("http://162.243.18.170:9000/v1/semantic/queryLabel", data).success(function(data, status) {
 
-            $scope.myGroupListCount = data.result.dataList.length;
-
+            $scope.tagListCount = data.result.dataList.length;
             $scope.yeniTagList = data.result.dataList;
-
-            for (var i = 0; i <= $scope.myGroupListCount - 1; i++) {
-              $scope.yeniTagList2.push("" + $scope.yeniTagList[i].label + " - " + $scope.yeniTagList[i].clazz);
-            }
+            $scope.queryTags = data.result.dataList;
+            //  for (var i = 0; i <= $scope.tagListCount - 1; i++) {
+            //    $scope.yeniTagList.push("" + $scope.yeniTagList[i].label + " - " + $scope.yeniTagList[i].clazz);
+            //  }
 
           }).error(function(data, status, headers, config) {
 
           });
+        }
 
-          $scope.yeniTagList2 = $scope.eliminateDuplicates($scope.yeniTagList2);
+        $scope.addTag = function(item) {
+          $scope.selectedQueryTags.push(item);
+          $scope.updateTagsList();
+        }
+        $scope.removeTag = function(item) {
+          var index = $scope.selectedQueryTags.indexOf(item);
+          $scope.selectedQueryTags.splice(index, 1);
+          $scope.updateTagsList();
+        }
 
-          return $scope.yeniTagList2;
+        $scope.updateTagsList = function(item) {
+          $scope.tagsListToSend= [];
+          for (var i = 0; i <= $scope.selectedQueryTags.length; i++) {
+            $scope.tagsListToSend.push({
+              tag: $scope.selectedQueryTags[i].label,
+              clazz: $scope.selectedQueryTags[i].clazz
+            });
+          }
+        }
 
-        };
+        // NEW TAG SYSYTEM FINISH
 
 
         $scope.eliminateDuplicates = function(arr) {
@@ -266,37 +232,6 @@ define(['controllers/controllers'],
           }
           return out;
         }
-
-
-        $scope.setTag = function() {
-
-          var index = 0;
-          for (var i = 0; i <= $scope.myGroupListCount - 1; i++) {
-            if ($scope.yeniTagList[i].label == $scope.ngTag) {
-              index = 1;
-              $scope.selectedTagList.push({
-                tag: $scope.yeniTagList[i].label,
-                clazz: $scope.yeniTagList[i].clazz
-              });
-              break;
-            }
-          }
-
-          if (index == 0) {
-            $scope.selectedTagList.push({
-              tag: $scope.ngTag.toString(),
-              clazz: ""
-            });
-          }
-
-
-        };
-
-
-
-
-
-
 
 
 
@@ -526,11 +461,6 @@ define(['controllers/controllers'],
           }
 
         };
-
-
-
-
-
 
       }
     ]);

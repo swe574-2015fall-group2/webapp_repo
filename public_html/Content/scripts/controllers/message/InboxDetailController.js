@@ -37,7 +37,6 @@ define(['controllers/controllers'],
                             //alert( unescape(Sonuclar[1]) );
                             var InboxDetailMessage = unescape(Sonuclar4[1]);
 
-
                             var Duzenli5 = new RegExp("InboxDetailSenderId=([^;=]+)[;\\b]?");
                             var Sonuclar5 = Duzenli5.exec(Cerez);
                             //alert( unescape(Sonuclar[1]) );
